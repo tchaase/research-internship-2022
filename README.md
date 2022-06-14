@@ -11,17 +11,18 @@ A repository for one currently unkown projects conducted as part of the MSc05 mo
 
 ## Overview
 
-The project currently has no goal. 
+The project currently has no specific goal - as in the goal is still being defined. 
+*In progress*
 
 ### Structure and content
 
 Within the "data" folder, all the relevant data for this project is stored. 
 The "code" folder contains all the code.
-The open 
+The "open lab folder" will contain documentation of this project and the progress of the project. 
 
 ### Further resources
 
-*in progress*
+*In progress*
 
 ### Acknowledgements
 
