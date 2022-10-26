@@ -11,7 +11,7 @@ A repository for one currently unkown projects conducted as part of the MSc05 mo
 ## Overview
 
 The project currently has no specific goal - as in the goal is still being defined. 
-*In progress*
+*In progress*asdfsdf
 
 ### Structure and content
 
