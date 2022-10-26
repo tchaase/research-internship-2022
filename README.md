@@ -12,13 +12,15 @@ A repository for the application of machine learning to a memory data set. This 
 
 The goal is to apply a supervised, classification based machine learning algorithm to a memory data set. Speficiallly, a [data set from Wanja et al. (2021)](https://openneuro.org/datasets/ds003707/versions/1.0.0) will be used. 
 
-
 ### Structure and content
 
 Within the "data" folder, all the relevant data for this project is stored. 
 The "code" folder contains all the code.
 The "open lab folder" will contain documentation of this project and the progress of the project. 
 
+### Further resources
+
+*In progress*
 
 ### Acknowledgements
 
