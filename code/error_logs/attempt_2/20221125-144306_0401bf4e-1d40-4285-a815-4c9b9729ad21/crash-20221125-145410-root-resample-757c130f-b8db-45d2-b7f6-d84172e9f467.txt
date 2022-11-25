@@ -1,0 +1,34 @@
+Node: fmriprep_wf.single_subject_01_wf.func_preproc_task_scene_run_03_wf.unwarp_wf.resample
+Working directory: /tmp/work/fmriprep_wf/single_subject_01_wf/func_preproc_task_scene_run_03_wf/unwarp_wf/resample
+
+Node inputs:
+
+in_coeff = <undefined>
+in_data = <undefined>
+in_xfms = <undefined>
+num_threads = 8
+pe_dir = <undefined>
+ro_time = <undefined>
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.8/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+  File "/opt/conda/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 516, in run
+    result = self._run_interface(execute=True)
+  File "/opt/conda/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 635, in _run_interface
+    return self._run_command(execute)
+  File "/opt/conda/lib/python3.8/site-packages/nipype/pipeline/engine/nodes.py", line 741, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File "/opt/conda/lib/python3.8/site-packages/nipype/interfaces/base/core.py", line 428, in run
+    runtime = self._run_interface(runtime)
+  File "/opt/conda/lib/python3.8/site-packages/sdcflows/interfaces/bspline.py", line 321, in _run_interface
+    ) = zip(*outputs)
+  File "/opt/conda/lib/python3.8/concurrent/futures/process.py", line 484, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/opt/conda/lib/python3.8/concurrent/futures/_base.py", line 619, in result_iterator
+    yield fs.pop().result()
+  File "/opt/conda/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/opt/conda/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.
