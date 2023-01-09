@@ -1,3 +1,3 @@
 ## Code
 
-This folder will contain all the necessary data for this project. 
+At the start of this project, preprocessing was attempted via docker - as this failed for various reasons I switched to brainlife. Within this folder, the failed attempts are for documentation.

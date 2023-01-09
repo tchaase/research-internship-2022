@@ -1,11 +1,11 @@
 # Week 1 (Jun 14 2022)
 
 ## goals for this time frame
-- figure out what the project shall be about
-- get the data 
+- Figure out what the project shall be about
+- Get the data 
 
 ## work conducted for this time frame
-- work 1
+- Read about the project. Read up on mriqc etc. 
 
 ## problems encountered during this time frame
 - Mass of data that one could use for a project - what to choose. 
