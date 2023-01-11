@@ -8,7 +8,7 @@
 - Set up the project
 
 ## problems encountered during this time frame
-- Sata set has object files that aren't continously numbered - why? 
+- Data set has object files that aren't continously numbered - why? 
     - Reason: There are two types of tasks!  
 - Data has multi-run data. Need to figure out which pipeline can work with this. Can fMRI prep do this? <- do next week
 
