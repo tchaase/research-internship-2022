@@ -10,7 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -54,7 +54,7 @@ html_logo = "static/logo.png"
 html_theme_options = {
     "github_url": "https://github.com/tchaase/research-internship-2022",
     "repository_url": "https://github.com/tchaase/research-internship-2022",
-    "repository_branch": "master",
+    "repository_branch": "main",
     "use_edit_page_button": True,
     "path_to_docs": "docs/",
     "expand_sections": ["use/index", "examples/index"],
