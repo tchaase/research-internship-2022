@@ -1,0 +1,1547 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Exploration &#8212; Old-new Association Memory Analyses</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'code/data_exploration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear model" href="linear_model.html" />
+    <link rel="prev" title="What will appear here?" href="../markdown/documentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/setup.html">
+                        Setup for the course
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/data_set.html">
+                        What data is used for this project?
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Data Exploration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_model.html">
+                        Linear model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/discussion.html">
+                        What will appear here in the future?
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/setup.html">
+                        Setup for the course
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/data_set.html">
+                        What data is used for this project?
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Data Exploration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="linear_model.html">
+                        Linear model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/discussion.html">
+                        What will appear here in the future?
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    To be added
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown/setup.html">Setup for the course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown/data_set.html">What data is used for this project?</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_model.html">Linear model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown/discussion.html">What will appear here in the future?</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/tchaase/research-internship-2022/master?urlpath=tree/content/code/data_exploration.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/tchaase/research-internship-2022" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/issues/new?title=Issue%20on%20page%20%2Fcode/data_exploration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/edit/master/content/code/data_exploration.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/code/data_exploration.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Exploration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-the-data-exploration-notebook">
+   Structure of the Data Exploration Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploration-of-the-dataset">
+   Exploration of the Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anatomic-exploration">
+   Anatomic Exploration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploration-of-the-task-and-the-functional-data">
+   Exploration of the Task and the Functional Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-of-the-task">
+     Exploration of the Task
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-of-the-functional-data">
+     Exploration of the Functional Data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="data-exploration">
+<h1>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">#</a></h1>
+<p>Within the following, both the structure of the data-set, the task, as well as various files will be explored. As areminder, I am working with a data-set from Wanjia et al, 2021: <a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">Abrupt hippocampal remapping signals resolution of memory interference</a></p>
+<section id="structure-of-the-data-exploration-notebook">
+<h2>Structure of the Data Exploration Notebook<a class="headerlink" href="#structure-of-the-data-exploration-notebook" title="Permalink to this heading">#</a></h2>
+<p>In the first part I will outline the general structure of the data set. Using the <code class="docutils literal notranslate"><span class="pre">pybids</span></code> module, the structure of the data set will be explored.</p>
+<p>Following this, using one subject as an example, the anatomical and functional files will be explored.</p>
+</section>
+<section id="exploration-of-the-dataset">
+<h2>Exploration of the Dataset<a class="headerlink" href="#exploration-of-the-dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import of the BIDSLayout to help exploration of the BIDS dataset. </span>
+<span class="kn">from</span> <span class="nn">bids</span> <span class="kn">import</span> <span class="n">BIDSLayout</span>
+
+<span class="c1">#The path to the BIDS dataset. </span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/&quot;</span>
+
+<span class="c1">#Application of the BIDSLayout function, followed by printing it.</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="c1">#Import os module to allow easier execution of os-related task</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: ...ngsmodul/project/data/ds003707 | Subjects: 36 | Sessions: 0 | Runs: 288
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is only one session, here shown as zero sessions. Overall, there are 8 runs per participant, equaling 288 runs overall.</p>
+<p>The dataset originally contained 36 participants. As the the dorsal part of participant 33’s cortex within the t1w image is cut-off, this participants was excluded:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!rm -r /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-33</span>
+<span class="c1">#This leads to an updated sample size of:</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: ...ngsmodul/project/data/ds003707 | Subjects: 36 | Sessions: 0 | Runs: 288
+</pre></div>
+</div>
+</div>
+</div>
+<p>The updated sample size is therefore 35.</p>
+<p>There are 8 runs, these are related to two different tasks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#What are the task?</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are the following tasks: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">tasks</span>)
+
+<span class="c1">#How many sessions are there?</span>
+<span class="n">layout</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are the following tasks: [&#39;obj&#39;, &#39;scene&#39;]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The tasks are shown above. Only a single sessions exists, but the command gives an empty output.</p>
+<p>Overall for each participant there are several files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files_sub1</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span> <span class="o">=</span> <span class="s2">&quot;06&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total number of files for subject 06 is: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files_sub1</span><span class="p">)))</span>
+<span class="n">all_files</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total amount of files is: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_files</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of files for subject 06 is: 32.
+The total amount of files is: 1157.
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 32 files for the first subject.These include files of the following file types: <code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.nii.gz</span></code> and event files with a <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> ending.</p>
+<p>There are both anatomic T1w and T2w images available, as well as functional images for both tasks.</p>
+<p>The respective files for each task are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_10_scene</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;scene&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s1">&#39;nii.gz&#39;</span><span class="p">)</span>
+
+<span class="c1">#Importing a package to make output more readable. </span>
+<span class="kn">from</span>  <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">sub_10_scene</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{}</span><span class="s2"> runs for the task scene.&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub_10_scene</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-01_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-03_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-04_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-05_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-06_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-07_bold.nii.gz&#39;]
+There are 6 runs for the task scene.
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is apparent, that the 6 runs for the scene task are not continously numbered. Why this is the case will be explained later!</p>
+<p>Now to the object task:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_06_object</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;obj&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s1">&#39;nii.gz&#39;</span><span class="p">)</span>
+
+<span class="c1">#Importing a package to make output more readable. </span>
+<span class="kn">from</span>  <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">sub_06_object</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{}</span><span class="s2"> runs for the task object.&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sub_06_object</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-obj_run-02_bold.nii.gz&#39;,
+ &#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-obj_run-08_bold.nii.gz&#39;]
+There are 2 runs for the task object.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that the basic structure is known, what is there to explore within the dataset? Which <code class="docutils literal notranslate"><span class="pre">entities</span></code> does pybids detect?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout_entities</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_entities</span><span class="p">()</span>
+<span class="n">layout_entities</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;subject&#39;, &#39;session&#39;, &#39;task&#39;, &#39;acquisition&#39;, &#39;ceagent&#39;, &#39;reconstruction&#39;, &#39;direction&#39;, &#39;run&#39;, &#39;proc&#39;, &#39;modality&#39;, &#39;echo&#39;, &#39;flip&#39;, &#39;inv&#39;, &#39;mt&#39;, &#39;part&#39;, &#39;recording&#39;, &#39;space&#39;, &#39;suffix&#39;, &#39;scans&#39;, &#39;fmap&#39;, &#39;datatype&#39;, &#39;extension&#39;, &#39;Modality&#39;, &#39;MagneticFieldStrength&#39;, &#39;Manufacturer&#39;, &#39;ManufacturersModelName&#39;, &#39;InstitutionName&#39;, &#39;InstitutionalDepartmentName&#39;, &#39;InstitutionAddress&#39;, &#39;DeviceSerialNumber&#39;, &#39;StationName&#39;, &#39;BodyPartExamined&#39;, &#39;PatientPosition&#39;, &#39;ProcedureStepDescription&#39;, &#39;SoftwareVersions&#39;, &#39;MRAcquisitionType&#39;, &#39;SeriesDescription&#39;, &#39;ProtocolName&#39;, &#39;ScanningSequence&#39;, &#39;SequenceVariant&#39;, &#39;ScanOptions&#39;, &#39;SequenceName&#39;, &#39;ImageType&#39;, &#39;SeriesNumber&#39;, &#39;AcquisitionTime&#39;, &#39;AcquisitionNumber&#39;, &#39;SliceThickness&#39;, &#39;SAR&#39;, &#39;EchoTime&#39;, &#39;RepetitionTime&#39;, &#39;InversionTime&#39;, &#39;FlipAngle&#39;, &#39;PartialFourier&#39;, &#39;BaseResolution&#39;, &#39;ShimSetting&#39;, &#39;TxRefAmp&#39;, &#39;PhaseResolution&#39;, &#39;ReceiveCoilName&#39;, &#39;ReceiveCoilActiveElements&#39;, &#39;PulseSequenceDetails&#39;, &#39;ConsistencyInfo&#39;, &#39;PercentPhaseFOV&#39;, &#39;PhaseEncodingSteps&#39;, &#39;AcquisitionMatrixPE&#39;, &#39;ReconMatrixPE&#39;, &#39;ParallelReductionFactorInPlane&#39;, &#39;PixelBandwidth&#39;, &#39;DwellTime&#39;, &#39;ImageOrientationPatientDICOM&#39;, &#39;InPlanePhaseEncodingDirectionDICOM&#39;, &#39;ConversionSoftware&#39;, &#39;ConversionSoftwareVersion&#39;, &#39;SpacingBetweenSlices&#39;, &#39;EchoTrainLength&#39;, &#39;PhaseEncodingDirection&#39;, &#39;BandwidthPerPixelPhaseEncode&#39;, &#39;EffectiveEchoSpacing&#39;, &#39;DerivedVendorReportedEchoSpacing&#39;, &#39;TotalReadoutTime&#39;, &#39;SliceTiming&#39;, &#39;IntendedFor&#39;, &#39;TaskName&#39;, &#39;ImageComments&#39;, &#39;MultibandAccelerationFactor&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a lot of output - but basically there are a lot of potential parameters that can be explored.</p>
+<p>Slice timing, repetition time etc. will later be explored in more detail. In the following section, a overview report is generated for the different the anatomic images, as well as the functional runs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bids.reports</span> <span class="kn">import</span> <span class="n">BIDSReport</span>  <span class="c1">#Import of the &#39;report&#39; function. </span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">BIDSReport</span><span class="p">(</span><span class="n">layout</span><span class="p">);</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-24_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-21_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-25_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-32_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-22_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-01_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-17_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-20_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-35_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-19_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-13_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-05_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-09_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-28_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-29_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-15_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-33_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-14_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-10_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-12_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-23_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-30_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-07_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-36_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-18_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-34_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-06_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-27_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-31_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-02_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-04_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-11_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-16_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-08_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of patterns detected: 1
+Remember to double-check everything and to replace &lt;deg&gt; with a degree symbol.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-03_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/bids/reports/parsing.py:387: UserWarning: sub-26_dir-AP_epi.nii.gz not yet supported.
+  warnings.warn(group[0].filename + &quot; not yet supported.&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_report</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">main_report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In session None, MR data were acquired using a 3-Tesla Siemens Skyra MRI scanner.
+	One run of T1-weighted segmented k-space, spoiled, and MAG prepared gradient recalled and inversion recovery (GR/IR) single-echo structural MRI data were collected (256 slices; repetition time, TR=2500ms; echo time, TE=3.43ms; flip angle, FA=7&lt;deg&gt;; field of view, FOV=176x256mm; matrix size=176x256; voxel size=1x1x1mm).
+	One run of T2-weighted segmented k-space, spoiled, and oversampling phase spin echo (SE) single-echo structural MRI data were collected (65 slices; repetition time, TR=13520ms; echo time, TE=88ms; flip angle, FA=150&lt;deg&gt;; field of view, FOV=220x220mm; matrix size=512x512; voxel size=0.43x0.43x2mm).
+	Two runs of objects old new identification segmented k-space and steady state echo planar (EP) single-echo fMRI data were collected (72 slices in interleaved ascending order; repetition time, TR=2000ms; echo time, TE=36ms; flip angle, FA=90&lt;deg&gt;; field of view, FOV=211x211mm; matrix size=124x124; voxel size=1.7x1.7x1.7mm; MB factor=3; in-plane acceleration factor=2). Run duration was 5:54 minutes, during which 177 volumes were acquired.
+	Six runs of scenes old new identification segmented k-space and steady state echo planar (EP) single-echo fMRI data were collected (72 slices in interleaved ascending order; repetition time, TR=2000ms; echo time, TE=36ms; flip angle, FA=90&lt;deg&gt;; field of view, FOV=211x211mm; matrix size=124x124; voxel size=1.7x1.7x1.7mm; MB factor=3; in-plane acceleration factor=2). Run duration was 5:54 minutes, during which 177 volumes were acquired.
+
+Dicoms were converted to NIfTI-1 format using dcm2niix (v1.0.20171215 GCC5.3.1). This section was (in part) generated automatically using pybids (0.15.1).
+</pre></div>
+</div>
+</div>
+</div>
+<p>For all image aquisitions a 3T Siemens scanner was used.</p>
+<p>Besides basic metrics, it also becomes apparent that the slice number for the T2w image is low - this might be related to it being a partial image. As similar number of slices was aquired for the functional image.</p>
+<p>Furthermore, there are 8 functional runs, split into the two tasks, as explained before. Both were obtained using single echo imaging. More about those in a bit!</p>
+</section>
+<section id="anatomic-exploration">
+<h2>Anatomic Exploration<a class="headerlink" href="#anatomic-exploration" title="Permalink to this heading">#</a></h2>
+<p>For the anatomic exploration, only the T1w images will be looked at in detail.</p>
+<p>Firstly, the necessary modules will be loaded:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_anat</span><span class="p">,</span> <span class="n">plot_img</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">mean_img</span>
+
+<span class="c1">#Files paths for all files needed in this section:</span>
+<span class="n">data_path_t1w_sub06</span> <span class="o">=</span> <span class="s1">&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/anat/sub-06_T1w.nii.gz&#39;</span>
+<span class="n">data_path_t2w_sub06</span> <span class="o">=</span> <span class="s1">&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/anat/sub-06_T2w.nii.gz&#39;</span>
+
+<span class="c1">#Object from pybids:</span>
+<span class="n">t1w_sub06_bids</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;06&#39;</span><span class="p">],</span> <span class="n">extension</span> <span class="o">=</span> <span class="s1">&#39;nii.gz&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t2w_sub06_bids</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;06&#39;</span><span class="p">],</span> <span class="n">extension</span> <span class="o">=</span> <span class="s1">&#39;nii.gz&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Firstly, I will plot the T1w images. Then I will inspect aquisistion parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">data_path_t1w_sub06</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/image/resampling.py:531: UserWarning: Casting data from int32 to float32
+  warnings.warn(&quot;Casting data from %s to %s&quot; % (data.dtype.name, aux))
+</pre></div>
+</div>
+<img alt="../_images/2ecf5b1b9dbfe22aeaff50dbdfa86238d52dc7a8c39f9368f70fae156c3e96e7.png" src="../_images/2ecf5b1b9dbfe22aeaff50dbdfa86238d52dc7a8c39f9368f70fae156c3e96e7.png" />
+</div>
+</div>
+<p>This appears normal. How was this image taken?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;AcquisitionMatrixPE&#39;: 256,
+ &#39;AcquisitionNumber&#39;: 1,
+ &#39;AcquisitionTime&#39;: &#39;14:35:56.487500&#39;,
+ &#39;BaseResolution&#39;: 256,
+ &#39;BodyPartExamined&#39;: &#39;BRAIN&#39;,
+ &#39;ConsistencyInfo&#39;: &#39;N4_VE11C_LATEST_20160120&#39;,
+ &#39;ConversionSoftware&#39;: &#39;dcm2niix&#39;,
+ &#39;ConversionSoftwareVersion&#39;: &#39;v1.0.20171215 GCC5.3.1&#39;,
+ &#39;DeviceSerialNumber&#39;: &#39;45348&#39;,
+ &#39;DwellTime&#39;: 1.03e-05,
+ &#39;EchoTime&#39;: 0.00343,
+ &#39;FlipAngle&#39;: 7,
+ &#39;ImageOrientationPatientDICOM&#39;: [-0.0356256,
+  0.999365,
+  -1.13833e-08,
+  0.0576839,
+  0.00205632,
+  -0.998333],
+ &#39;ImageType&#39;: [&#39;ORIGINAL&#39;, &#39;PRIMARY&#39;, &#39;M&#39;, &#39;NORM&#39;, &#39;DIS3D&#39;, &#39;DIS2D&#39;],
+ &#39;InPlanePhaseEncodingDirectionDICOM&#39;: &#39;ROW&#39;,
+ &#39;InstitutionAddress&#39;: &#39;Franklin_Blvd_1440_Eugene_District_US_97403&#39;,
+ &#39;InstitutionName&#39;: &#39;Lewis_Building&#39;,
+ &#39;InstitutionalDepartmentName&#39;: &#39;Department&#39;,
+ &#39;InversionTime&#39;: 1.1,
+ &#39;MRAcquisitionType&#39;: &#39;3D&#39;,
+ &#39;MagneticFieldStrength&#39;: 3,
+ &#39;Manufacturer&#39;: &#39;Siemens&#39;,
+ &#39;ManufacturersModelName&#39;: &#39;Skyra&#39;,
+ &#39;Modality&#39;: &#39;MR&#39;,
+ &#39;ParallelReductionFactorInPlane&#39;: 2,
+ &#39;PartialFourier&#39;: 1,
+ &#39;PatientPosition&#39;: &#39;HFS&#39;,
+ &#39;PercentPhaseFOV&#39;: 100,
+ &#39;PhaseEncodingSteps&#39;: 255,
+ &#39;PhaseResolution&#39;: 1,
+ &#39;PixelBandwidth&#39;: 190,
+ &#39;ProcedureStepDescription&#39;: &#39;kuhl_lab_Kuhl_NEUDIF&#39;,
+ &#39;ProtocolName&#39;: &#39;mprage_p2&#39;,
+ &#39;PulseSequenceDetails&#39;: &#39;%SiemensSeq%_tfl&#39;,
+ &#39;ReceiveCoilActiveElements&#39;: &#39;HEA;HEP&#39;,
+ &#39;ReceiveCoilName&#39;: &#39;Head_32&#39;,
+ &#39;ReconMatrixPE&#39;: 256,
+ &#39;RepetitionTime&#39;: 2.5,
+ &#39;SAR&#39;: 0.0693293,
+ &#39;ScanOptions&#39;: &#39;IR&#39;,
+ &#39;ScanningSequence&#39;: &#39;GR_IR&#39;,
+ &#39;SequenceName&#39;: &#39;_tfl3d1_16ns&#39;,
+ &#39;SequenceVariant&#39;: &#39;SK_SP_MP&#39;,
+ &#39;SeriesDescription&#39;: &#39;mprage_p2&#39;,
+ &#39;SeriesNumber&#39;: 5,
+ &#39;ShimSetting&#39;: [-4973, 7579, 9113, 344, 110, -65, 79, -331],
+ &#39;SliceThickness&#39;: 1,
+ &#39;SoftwareVersions&#39;: &#39;syngo_MR_E11&#39;,
+ &#39;StationName&#39;: &#39;AWP45348&#39;,
+ &#39;TxRefAmp&#39;: 363.002}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_anat</span><span class="p">(</span><span class="n">data_path_t2w_sub06</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/image/resampling.py:531: UserWarning: Casting data from int32 to float32
+  warnings.warn(&quot;Casting data from %s to %s&quot; % (data.dtype.name, aux))
+</pre></div>
+</div>
+<img alt="../_images/3951d205688d833c7bdf6725c79c2addfbd5acd806d2ae09719a909f42513d8d.png" src="../_images/3951d205688d833c7bdf6725c79c2addfbd5acd806d2ae09719a909f42513d8d.png" />
+</div>
+</div>
+<p>It is visible that the occipital cortex is largely cut off. This is also the case for all participants… <br />
+However, this was expected, as the study has a particular region of interest - the hippocampus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;AcquisitionMatrixPE&#39;: 512,
+ &#39;AcquisitionNumber&#39;: 1,
+ &#39;AcquisitionTime&#39;: &#39;14:57:7.622500&#39;,
+ &#39;BaseResolution&#39;: 512,
+ &#39;BodyPartExamined&#39;: &#39;BRAIN&#39;,
+ &#39;ConsistencyInfo&#39;: &#39;N4_VE11C_LATEST_20160120&#39;,
+ &#39;ConversionSoftware&#39;: &#39;dcm2niix&#39;,
+ &#39;ConversionSoftwareVersion&#39;: &#39;v1.0.20171215 GCC5.3.1&#39;,
+ &#39;DeviceSerialNumber&#39;: &#39;45348&#39;,
+ &#39;DwellTime&#39;: 4.4e-06,
+ &#39;EchoTime&#39;: 0.088,
+ &#39;EchoTrainLength&#39;: 18,
+ &#39;FlipAngle&#39;: 150,
+ &#39;ImageOrientationPatientDICOM&#39;: [0.997907,
+  0.0386363,
+  0.0518518,
+  0.028095,
+  0.463174,
+  -0.885822],
+ &#39;ImageType&#39;: [&#39;ORIGINAL&#39;, &#39;PRIMARY&#39;, &#39;M&#39;, &#39;NORM&#39;, &#39;DIS2D&#39;],
+ &#39;InPlanePhaseEncodingDirectionDICOM&#39;: &#39;ROW&#39;,
+ &#39;InstitutionAddress&#39;: &#39;Franklin_Blvd_1440_Eugene_District_US_97403&#39;,
+ &#39;InstitutionName&#39;: &#39;Lewis_Building&#39;,
+ &#39;InstitutionalDepartmentName&#39;: &#39;Department&#39;,
+ &#39;MRAcquisitionType&#39;: &#39;2D&#39;,
+ &#39;MagneticFieldStrength&#39;: 3,
+ &#39;Manufacturer&#39;: &#39;Siemens&#39;,
+ &#39;ManufacturersModelName&#39;: &#39;Skyra&#39;,
+ &#39;Modality&#39;: &#39;MR&#39;,
+ &#39;ParallelReductionFactorInPlane&#39;: 2,
+ &#39;PartialFourier&#39;: 1,
+ &#39;PatientPosition&#39;: &#39;HFS&#39;,
+ &#39;PercentPhaseFOV&#39;: 100,
+ &#39;PhaseEncodingDirection&#39;: &#39;i&#39;,
+ &#39;PhaseEncodingSteps&#39;: 540,
+ &#39;PhaseResolution&#39;: 1,
+ &#39;PixelBandwidth&#39;: 220,
+ &#39;ProcedureStepDescription&#39;: &#39;kuhl_lab_Kuhl_NEUDIF&#39;,
+ &#39;ProtocolName&#39;: &#39;t2_tse_cor65slice_2avg.+&#39;,
+ &#39;PulseSequenceDetails&#39;: &#39;%SiemensSeq%_tse&#39;,
+ &#39;ReceiveCoilActiveElements&#39;: &#39;HEA;HEP&#39;,
+ &#39;ReceiveCoilName&#39;: &#39;Head_32&#39;,
+ &#39;ReconMatrixPE&#39;: 512,
+ &#39;RepetitionTime&#39;: 13.52,
+ &#39;SAR&#39;: 0.704907,
+ &#39;ScanningSequence&#39;: &#39;SE&#39;,
+ &#39;SequenceName&#39;: &#39;_tse2d1_18&#39;,
+ &#39;SequenceVariant&#39;: &#39;SK_SP_OSP&#39;,
+ &#39;SeriesDescription&#39;: &#39;t2_tse_cor65slice_2avg.+&#39;,
+ &#39;SeriesNumber&#39;: 8,
+ &#39;ShimSetting&#39;: [-5006, 7677, 8692, -16, 2, 203, 44, -351],
+ &#39;SliceThickness&#39;: 2,
+ &#39;SoftwareVersions&#39;: &#39;syngo_MR_E11&#39;,
+ &#39;SpacingBetweenSlices&#39;: 2,
+ &#39;StationName&#39;: &#39;AWP45348&#39;,
+ &#39;TxRefAmp&#39;: 363.002}
+</pre></div>
+</div>
+</div>
+</div>
+<p>A reminder for myself: T1w and T2w images differ as a result of their repitition time (<em>TR</em>) and their echo time (<em>TE</em>). T1w images have short TRs and TEs to emphasize fatty tissue (contrast highest for white matter here), meanwhile T2w images emphasize both tissues containing fat and water. This <a class="reference external" href="https://radiology.queensu.ca/source/MR_Pulse_Sequences_What_Every_Radiologist_Wants_to_Know.pdf">paper</a> helped</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The repetition time for the T1w image is </span><span class="si">{}</span><span class="s2">, while the repition time for the T2w image is </span><span class="si">{}</span><span class="s2">.&quot;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()[</span><span class="s2">&quot;RepetitionTime&quot;</span><span class="p">],</span> <span class="n">t2w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()[</span><span class="s2">&quot;RepetitionTime&quot;</span><span class="p">]))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The echo time for the T1w image is </span><span class="si">{}</span><span class="s2">, while the echo time for the T2w image is </span><span class="si">{}</span><span class="s2">.&quot;</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()[</span><span class="s2">&quot;EchoTime&quot;</span><span class="p">],</span> <span class="n">t2w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()[</span><span class="s2">&quot;EchoTime&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The repetition time for the T1w image is 2.5, while the repition time for the T2w image is 13.52.
+The echo time for the T1w image is 0.00343, while the echo time for the T2w image is 0.088.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploration-of-the-task-and-the-functional-data">
+<h2>Exploration of the Task and the Functional Data<a class="headerlink" href="#exploration-of-the-task-and-the-functional-data" title="Permalink to this heading">#</a></h2>
+<section id="exploration-of-the-task">
+<h3>Exploration of the Task<a class="headerlink" href="#exploration-of-the-task" title="Permalink to this heading">#</a></h3>
+<p>Firstly, I will take a look at the <code class="docutils literal notranslate"><span class="pre">event.tsv</span></code> files and then try to look at some of the functional data.
+It was previously mentioned that there are 8 runs, which involve two different tasks. These runs are actually only the last part of an experimental paradigm. Only a part of the tasks were performed within the fMRI.</p>
+<p>The event files available here therefore only partially cover the tasks. There are three parts of the experimental paradigm:</p>
+<ol class="arabic simple">
+<li><p>Study phase: Participants learned 36 scene-object associations. These consisted of 18 scene-object pairmates.</p></li>
+<li><p>Test phase: The 36 scene object associations were tested. A scene was presented, then one of two objects had to be choosen: One was previously associated, one was the competitior (same object category, associated with different scene)</p></li>
+<li><p>Exposure phase: Participants were exposed to the scene-object associations. There were two blocks per run, each block block included old/new judgement towards the 36 studied scenes <strong>or</strong> objects, as well as three novel lure scenes <strong>or</strong> objects. Between the blocks there was a short odd-even judgement task.</p></li>
+</ol>
+<p>The first and sixth round included object old-new judgements, the other runs followed the same procedure but using scenes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">events_scene_sub06_run1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/sub-06/func/sub-06_task-scene_run-01_events.tsv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">events_scene_sub06_run1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    onset  duration  correct trial_type  response_time
+0      10         4      0.0       1_A9            NaN
+1      14         4      1.0       1_A2       1.486898
+2      18         4      1.0       1_A1       0.752162
+3      22         4      1.0       1_B4       0.334689
+4      26         4      1.0       1_B0       0.368064
+..    ...       ...      ...        ...            ...
+73    324         4      0.0      2_B16            NaN
+74    328         4      1.0     foil05       0.735685
+75    332         4      1.0      2_A17       0.534958
+76    336         4      1.0     foil03       0.785550
+77    340         4      1.0       2_A3       1.085914
+
+[78 rows x 5 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We therefore see, that this run had 78 items. Duration is shown as 4 seconds, but in reality this was stated to only be the case when there was no reaction - the task could have gone faster. The structure of the task is like this:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>What</p></th>
+<th class="head"><p>Duration</p></th>
+<th class="head text-right"><p>Other</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Presentation of a scene image</p></td>
+<td><p>500 ms</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Red fixation cross</p></td>
+<td><p>1500 ms</p></td>
+<td class="text-right"><p>Response “old/new” must be given</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>White fixation cross</p></td>
+<td><p>2000ms</p></td>
+<td class="text-right"><p>Next trial starts</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Repeated for 39 times, followed by odd/even judgement task, then another 39 scenes</p></td>
+<td><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>There <strong>39 runs</strong> consisted of <strong>36 image-object pairs</strong> that were the stimuli, as well as <strong>three lure scenes</strong>. All images were <strong>repeated twice per run</strong>!
+These 36 pairs themselves, consisted of <strong>18 pairmates</strong>, which could be visually or semantically similar!
+Therefore, across the 8 runs there were 36 scenes and 12 objects that were simply lures, while the 36 original pairs are repeated twice per run!</p>
+<p>How is the performance in the old-new judgement task across runs and by different task?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_1_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_2_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_3_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_4_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_5_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_6_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_7_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="n">run_8_performance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">,</span><span class="s1">&#39;correct&#39;</span><span class="p">,</span> <span class="s1">&#39;incorrect&#39;</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.tsv&#39;</span><span class="p">):</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">performance_events_correct</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;correct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+    <span class="n">performance_events_incorrect</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">events_scene_sub06_run1</span><span class="p">)</span> <span class="o">-</span> <span class="n">events_scene_sub06_run1</span><span class="p">[</span><span class="s2">&quot;correct&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mf">1.0</span><span class="p">])</span>
+    <span class="n">list_events</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">)),</span> <span class="n">performance_events_correct</span><span class="p">,</span> <span class="n">performance_events_incorrect</span><span class="p">]</span>    
+    <span class="k">if</span> <span class="s2">&quot;run-01&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_1_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_1_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-02&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_2_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_2_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-03&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_3_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_3_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-04&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_4_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_4_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-05&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_5_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_5_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-06&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_6_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_6_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-07&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_7_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_7_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">elif</span> <span class="s2">&quot;run-08&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="n">run_8_performance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">run_8_performance</span><span class="p">)]</span> <span class="o">=</span> <span class="n">list_events</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Something went wrong&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Data wrangling to create a plot</span>
+
+<span class="n">run_1_sum</span> <span class="o">=</span> <span class="n">run_1_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_1_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_2_sum</span> <span class="o">=</span> <span class="n">run_2_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_2_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_3_sum</span> <span class="o">=</span> <span class="n">run_3_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_3_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_4_sum</span> <span class="o">=</span> <span class="n">run_4_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_4_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_5_sum</span> <span class="o">=</span> <span class="n">run_5_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_5_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_6_sum</span> <span class="o">=</span> <span class="n">run_6_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_6_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_7_sum</span> <span class="o">=</span> <span class="n">run_7_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_7_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">run_8_sum</span> <span class="o">=</span> <span class="n">run_8_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">run_8_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">run_1_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_1_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_1_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_1_sum</span><span class="p">)</span>
+<span class="n">run_2_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_2_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_2_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_2_sum</span><span class="p">)</span>
+<span class="n">run_3_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_3_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_3_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_3_sum</span><span class="p">)</span>
+<span class="n">run_4_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_4_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_4_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_4_sum</span><span class="p">)</span>
+<span class="n">run_5_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_5_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_5_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_5_sum</span><span class="p">)</span>
+<span class="n">run_6_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_6_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_6_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_6_sum</span><span class="p">)</span>
+<span class="n">run_7_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_7_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_7_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_7_sum</span><span class="p">)</span>
+<span class="n">run_8_performance_percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">run_8_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">run_8_performance</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span> <span class="n">run_8_sum</span><span class="p">)</span>
+
+<span class="n">run_performance</span> <span class="o">=</span> <span class="p">[</span><span class="n">run_1_performance_percent</span><span class="p">,</span> <span class="n">run_2_performance_percent</span><span class="p">,</span> <span class="n">run_3_performance_percent</span><span class="p">,</span> <span class="n">run_4_performance_percent</span><span class="p">,</span> <span class="n">run_5_performance_percent</span><span class="p">,</span> <span class="n">run_6_performance_percent</span><span class="p">,</span> <span class="n">run_7_performance_percent</span><span class="p">,</span> <span class="n">run_8_performance_percent</span><span class="p">]</span>
+
+
+<span class="c1">#Calling the right package. </span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;_mpl-gallery&#39;</span><span class="p">)</span>
+
+<span class="c1">#Creating names for the runs</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Run 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 4&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 5&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 6&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 7&quot;</span><span class="p">,</span> <span class="s2">&quot;Run 8&quot;</span><span class="p">]</span>
+
+<span class="c1">#Creating the plot</span>
+<span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">run_performance</span><span class="p">)</span>
+
+<span class="c1">#Increasing figure size</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#Setting the limits of the y-axis</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a9e0a8364d20b7ac15655a4ff6ae53eb841b26b89cfa8c289dc79c9791dbf15d.png" src="../_images/a9e0a8364d20b7ac15655a4ff6ae53eb841b26b89cfa8c289dc79c9791dbf15d.png" />
+</div>
+</div>
+<p>This is not a very well done graphic, but it shows that the performance within the old/new judgement task was above chance across runs.</p>
+</section>
+<section id="exploration-of-the-functional-data">
+<h3>Exploration of the Functional Data<a class="headerlink" href="#exploration-of-the-functional-data" title="Permalink to this heading">#</a></h3>
+<p>Now onto the functional data for these runs!
+First, here is the meta-data for one run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scene_run1_sub06_bold</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;06&#39;</span><span class="p">],</span> <span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;scene&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">scene_run1_sub06_bold</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;AcquisitionMatrixPE&#39;: 124,
+ &#39;AcquisitionNumber&#39;: 1,
+ &#39;AcquisitionTime&#39;: &#39;14:42:50.105000&#39;,
+ &#39;BandwidthPerPixelPhaseEncode&#39;: 21.222,
+ &#39;BaseResolution&#39;: 124,
+ &#39;BodyPartExamined&#39;: &#39;BRAIN&#39;,
+ &#39;ConsistencyInfo&#39;: &#39;N4_VE11C_LATEST_20160120&#39;,
+ &#39;ConversionSoftware&#39;: &#39;dcm2niix&#39;,
+ &#39;ConversionSoftwareVersion&#39;: &#39;v1.0.20171215 GCC5.3.1&#39;,
+ &#39;DerivedVendorReportedEchoSpacing&#39;: 0.000760015,
+ &#39;DeviceSerialNumber&#39;: &#39;45348&#39;,
+ &#39;DwellTime&#39;: 2.6e-06,
+ &#39;EchoTime&#39;: 0.036,
+ &#39;EchoTrainLength&#39;: 61,
+ &#39;EffectiveEchoSpacing&#39;: 0.000380007,
+ &#39;FlipAngle&#39;: 90,
+ &#39;ImageComments&#39;: &#39;Unaliased_MB3_PE4&#39;,
+ &#39;ImageOrientationPatientDICOM&#39;: [0.997698,
+  0.0355807,
+  0.0577256,
+  -0.0526364,
+  0.943048,
+  0.328466],
+ &#39;ImageType&#39;: [&#39;ORIGINAL&#39;, &#39;PRIMARY&#39;, &#39;M&#39;, &#39;MB&#39;, &#39;ND&#39;, &#39;NORM&#39;, &#39;MOSAIC&#39;],
+ &#39;InPlanePhaseEncodingDirectionDICOM&#39;: &#39;COL&#39;,
+ &#39;InstitutionAddress&#39;: &#39;Franklin_Blvd_1440_Eugene_District_US_97403&#39;,
+ &#39;InstitutionName&#39;: &#39;Lewis_Building&#39;,
+ &#39;InstitutionalDepartmentName&#39;: &#39;Department&#39;,
+ &#39;MRAcquisitionType&#39;: &#39;2D&#39;,
+ &#39;MagneticFieldStrength&#39;: 3,
+ &#39;Manufacturer&#39;: &#39;Siemens&#39;,
+ &#39;ManufacturersModelName&#39;: &#39;Skyra&#39;,
+ &#39;Modality&#39;: &#39;MR&#39;,
+ &#39;MultibandAccelerationFactor&#39;: 3,
+ &#39;ParallelReductionFactorInPlane&#39;: 2,
+ &#39;PartialFourier&#39;: 1,
+ &#39;PatientPosition&#39;: &#39;HFS&#39;,
+ &#39;PercentPhaseFOV&#39;: 100,
+ &#39;PhaseEncodingDirection&#39;: &#39;j-&#39;,
+ &#39;PhaseEncodingSteps&#39;: 123,
+ &#39;PhaseResolution&#39;: 1,
+ &#39;PixelBandwidth&#39;: 1550,
+ &#39;ProcedureStepDescription&#39;: &#39;kuhl_lab_Kuhl_NEUDIF&#39;,
+ &#39;ProtocolName&#39;: &#39;EPI_1&#39;,
+ &#39;PulseSequenceDetails&#39;: &#39;%CustomerSeq%_cmrr_mbep2d_bold&#39;,
+ &#39;ReceiveCoilActiveElements&#39;: &#39;HEA;HEP&#39;,
+ &#39;ReceiveCoilName&#39;: &#39;Head_32&#39;,
+ &#39;ReconMatrixPE&#39;: 124,
+ &#39;RepetitionTime&#39;: 2,
+ &#39;SAR&#39;: 0.132364,
+ &#39;ScanOptions&#39;: &#39;FS&#39;,
+ &#39;ScanningSequence&#39;: &#39;EP&#39;,
+ &#39;SequenceName&#39;: &#39;epfid2d1_124&#39;,
+ &#39;SequenceVariant&#39;: &#39;SK_SS&#39;,
+ &#39;SeriesDescription&#39;: &#39;EPI_1&#39;,
+ &#39;SeriesNumber&#39;: 6,
+ &#39;ShimSetting&#39;: [-4963, 7623, 9142, 337, 133, 81, -76, -298],
+ &#39;SliceThickness&#39;: 1.7,
+ &#39;SliceTiming&#39;: [0,
+  0.9075,
+  1.815,
+  0.7425,
+  1.65,
+  0.5775,
+  1.485,
+  0.4125,
+  1.32,
+  0.2475,
+  1.155,
+  0.0825,
+  0.99,
+  1.8975,
+  0.825,
+  1.7325,
+  0.66,
+  1.5675,
+  0.495,
+  1.4025,
+  0.33,
+  1.2375,
+  0.165,
+  1.0725,
+  0,
+  0.9075,
+  1.815,
+  0.7425,
+  1.65,
+  0.5775,
+  1.485,
+  0.4125,
+  1.32,
+  0.2475,
+  1.155,
+  0.0825,
+  0.99,
+  1.8975,
+  0.825,
+  1.7325,
+  0.66,
+  1.5675,
+  0.495,
+  1.4025,
+  0.33,
+  1.2375,
+  0.165,
+  1.0725,
+  0,
+  0.9075,
+  1.815,
+  0.7425,
+  1.65,
+  0.5775,
+  1.485,
+  0.4125,
+  1.32,
+  0.2475,
+  1.155,
+  0.0825,
+  0.99,
+  1.8975,
+  0.825,
+  1.7325,
+  0.66,
+  1.5675,
+  0.495,
+  1.4025,
+  0.33,
+  1.2375,
+  0.165,
+  1.0725],
+ &#39;SoftwareVersions&#39;: &#39;syngo_MR_E11&#39;,
+ &#39;SpacingBetweenSlices&#39;: 1.7,
+ &#39;StationName&#39;: &#39;AWP45348&#39;,
+ &#39;TaskName&#39;: &#39;scenes old new identification&#39;,
+ &#39;TotalReadoutTime&#39;: 0.0467409,
+ &#39;TxRefAmp&#39;: 363.002}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above are the quality metrics for the first run of subject one. Next I will plot that run. As the data exists in four dimensions, you can’t simply plot it. First I need to create a mean image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#File path for the preprocessed image</span>
+<span class="n">path_preproc_scene_sub06_run1</span> <span class="o">=</span> <span class="s1">&#39;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/sub-06/sub-06_task-scene_run-01_desc-preproc_bold.nii.gz&#39;</span>
+<span class="c1">#Creating the mean image</span>
+<span class="n">mean_img_scene_sub06_run1</span> <span class="o">=</span> <span class="n">mean_img</span><span class="p">(</span><span class="n">path_preproc_scene_sub06_run1</span><span class="p">)</span>
+
+<span class="n">plot_img</span><span class="p">(</span><span class="n">mean_img_scene_sub06_run1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e7cec70fcf48895a0132c55c1d9ac22e3d74e811bc4c5c3fcd8a3527f7c25393.png" src="../_images/e7cec70fcf48895a0132c55c1d9ac22e3d74e811bc4c5c3fcd8a3527f7c25393.png" />
+</div>
+</div>
+<p>It is apparent that the BOLD image only has <strong>partial brain</strong> coverage! Parts of the frontal cortex are missing. This is intended, as the ROI of the analyses was the hippocampus, specifically the different subfields.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../markdown/documentation.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">What will appear here?</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="linear_model.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Linear model</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-the-data-exploration-notebook">
+   Structure of the Data Exploration Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploration-of-the-dataset">
+   Exploration of the Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anatomic-exploration">
+   Anatomic Exploration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploration-of-the-task-and-the-functional-data">
+   Exploration of the Task and the Functional Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-of-the-task">
+     Exploration of the Task
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploration-of-the-functional-data">
+     Exploration of the Functional Data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tobias C. Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>

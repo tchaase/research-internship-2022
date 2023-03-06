@@ -1,0 +1,2175 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Linear model &#8212; Old-new Association Memory Analyses</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'code/linear_model';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="What will appear here in the future?" href="../markdown/discussion.html" />
+    <link rel="prev" title="Data Exploration" href="data_exploration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/setup.html">
+                        Setup for the course
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/data_set.html">
+                        What data is used for this project?
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="data_exploration.html">
+                        Data Exploration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Linear model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/discussion.html">
+                        What will appear here in the future?
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/setup.html">
+                        Setup for the course
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/data_set.html">
+                        What data is used for this project?
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="data_exploration.html">
+                        Data Exploration
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Linear model
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../markdown/discussion.html">
+                        What will appear here in the future?
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    To be added
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown/setup.html">Setup for the course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown/data_set.html">What data is used for this project?</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="data_exploration.html">Data Exploration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown/discussion.html">What will appear here in the future?</a></li>
+</ul>
+
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/tchaase/research-internship-2022/master?urlpath=tree/content/code/linear_model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/tchaase/research-internship-2022" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">repository</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/issues/new?title=Issue%20on%20page%20%2Fcode/linear_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">open issue</span>
+</a>
+</a>
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/edit/master/content/code/linear_model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">suggest edit</span>
+</a>
+</a>
+      
+  </ul>
+</div>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="../_sources/code/linear_model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-level-model">
+   First-Level Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detection-of-significant-voxels">
+   Detection of Significant Voxels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-the-glm-to-the-other-runs">
+   Extending the GLM to the Other Runs
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-model">
+<h1>Linear model<a class="headerlink" href="#linear-model" title="Permalink to this heading">#</a></h1>
+<p>Previously, the data-set has been explored. In the following, the linear model will be developed. While working on this originally, just before the linear model was started, I attempted the preprocessing. This is outlined in the preprocessing section.</p>
+<p>These are the preprocessing and quality control pipelines used:</p>
+<p>Quality controle was performed using the <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/">Magnetic Resoncance Imaging Quality Controle pipeline</a> (22.0.6).</p>
+<p>The preprocessing was performed using <a class="reference external" href="https://fmriprep.org/en/stable/">fMRI-Prep</a> (20.2.3)</p>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import of things I need later:</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span><span class="p">,</span> <span class="n">plot_anat</span><span class="p">,</span> <span class="n">plot_img</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">plot_glass_brain</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fistly I will load a preprocessed image. Then, going from the previously explored event files, I will briefly mention the experimental paradigm again. These will then be used for a generalized linear model (GLM).</p>
+<p>I will first do the linear model for subject 6 to see if everything works (this subject was used as an example as it was the first participant with data for all runs).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#File paths</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data&quot;</span>
+<span class="n">fmri_img_run1_sub06_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs/fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_desc-preproc_bold.nii.gz&quot;</span><span class="p">)</span>
+<span class="n">anat__img_run1_sub06_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_desc-preproc_T1w.nii.gz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I have now the file paths to the mri images. Now I still need the event files to define respective contrasts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events_run1_sub06_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;ds003707&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">,</span> <span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_events.tsv&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">events_run1_sub06</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">events_run1_sub06_path</span><span class="p">)</span>
+
+<span class="n">events_run1_sub06</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events_run1_sub06</span> <span class="o">=</span> <span class="n">events_run1_sub06</span><span class="p">[[</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">events_run1_sub06</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">events_run1_sub06</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run1_sub06</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+    <span class="n">events_run1_sub06</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run1_sub06</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+    
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each trial has a certain onset, the same duration and then the response is either correct or not correct.
+We also see that there is a certain response time - if this is failed the trial is listed to be <code class="docutils literal notranslate"><span class="pre">0.0</span></code> i.e. not correct.</p>
+<p>Now, lets generate a design matrix with these event files. Recall that a ‘design matrix’ is a matrix that contains the explanatory variables. Here, the explanatory variables also involes the regressors that are the result of the previously mentioned pipelines!</p>
+</section>
+<section id="first-level-model">
+<h2>First-Level Model<a class="headerlink" href="#first-level-model" title="Permalink to this heading">#</a></h2>
+<p>First, before I can generate a <code class="docutils literal notranslate"><span class="pre">FirstLevelModel</span></code>, I need to extract the repetion time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">FirstLevelModel</span>
+
+<span class="c1">#Now I need the TR and other parameters. I previously extracted them using the &#39;pybids module! Here I will take also show a different attempt:</span>
+
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span> <span class="p">;</span>
+
+<span class="n">fmri_img_run1_sub06</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fmri_img_run1_sub06_path</span><span class="p">);</span>
+<span class="c1">#The get_zooms function contains voxel size with the 4th entry being the time, this is therefore the repetiton time!</span>
+<span class="n">fmri_img_run1_sub06</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Knowing the repition time, we can set up the <code class="docutils literal notranslate"><span class="pre">FirstLevelModel</span></code>.</p>
+<p>Briefly explained, I understand a first level model as a first step used to generate the linear models later - there are certain things like the haemondynamic response that needs to be modelled, which will be done in this first step!</p>
+<p>Here is an explanation on the parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T_r</span></code> refers to the repetion time, this was extracted above.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Drift</span> <span class="pre">mode</span></code>: It’s a <code class="docutils literal notranslate"><span class="pre">cosine</span> <span class="pre">functio</span></code> that aims to remove effects of heart rate etc. The standard setting here is 1/128 Hz. In the design matrix this will end up as a column with almost no change in color, only very slight drift!</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">hrf-model</span></code> part specifies the<code class="docutils literal notranslate"><span class="pre">hemodynamic</span> <span class="pre">response</span> <span class="pre">model</span></code>: The event file has certain events, but this needs to be converted into a <a class="reference external" href="https://nilearn.github.io/dev/auto_examples/04_glm_first_level/plot_first_level_details.html">“reference BOLD signal for the design matrix”</a>. Here the basic wasn’t choosen, but the <code class="docutils literal notranslate"><span class="pre">spm</span></code>. This stands for statistical parametric map. In contrast to the basic the undershoot following the haemondynamic response is said to be weaker here.</p></li>
+<li><p>Fruthermore, a <code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">pass</span> <span class="pre">filter</span></code> can be applied. The high pass filter will let <a class="reference external" href="https://www.brainvoyager.com/bv/doc/UsersGuide/Preprocessing/TemporalHighPassFiltering.html">higher frequencies pass</a>, the cut-off here is set to another value than the standard! What does this mean? I will have an additional confound with the lower frequencies, them being included in the model instead of them being removed!
+ </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noise_model</span></code>: There are different options for noise models. The <code class="docutils literal notranslate"><span class="pre">ar1</span></code> is the preset noise model. A ordinary least squared approach, autoregressive approaches of higher order or other models could have been used.
+ </p></li>
+<li><p>I don’t want the signal to be scaled, so this is set to false!</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_glm</span> <span class="o">=</span> <span class="n">FirstLevelModel</span><span class="p">(</span><span class="n">t_r</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+                           <span class="n">noise_model</span><span class="o">=</span><span class="s1">&#39;ar1&#39;</span><span class="p">,</span>
+                           <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+                           <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                           <span class="n">high_pass</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">128</span><span class="p">,</span>
+                           <span class="n">signal_scaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">minimize_memory</span> <span class="o">=</span>  <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This model still lacks the confounds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">confounds_run1_sub06</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_desc-confounds.tsv&quot;</span><span class="p">),</span> 
+                                  <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#The delimiter needs to be set to \t as it uses tab to differentiate different entries. </span>
+
+<span class="n">column_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">confounds_run1_sub06</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">column_names</span><span class="o">.</span><span class="n">head</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Only a portion of the entries are needed here.</p>
+<p>The following are extracted, following the recommedation from the <a class="reference external" href="https://fmriprep.org/en/stable/outputs.html#confounds">fmriprep-doc</a>.</p>
+<ul class="simple">
+<li><p>The parameters of head motion, i.e. the transverse and rotational movements. <code class="docutils literal notranslate"><span class="pre">trans_x</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_y</span></code>, <code class="docutils literal notranslate"><span class="pre">trans_z</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_x</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_y</span></code>, <code class="docutils literal notranslate"><span class="pre">rot_z</span></code>.</p></li>
+</ul>
+<p> 
+The following three are copy-pastad from said website:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">csf</span> <span class="pre">-</span> <span class="pre">the</span> <span class="pre">average</span> <span class="pre">signal</span> <span class="pre">within</span> <span class="pre">anatomically-derived</span> <span class="pre">eroded</span> <span class="pre">CSF</span> <span class="pre">mask</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">white_matter</span> <span class="pre">-</span> <span class="pre">the</span> <span class="pre">average</span> <span class="pre">signal</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">anatomically-derived</span> <span class="pre">eroded</span> <span class="pre">WM</span> <span class="pre">masks</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">global_signal</span> <span class="pre">-</span> <span class="pre">the</span> <span class="pre">average</span> <span class="pre">signal</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">brain</span> <span class="pre">mask</span></code></p></li>
+<li><p>the rmsd - this also takes head motion into account but using a different statistical approach.</p></li>
+<li><p>framewise_displacement - another classic measure of movement.</p></li>
+</ul>
+<p>As a high-pass filter is included, I will not include regressors for signal drift.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confounds_glm_run1_sub06</span> <span class="o">=</span> <span class="n">confounds_run1_sub06</span><span class="p">[[</span><span class="s1">&#39;white_matter&#39;</span><span class="p">,</span> <span class="s1">&#39;global_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;framewise_displacement&#39;</span><span class="p">,</span><span class="s1">&#39;csf&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_x&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_y&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_x&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_y&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rmsd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">confounds_glm_run1_sub06</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I have now specified the confounds I will need.</p>
+<p>Below, there is one step that only works with never versions of nilearn (0.9.2. and newer) but is not necessary here. The event files only start after 5 volumes, meaining with a repetition time of 2 after 10 seconds.
+A sample mask can be used to remove them, which is an option I am not going to do to make it easier to analyse a lot of files later fast and thus remove one unnecessary analyses steps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nilearn.image</span> <span class="k">as</span> <span class="nn">nli</span>
+
+<span class="c1">#Loading the image to get the amount of volumes.</span>
+<span class="n">sub06_run1_bold</span> <span class="o">=</span> <span class="n">nli</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_desc-preproc_bold.nii.gz&quot;</span><span class="p">))</span>
+<span class="n">sub06_run1_bold_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="n">sub06_run1_bold</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]))[</span><span class="mi">5</span><span class="p">:]</span>  
+<span class="c1">#creating an array with the amount entries equaling volumes except the first 10 seconds / 5 volumes. </span>
+<span class="c1"># just another way besides looking at the .json! Although a one with longer loading times!</span>
+<span class="n">sub06_run1_bold_mask</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets run the model!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_glm_run1_sub06</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img_run1_sub06_path</span><span class="p">,</span> <span class="n">events</span> <span class="o">=</span> <span class="n">events_run1_sub06</span><span class="p">,</span> \
+                                          <span class="c1"># sample_masks = sub06_run1_bold_mask, \ removed</span>
+                                          <span class="n">confounds</span> <span class="o">=</span> <span class="n">confounds_glm_run1_sub06</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">design_matrix</span> <span class="o">=</span> <span class="n">fmri_glm_run1_sub06</span><span class="o">.</span><span class="n">design_matrices_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_design_matrix</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There was 36 objects or scenes. Each was repeated twice per run. There were 18 object scene pairmates as explained in the data exploration.</p>
+<p>Let’s save this design matrix!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;results&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outdir</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">outdir</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;design_matrix.png&#39;</span><span class="p">))</span>
+
+<span class="n">outdir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I am already creating an output folder for participant 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">)):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-06&quot;</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This one already exists!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To ensure this works, I want to inspect the expected response for a random item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">[</span><span class="s1">&#39;Learned_A2&#39;</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;scan&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Expected Response for Image A2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus far everything seems to work as intended.</p>
+<p>Now I want to identify voxels that have significant effects within the next section.</p>
+</section>
+<section id="detection-of-significant-voxels">
+<h2>Detection of Significant Voxels<a class="headerlink" href="#detection-of-significant-voxels" title="Permalink to this heading">#</a></h2>
+<p>Firstly, I will need to get the betas for every voxel. To achieve this, I need to first get the contrasts. These will require some data wrangling, which will be done in the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="n">array_learned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;active - Learned&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="s1">&#39;active - Foil&#39;</span><span class="p">:</span>   <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">design_matrix</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;foil&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>     <span class="c1">#Creating the contrast for the lure images. </span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Foil&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="s2">&quot;Learned_A&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span> <span class="c1">#Creating the contrast for the learned images.</span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="s2">&quot;Learned_B&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span> <span class="c1">#Creating the contrast for the learned images.</span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at the conditions and see if it worked.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conditions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above, I have created some first contrasts to test the rest of the glm. If this works, I may change it according to what I wanted to do initially!</p>
+<p>Here is the contrast for the learned images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_contrast_matrix</span>
+<span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">],</span> <span class="n">design_matrix</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the contrast for the lures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_contrast_matrix</span>
+<span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Foil&#39;</span><span class="p">],</span> <span class="n">design_matrix</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The contrast I would like to take is the learned images vs the foils. The contrasts are therefore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">active_learned_vs_foil</span> <span class="o">=</span> <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Foil&#39;</span><span class="p">]</span>
+<span class="n">plot_contrast_matrix</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span> <span class="n">design_matrix</span><span class="o">=</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eff_map</span> <span class="o">=</span> <span class="n">fmri_glm_run1_sub06</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span>
+                                    <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;effect_size&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This shows the estimated effects without involving any corrections for the variation.</p>
+<p>The next plot contains the z-map. Here, we use z scores that are approximated by t-values. As mentioned before, the functional image is cut off. The treshold is choosen arbitraily following the preset value in nilearn’s example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_map_sub06_run1</span> <span class="o">=</span> <span class="n">fmri_glm_run1_sub06</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+
+<span class="c1">#Get the mean image</span>
+<span class="kn">from</span> <span class="nn">nilearn.image</span> <span class="kn">import</span> <span class="n">mean_img</span>
+<span class="n">mean_img_run1_sub06</span> <span class="o">=</span> <span class="n">mean_img</span><span class="p">(</span><span class="n">fmri_img_run1_sub06_path</span><span class="p">)</span>
+
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;active -  (Z&gt;3)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is the z-map with a treshold of the false-discovery rate: It’s set to 0.001 for all the significant voxels together. This is what’s meant by <code class="docutils literal notranslate"><span class="pre">fpr</span></code>, it stands for the control for the false recovery rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm</span> <span class="kn">import</span> <span class="n">threshold_stats_img</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.001</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fpr&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Uncorrected p&lt;0.001 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">title</span><span class="o">=</span> <span class="s1">&#39;Learned vs foil (p&lt;0.001)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here I correct for multiple comperison. The family wise error is corrected using the Bonferroni-correction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span>
+    <span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;bonferroni&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bonferroni-corrected, p&lt;0.05 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Learned vs foil (p&lt;0.05, corrected)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having displayed the different options, I am going for the following:</p>
+<ul class="simple">
+<li><p>I am interested in smaller clusters, for example within the hippocampus. I will therefore choose a smaller cluster treshold. <br />
+→ Furthermore, FDR-correction should, correct for the increase in voxels with no exclusion of smaller clusters.</p></li>
+<li><p>I do want to correct for the multiple comparisons, as a trade-off between being rather conservative (Bonferonni) and a rather liberal approach (controlling for the false-positive rate), I want to control for the proportion of false discoveries among the deteced values.</p></li>
+</ul>
+<p>The correction for the false discovery rate controls for the the number of false positives among the subset of voxels that are significant (Genovese, 2002).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_map</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold_stats_img</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.001</span><span class="p">,</span> <span class="n">height_control</span><span class="o">=</span><span class="s1">&#39;fpr&#39;</span><span class="p">,</span> <span class="n">cluster_threshold</span><span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;False Discovery rate = 0.001 threshold: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">plot_stat_map</span><span class="p">(</span><span class="n">clean_map</span><span class="p">,</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span><span class="p">,</span>
+              <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">black_bg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Learned vs foil (fdr = 0.001, cluster &gt; 10 voxels)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#Saving the z-map for future use:</span>
+<span class="n">z_map_sub06_run1</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s1">&#39;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s extract any significant voxels from the above image and look at them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.reporting</span> <span class="kn">import</span> <span class="n">get_clusters_table</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">get_clusters_table</span><span class="p">(</span><span class="n">z_map_sub06_run1</span><span class="p">,</span> <span class="n">stat_threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span>
+                           <span class="n">cluster_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As seen above, with the conservative approach with the family-wise error correction, there is no cluster that appears significant (at least with the treshold set right now). I will need to see if there are any errors above etc.</p>
+<p>Non of the clusters are significant - but with the following bit I could get more information on them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">atlasreader</span> <span class="kn">import</span> <span class="n">create_output</span>
+<span class="n">create_output</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&quot;</span><span class="p">),</span>
+              <span class="n">cluster_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">voxel_thresh</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+            <span class="c1">#With the zmap, the previously defined treshold and the zmap, this function creates multiple files that</span>
+            <span class="c1">#allow to explore the exploration of the z-map. </span>
+            
+</pre></div>
+</div>
+</div>
+</div>
+<p>The peak is the value in each cluster with the highest signal value, as well as information regarding this peak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak_info_sub_06_run_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap_peaks.csv&quot;</span><span class="p">))</span>
+
+<span class="n">peak_info_sub_06_run_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.png&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having explored this all in detail, let’s take the short-cut of just using the glm report function and see what this function comes up with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.reporting</span> <span class="kn">import</span> <span class="n">make_glm_report</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">make_glm_report</span><span class="p">(</span><span class="n">fmri_glm_run1_sub06</span><span class="p">,</span> <span class="n">contrasts</span><span class="o">=</span> <span class="n">active_learned_vs_foil</span><span class="p">,</span>
+                         <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s lastly look at the R-squared to see how much variance is explained. The R² is baded on the glm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">fmri_glm_run1_sub06</span><span class="o">.</span><span class="n">r_square</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bg_img</span><span class="o">=</span><span class="n">mean_img_run1_sub06</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+                       <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extending-the-glm-to-the-other-runs">
+<h2>Extending the GLM to the Other Runs<a class="headerlink" href="#extending-the-glm-to-the-other-runs" title="Permalink to this heading">#</a></h2>
+<p>First I am loading all fmri-images and I am concatenating them. This first step will generate a list with all file paths for one participant.</p>
+<p>I will just do this for participant 6 in the beginning, and then create a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop which extends this to every participant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;28&#39;</span><span class="p">,</span> <span class="s1">&#39;34&#39;</span><span class="p">,</span> <span class="s1">&#39;35&#39;</span><span class="p">,</span> <span class="s1">&#39;36&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">nilearn.plotting</span> <span class="kn">import</span> <span class="n">plot_stat_map</span><span class="p">,</span> <span class="n">plot_anat</span><span class="p">,</span> <span class="n">plot_img</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">plot_glass_brain</span>
+<span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">FirstLevelModel</span>
+<span class="kn">import</span> <span class="nn">nilearn.image</span> <span class="k">as</span> <span class="nn">nli</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_test</span> <span class="o">=</span> <span class="s1">&#39;36&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">fmri_img_path</span><span class="o">=</span> <span class="p">[]</span>
+<span class="n">fmri_img_path_single</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">)):</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;bold.nii.gz&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;scene&quot;</span> <span class="ow">in</span> <span class="n">file_name</span><span class="p">:</span> 
+         <span class="n">fmri_img_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+         <span class="k">continue</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, I have all the image paths. But the actual images still need to be attached to each other! This way, the confunds that do not change acrosss the runs can be modelled as continous.</p>
+<p>Now, I should also append the confounds to each other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confounds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+    <span class="c1"># read in the confounds</span>
+    <span class="n">confounds_run</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">),</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_desc-confounds.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">,</span> <span class="n">run</span><span class="p">)),</span> 
+                            <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># restrict the to be included confounds to a subset</span>
+    <span class="n">confounds_run_glm</span> <span class="o">=</span> <span class="n">confounds_run</span><span class="p">[[</span><span class="s1">&#39;white_matter&#39;</span><span class="p">,</span> <span class="s1">&#39;global_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;framewise_displacement&#39;</span><span class="p">,</span><span class="s1">&#39;csf&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_x&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_y&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_x&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_y&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rmsd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">confounds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">confounds_run_glm</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the event files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+    <span class="c1"># read in the events</span>
+    <span class="n">events_run</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;ds003707&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">),</span> <span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_events.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">,</span> <span class="n">run</span><span class="p">)))</span>
+    
+    <span class="c1">#perform operations on the events table to make it fit the glm</span>
+    <span class="n">events_run</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[[</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">]]</span>
+ 
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">run</span><span class="p">))</span>
+    
+    <span class="n">events_runs_cor_name</span> <span class="o">=</span> <span class="n">events_run</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">events_run</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">events_runs_cor_name</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+        <span class="n">events_runs_cor_name</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+
+    <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">events_run</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Run 01
+Run 03
+Run 04
+Run 05
+Run 06
+Run 07
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/ipykernel_launcher.py:14: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  
+/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/ipykernel_launcher.py:13: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  del sys.path[0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use the <a class="reference external" href="https://nilearn.github.io/dev/modules/generated/nilearn.glm.first_level.make_first_level_design_matrix.html">make_first_level_design_matrix</a>, I need to also define the frame rates. The repetition time I already know, I need to find out the number of scans to find out the frame-rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="n">T_R</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">n_scans</span> <span class="o">=</span> <span class="mi">177</span>
+<span class="n">frame_times</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">n_scans</span><span class="p">)</span><span class="o">*</span><span class="n">T_R</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next I will get the design matrix for every run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
+<span class="n">runs_numbered</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]</span>
+
+<span class="n">design_matrix_all_runs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">runs_numbered</span> <span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">runs_numbered</span> <span class="p">):</span>
+    <span class="n">design_matrix</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span><span class="n">frame_times</span><span class="p">,</span> <span class="n">events</span><span class="p">[</span><span class="n">runs_numbered</span> <span class="p">],</span> 
+        <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+        <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+        <span class="n">high_pass</span><span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">128</span><span class="p">,</span> 
+        <span class="n">add_regs</span><span class="o">=</span> <span class="n">confounds</span><span class="p">[</span><span class="n">runs_numbered</span> <span class="p">])</span>
+    <span class="n">design_matrix_all_runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now I will fit the glm. As the HRF etc. was already specified in the first_level_design_matrix, I left it out for the FirstLevelModel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_glm_loop</span> <span class="o">=</span> <span class="n">FirstLevelModel</span><span class="p">(</span><span class="n">t_r</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+                           <span class="n">noise_model</span><span class="o">=</span> <span class="s1">&#39;ar1&#39;</span><span class="p">,</span>
+                           <span class="n">hrf_model</span><span class="o">=</span> <span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+                           <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+                           <span class="n">high_pass</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">128</span><span class="p">,</span>
+                           <span class="n">signal_scaling</span><span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                           <span class="n">minimize_memory</span> <span class="o">=</span>  <span class="kc">True</span><span class="p">,</span>
+                           <span class="n">memory</span> <span class="o">=</span> <span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/&quot;</span><span class="p">,</span>
+                           <span class="n">memory_level</span> <span class="o">=</span> <span class="mi">600000</span><span class="p">,</span>
+                           <span class="n">verbose</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmri_img_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">)</span>
+<span class="n">fmri_img_path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sub-36_task-scene_run-01_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-36_task-scene_run-03_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-36_task-scene_run-04_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-36_task-scene_run-05_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-36_task-scene_run-06_desc-preproc_bold.nii.gz&#39;,
+ &#39;sub-36_task-scene_run-07_desc-preproc_bold.nii.gz&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">)))</span>
+<span class="n">glm</span> <span class="o">=</span> <span class="n">fmri_glm_loop</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">,</span> <span class="n">design_matrices</span> <span class="o">=</span> <span class="n">design_matrix_all_runs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NiftiMasker.fit] Loading data from sub-36_task-scene_run-01_desc-preproc_bold.nii.gz
+[NiftiMasker.fit] Computing the mask
+________________________________________________________________________________
+[Memory] Calling nilearn.masking.compute_epi_mask...
+compute_epi_mask(&#39;sub-36_task-scene_run-01_desc-preproc_bold.nii.gz&#39;, verbose=0)
+_________________________________________________compute_epi_mask - 5.2s, 0.1min
+[NiftiMasker.fit] Resampling mask
+________________________________________________________________________________
+[Memory] Calling nilearn.image.resampling.resample_img...
+resample_img(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, target_affine=None, target_shape=None, copy=False, interpolation=&#39;nearest&#39;)
+_____________________________________________________resample_img - 0.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing run 1 out of 6 runs (go take a coffee, a big one)
+Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f35b400&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-01_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158f359390&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f35b400&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.61s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 6.4s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[3903.300681, ..., 5288.416046],
+       ...,
+       [4021.747049, ..., 5324.657098]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.62s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 21 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 16.4s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[3903.300681, ..., 5288.416046],
+       ...,
+       [4021.747049, ..., 5324.657098]]), 
+array([[0., ..., 1.],
+       ...,
+       [0., ..., 1.]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.50s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 7 seconds         
+Computing run 2 out of 6 runs (171 seconds remaining)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__________________________________________________________run_glm - 6.9s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158efb3358&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-03_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158efb3588&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158efb3358&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.61s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 6.9s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[4174.704431, ..., 5066.732612],
+       ...,
+       [3992.244121, ..., 5109.042249]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.62s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 22 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 17.0s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[4174.704431, ..., 5066.732612],
+       ...,
+       [3992.244121, ..., 5109.042249]]), 
+array([[ 0.      , ...,  1.      ],
+       ...,
+       [-0.005783, ...,  1.      ]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 7 seconds         
+Computing run 3 out of 6 runs (137 seconds remaining)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__________________________________________________________run_glm - 6.6s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f363080&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-04_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158f363278&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f363080&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.61s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 7.1s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[4757.601328, ..., 5250.210586],
+       ...,
+       [4961.891552, ..., 5493.046136]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.60s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 22 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 17.2s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[4757.601328, ..., 5250.210586],
+       ...,
+       [4961.891552, ..., 5493.046136]]), 
+array([[0., ..., 1.],
+       ...,
+       [0., ..., 1.]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 8 seconds         
+Computing run 4 out of 6 runs (104 seconds remaining)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__________________________________________________________run_glm - 7.0s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158efb10f0&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-05_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158efb13c8&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158efb10f0&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.60s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 7.6s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[4044.686171, ..., 5826.961737],
+       ...,
+       [4609.654677, ..., 5125.064542]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.64s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 22 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 17.6s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[4044.686171, ..., 5826.961737],
+       ...,
+       [4609.654677, ..., 5125.064542]]), 
+array([[ 0.      , ...,  1.      ],
+       ...,
+       [-0.060664, ...,  1.      ]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 7 seconds         
+Computing run 5 out of 6 runs (69 seconds remaining)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__________________________________________________________run_glm - 6.8s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2f0208&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-06_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158f2f0518&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2f0208&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.60s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 7.7s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[4343.225337, ..., 5031.631251],
+       ...,
+       [4805.581395, ..., 4672.248903]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.61s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 23 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 17.8s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[4343.225337, ..., 5031.631251],
+       ...,
+       [4805.581395, ..., 4672.248903]]), 
+array([[ 0.      , ...,  1.      ],
+       ...,
+       [-0.052948, ...,  1.      ]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 8 seconds         
+Computing run 6 out of 6 runs (35 seconds remaining)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__________________________________________________________run_glm - 7.1s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting masker computation 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker._filter_and_mask...
+_filter_and_mask(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158ef44160&gt;, &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;, { &#39;detrend&#39;: False,
+  &#39;dtype&#39;: None,
+  &#39;high_pass&#39;: None,
+  &#39;high_variance_confounds&#39;: False,
+  &#39;low_pass&#39;: None,
+  &#39;reports&#39;: True,
+  &#39;runs&#39;: None,
+  &#39;smoothing_fwhm&#39;: None,
+  &#39;standardize&#39;: False,
+  &#39;standardize_confounds&#39;: True,
+  &#39;t_r&#39;: 2.0,
+  &#39;target_affine&#39;: None,
+  &#39;target_shape&#39;: None}, memory_level=600000, memory=Memory(location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib), verbose=1, confounds=None, sample_mask=None, copy=True, dtype=None)
+[NiftiMasker.transform_single_imgs] Loading data from Nifti1Image(&#39;sub-36_task-scene_run-07_desc-preproc_bold.nii.gz&#39;)
+[NiftiMasker.transform_single_imgs] Extracting region signals
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: JobLibCollisionWarning: Cannot detect name collisions for function &#39;nifti_masker_extractor&#39;
+  memory_level=memory_level)(imgs)
+WARNING:root:[MemorizedFunc(func=&lt;nilearn.maskers.nifti_masker._ExtractionFunctor object at 0x7f158ef44278&gt;, location=/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/cache/joblib)]: Clearing function cache identified by nilearn/maskers/nifti_masker/nifti_masker_extractor
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>________________________________________________________________________________
+[Memory] Calling nilearn.maskers.nifti_masker.nifti_masker_extractor...
+nifti_masker_extractor(&lt;nibabel.nifti1.Nifti1Image object at 0x7f158ef44160&gt;)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:96: UserWarning: Persisting input arguments took 2.60s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  memory_level=memory_level)(imgs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>___________________________________________nifti_masker_extractor - 7.6s, 0.1min
+[NiftiMasker.transform_single_imgs] Cleaning extracted signals
+________________________________________________________________________________
+[Memory] Calling nilearn.signal.clean...
+clean(array([[3872.197248, ..., 5514.584817],
+       ...,
+       [3914.581444, ..., 4754.212353]]), detrend=False, standardize=False, standardize_confounds=True, t_r=2.0, low_pass=None, high_pass=None, confounds=None, sample_mask=None, runs=None)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/base_masker.py:119: UserWarning: Persisting input arguments took 0.50s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  runs=runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>____________________________________________________________clean - 1.0s, 0.0min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/maskers/nifti_masker.py:486: UserWarning: Persisting input arguments took 2.62s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  dtype=self.dtype
+Masker took 23 seconds       
+Performing GLM computation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>_________________________________________________filter_and_mask - 17.7s, 0.3min
+________________________________________________________________________________
+[Memory] Calling nilearn.glm.first_level.first_level.run_glm...
+run_glm(array([[3872.197248, ..., 5514.584817],
+       ...,
+       [3914.581444, ..., 4754.212353]]), 
+array([[0., ..., 1.],
+       ...,
+       [0., ..., 1.]]), noise_model=&#39;ar1&#39;, bins=100, n_jobs=1)
+__________________________________________________________run_glm - 6.9s, 0.1min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:589: UserWarning: Persisting input arguments took 0.51s to run.
+If this happens often in your code, it can cause performance problems 
+(results will be correct in all cases). 
+The reason for this is probably some large input arguments for a wrapped
+ function (e.g. large strings).
+THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib&#39;s team with an
+ example so that they can fix the problem.
+  bins=bins, n_jobs=self.n_jobs)
+GLM took 7 seconds         
+
+Computation of 6 runs done in 212 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now lets save this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="n">array_learned</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;active - Learned&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="s1">&#39;active - Foil&#39;</span><span class="p">:</span>   <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">design_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">}</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">design_matrix</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;foil&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>     <span class="c1">#Creating the contrast for the lure images. </span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Foil&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="s2">&quot;Learned_A&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span> <span class="c1">#Creating the contrast for the learned images.</span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="s2">&quot;Learned_B&quot;</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span> <span class="c1">#Creating the contrast for the learned images.</span>
+        <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>   
+
+<span class="n">active_learned_vs_foil</span> <span class="o">=</span> <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Learned&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">conditions</span><span class="p">[</span><span class="s1">&#39;active - Foil&#39;</span><span class="p">]</span>
+
+<span class="n">outdir_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating z maps for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">))</span>
+    <span class="c1"># compute the contrast as a z-map</span>
+<span class="n">z_map</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+        
+    <span class="c1">#defining the folder, where the resulting zmap shall be stored. To make it more easily manually inspectable, a folder for each participant is created</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject_test</span>)):
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject_test</span>))
+
+<span class="k">for</span> <span class="n">run_test</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving z-maps </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">,</span> <span class="n">run_test</span><span class="p">))</span>
+    <span class="c1"># save the z-map</span>
+    <span class="n">z_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject_test</span>, &#39;sub-%s_task-scene_run-%s_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&#39; %(subject_test, run_test)))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tchaase/miniconda3/envs/msc5neuro/lib/python3.7/site-packages/nilearn/glm/first_level/first_level.py:657: UserWarning: One contrast given, assuming it for all 6 runs
+  warn(&#39;One contrast given, assuming it for all %d runs&#39; % n_runs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating z maps for 36
+________________________________________________________________________________
+[Memory] Calling nilearn.masking.unmask...
+unmask(array([ 1.556498, ..., -2.32296 ]), &lt;nibabel.nifti1.Nifti1Image object at 0x7f158f2ff358&gt;)
+___________________________________________________________unmask - 0.1s, 0.0min
+Saving z-maps 36, 01
+Saving z-maps 36, 03
+Saving z-maps 36, 04
+Saving z-maps 36, 05
+Saving z-maps 36, 06
+Saving z-maps 36, 07
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the loop to attempt this for all participants.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">fmri_img_path</span><span class="o">=</span> <span class="p">[]</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">subject</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;03&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting path for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>
+    
+    <span class="c1">#Getting the file paths</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">)):</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;bold.nii.gz&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;scene&quot;</span> <span class="ow">in</span> <span class="n">file_name</span><span class="p">:</span> 
+             <span class="n">fmri_img_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+             <span class="k">continue</span>
+    <span class="n">fmri_img_path</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting the confounds for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>            
+    <span class="c1">#Getting and appending the confounds</span>
+    <span class="n">confounds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+    <span class="c1"># read in the confounds</span>
+        <span class="n">confounds_run</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_desc-confounds.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">)),</span> 
+                            <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># restrict the to be included confounds to a subset</span>
+        <span class="n">confounds_run_glm</span> <span class="o">=</span> <span class="n">confounds_run</span><span class="p">[[</span><span class="s1">&#39;white_matter&#39;</span><span class="p">,</span> <span class="s1">&#39;global_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;framewise_displacement&#39;</span><span class="p">,</span><span class="s1">&#39;csf&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_x&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_y&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_x&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_y&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rmsd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">confounds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">confounds_run_glm</span><span class="p">)</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting the events for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>  
+    <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+        <span class="c1"># read in the events</span>
+        <span class="n">events_run</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;ds003707&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_events.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">)))</span>
+    
+        <span class="c1">#perform operations on the events table to make it fit the glm</span>
+        <span class="n">events_run</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[[</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">]]</span>
+ 
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">run</span><span class="p">))</span>
+    
+        <span class="n">events_runs_cor_name</span> <span class="o">=</span> <span class="n">events_run</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">events_run</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">events_runs_cor_name</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+            <span class="n">events_runs_cor_name</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events_run</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+
+        <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">events_run</span><span class="p">)</span>
+    
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating the design-matrix for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>
+    <span class="c1">#Getting the frame rates for design matrix. </span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+    <span class="n">T_R</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">fmri_img_path_single</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/outputs/fmri-prep_20.2.3-2/sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="n">fmri_img_path</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">fmri_img_run</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fmri_img_path_single</span><span class="p">)</span>
+    <span class="n">n_scans</span> <span class="o">=</span> <span class="n">fmri_img_run</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">frame_times</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">n_scans</span><span class="p">)</span><span class="o">*</span><span class="n">T_R</span>
+    
+    <span class="kn">from</span> <span class="nn">nilearn.glm.first_level</span> <span class="kn">import</span> <span class="n">make_first_level_design_matrix</span>
+    <span class="n">runs_numbered</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]</span>
+
+    <span class="n">design_matrix_all_runs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">runs_numbered</span> <span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">runs_numbered</span> <span class="p">):</span>
+        <span class="n">design_matrix</span> <span class="o">=</span> <span class="n">make_first_level_design_matrix</span><span class="p">(</span><span class="n">frame_times</span><span class="p">,</span> 
+            <span class="n">events</span><span class="p">[</span><span class="n">runs_numbered</span> <span class="p">],</span> 
+            <span class="n">drift_model</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>
+            <span class="n">hrf_model</span><span class="o">=</span><span class="s1">&#39;spm&#39;</span><span class="p">,</span>
+            <span class="n">high_pass</span><span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">128</span><span class="p">,</span> <span class="n">add_regs</span><span class="o">=</span> <span class="n">confounds</span><span class="p">[</span><span class="n">runs_numbered</span> <span class="p">])</span>
+        <span class="n">design_matrix_all_runs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">design_matrix</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting the glm for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>
+    
+    <span class="c1">#fitting the glm</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">)))</span>
+    <span class="n">fmri_glm_loop_fitted</span> <span class="o">=</span> <span class="n">fmri_glm_loop</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">,</span> <span class="n">design_matrices</span> <span class="o">=</span> <span class="n">design_matrix_all_runs</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating z maps for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>
+    <span class="c1"># compute the contrast as a z-map</span>
+    <span class="n">z_map</span> <span class="o">=</span> <span class="n">fmri_glm_loop_fitted</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+        
+    <span class="c1">#defining the folder, where the resulting zmap shall be stored. To make it more easily manually inspectable, a folder for each participant is created</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject</span>)):
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject</span>))
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saving z-maps </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">))</span>
+    <span class="c1"># save the z-map</span>
+    <span class="n">z_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject</span>, &#39;sub-%s_task-scene_run-%s_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&#39; %(subject, run)))
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the list of all participants for the rare occasion this does not crash and I get to run all participants at once!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">complete_subjects</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;08&#39;</span><span class="p">,</span> <span class="s1">&#39;09&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="s1">&#39;14&#39;</span><span class="p">,</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">,</span> <span class="s1">&#39;23&#39;</span><span class="p">,</span> <span class="s1">&#39;24&#39;</span><span class="p">,</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span> <span class="s1">&#39;27&#39;</span><span class="p">,</span><span class="s1">&#39;28&#39;</span><span class="p">,</span> <span class="s1">&#39;34&#39;</span><span class="p">,</span> <span class="s1">&#39;35&#39;</span><span class="p">,</span> <span class="s1">&#39;36&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As it seems my device is unable to handle the memory load. I am therefore going to take a shortcut in order to get to the machine learning section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;/home/tchaase/Documents/Universitaet/Forschungsmodul/project/data&quot;</span>
+<span class="k">for</span> <span class="n">subject</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;03&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now calculating </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">subject</span><span class="p">)</span>
+    <span class="n">mean_image</span> 
+    <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;03&#39;</span><span class="p">,</span> <span class="s1">&#39;04&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">,</span> <span class="s1">&#39;07&#39;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For </span><span class="si">%s</span><span class="s2">, now calculating run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">))</span>
+        <span class="c1">#Setting the paths</span>
+        <span class="n">fmri_img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs/fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_desc-preproc_bold.nii.gz&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">))</span>
+        <span class="n">anat__img_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_desc-preproc_T1w.nii.gz&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">))</span>
+    
+        <span class="c1"># read in the events</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;ds003707&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;func&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_events.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">)))</span>
+    
+        <span class="c1">#perform operations on the events table to make it fit the glm</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="n">events</span><span class="p">[[</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">,</span> <span class="s2">&quot;trial_type&quot;</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">events</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">events</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+            <span class="n">events</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="s2">&quot;trial_type&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2_&#39;</span><span class="p">,</span> <span class="s1">&#39;Learned_&#39;</span><span class="p">)</span>
+    
+        <span class="c1"># read in the confounds</span>
+        <span class="n">confounds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">_task-scene_run-</span><span class="si">%s</span><span class="s2">_desc-confounds.tsv&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">run</span><span class="p">)),</span> 
+                                  <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+        <span class="c1"># restrict the to be included confounds to a subset</span>
+        <span class="n">confounds_glm</span> <span class="o">=</span> <span class="n">confounds</span><span class="p">[[</span><span class="s1">&#39;white_matter&#39;</span><span class="p">,</span> <span class="s1">&#39;global_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;framewise_displacement&#39;</span><span class="p">,</span><span class="s1">&#39;csf&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_x&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_y&#39;</span><span class="p">,</span> <span class="s1">&#39;trans_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_x&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_y&#39;</span><span class="p">,</span> <span class="s1">&#39;rot_z&#39;</span><span class="p">,</span> <span class="s1">&#39;rmsd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+        <span class="c1"># run the GLM</span>
+        <span class="n">fmri_glm</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">confounds_glm</span><span class="p">)</span>
+    
+        <span class="c1"># compute the contrast as a z-map</span>
+        <span class="n">z_map</span> <span class="o">=</span> <span class="n">fmri_glm</span><span class="o">.</span><span class="n">compute_contrast</span><span class="p">(</span><span class="n">active_learned_vs_foil</span><span class="p">,</span>
+                                  <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;z_score&#39;</span><span class="p">)</span>
+        
+        <span class="c1">#defining the folder, where the resulting zmap shall be stored. To make it more easily manually inspectable, a folder for each participant is created</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject</span>)):
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">subject</span>))
+        
+        <span class="c1"># save the z-map</span>
+        <span class="n">z_map</span><span class="o">.</span><span class="n">to_filename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="k">test</span>, &#39;sub-%s_task-scene_run-%s_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&#39; %(subject, run)))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before I can progress further, I need to decide on how to crossvalidate.
+The stimuli are the same across runs and across people. There are two options:</p>
+<ol class="arabic simple">
+<li><p>Use a certain number of runs and cross-validate by using runs from every participants.</p></li>
+<li><p>Use a certain amount of participants to cross-validate.</p></li>
+</ol>
+<p>As I have data for a few participants and I don’t want to overfit by testing and fitting on the same participants, I choose to use a certain amount of participants to cross-validate.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="data_exploration.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Data Exploration</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../markdown/discussion.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">What will appear here in the future?</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-level-model">
+   First-Level Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detection-of-significant-voxels">
+   Detection of Significant Voxels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-the-glm-to-the-other-runs">
+   Extending the GLM to the Other Runs
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tobias C. Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2023.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
