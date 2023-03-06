@@ -1,0 +1,11 @@
+root: index
+format: jb-book
+chapters:
+- file: markdown/setup
+- file: markdown/data_set
+  sections: 
+  - file: code/preprocessing_attempts/preprocessing
+  - file: markdown/documentation
+- file: code/data_exploration
+- file: code/linear_model
+- file: markdown/discussion

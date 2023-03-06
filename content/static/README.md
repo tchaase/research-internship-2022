@@ -1,0 +1,1 @@
+# Contains the static for the jupyter notebook
