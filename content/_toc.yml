@@ -1,10 +1,9 @@
 root: index
 format: jb-book
 chapters:
-- file: markdown/setup.md
 - file: markdown/data_set.md
   sections: 
-  - file: code/preprocessing_attempts/preprocessing.md
+  - file: code/preprocessing.md
   - file: markdown/documentation.md
 - file: code/data_exploration.ipynb
 - file: code/linear_model.ipynb
