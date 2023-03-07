@@ -14,13 +14,14 @@ Please visit these pages again in the next few weeks for further information.
 [![License](https://img.shields.io/github/license/tchaase/research-internship-2022)](https://github.com/tchaase/research-internship-2022)
 
 
-This notebook was created as part of the Msc5, a module of the neuro-major at Goethe-University Frankfurt. In the following notebook, I will...
+This notebook was created as part of the MSc5, a module of the [neuro-major](https://www.psychologie.uni-frankfurt.de/101732497/Schwerpunkte_im_M_Sc__Studiengang_Psychologie#kn) at Goethe-University Frankfurt. In the following notebook, I will...
 
-- [Describe what data I am working with and develop my research question.](https://tchaase.github.io/research-internship-2022/markdown/data_set.html)
-- [Outline the various ressources I have used.](https://tchaase.github.io/research-internship-2022/markdown/documentation.html)
-- [Explore the data-set and provide descriptive results.](https://tchaase.github.io/research-internship-2022/code/data_exploration.html)
-- [Develop a linear model to analyze the data.](https://tchaase.github.io/research-internship-2022/code/linear_model.html)
-- [Discuss the project I have made within this project.](https://tchaase.github.io/research-internship-2022/markdown/discussion.html)
+- [...describe what data I am working with and develop my research question.](./markdown/data_set.md)
+- [...outline the various ressources I have used.](./markdown/documentation.md)
+- [...explore the data-set and provide descriptive results.](./code/data_exploration.ipynb)
+- [...develop a linear model to analyze the data.](./code/linear_model.ipynb)
+- [...discuss the project I have made within this project.](./markdown/discussion.md)
 
+I want to thank [Peer Herholz](https://github.com/PeerHerholz), [Michael Ernst](https://github.com/M-earnest) and all the others from [Fiebach lab](http://www.fiebachlab.org/).
 
-![](https://giphy.com/embed/IwAZ6dvvvaTtdI8SD5)
+<p align="center"><iframe src="https://giphy.com/embed/IwAZ6dvvvaTtdI8SD5" width="360" height="360" frameBorder="0" vspace="0" class="giphy-embed" allowFullScreen></iframe></p><p align="center"><a href="https://giphy.com/gifs/theoffice-the-office-tv-michaels-birthday-IwAZ6dvvvaTtdI8SD5<small>via GIPHY</small></a></p></p>
