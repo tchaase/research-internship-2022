@@ -3,7 +3,7 @@ format: jb-book
 chapters:
 - file: markdown/data_set.md
   sections: 
-  - file: code/preprocessing.md
+  - file: code/preprocessing.ipynb
   - file: markdown/documentation.md
 - file: code/data_exploration.ipynb
 - file: code/linear_model.ipynb
