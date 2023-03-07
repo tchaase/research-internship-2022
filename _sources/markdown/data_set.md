@@ -1,11 +1,15 @@
+
 # Introduction
 
 ## What data is used for this project?
 
-In the following, a data-set from [Wanjia et al. (2021)](https://www.nature.com/articles/s41467-021-25126-0#citeas) that is available on [OpenNeuro](https://openneuro.org/datasets/ds003707/versions/1.0.0) will be used. The goal is to assess if a machine learning algorithm trained on the `old` vs `new` images is able to predict the activity on subsequent 
+In the following, a data-set from {cite:t}`wanjia_abrupt_2021` that is available on [OpenNeuro](https://openneuro.org/datasets/ds003707/versions/1.0.0) will be used. The goal is to assess if a machine learning algorithm trained on the `old` vs `new` images is able to predict the activity on subsequent 
 images. Thus, the question is, with what precision will the algorithm be able to predict if a picture has been previously studied or not. 
 
-The data-set will be explored witin the [data-exploration section](https://tchaase.github.io/research-internship-2022/code/data_exploration.html). Here, the idea is mainly to oultine the idea behind the research question. 
+The data-set will be explored witin the [data-exploration section](../code/data_exploration.ipynb) section. 
+Here, the idea is mainly to oultine the idea behind the research question. 
+
+
 
 The primary goal of the authors of the original study was to answer a very different question than the one pursued here. Wanjia et al. were interested in how the brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) show a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to a pattern that leads to these memory traces being less similar, therefore aiding memory performance. 
 
@@ -26,6 +30,20 @@ In the following, I will outline what this paradigm is about and what we can exp
 
 ## What can we expect from the previous literature?
 
-Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as apart of which we are able to *encode*, *store* and *retrieve* information ([Melton, 1963](https://www.sciencedirect.com/science/article/pii/S0022537163800638)). Even though this ability is remarkable, it has only been in the recent years that human-kind has began to unravel how our memory function and how it is implemented on the neuronal level ([Tulving, 2002](https://www.annualreviews.org/doi/full/10.1146/annurev.psych.53.100901.135114?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%3Dpubmed&)). 
+Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as apart of which we are able to *encode*, *store* and *retrieve* information {cite:t}`melton_implications_1963`. Even though this ability is remarkable, it has only been in the recent years that human-kind has began to unravel how our memory function and how it is implemented on the neuronal level {cite:p}`tulving_episodic_2002`. 
 
-Different areas of the brain are known to be important for the ability to recognize what was previously seen, i.e. `recognition memory`. 
+Different areas of the brain are known to be important for the ability to recognize what was previously seen, i.e. `recognition memory`. Although the goal of the present project is not to relate hippocampal subfields to recognition memory,the current literature will be briefly summarized. However, all in all it will become clear, that the medial temporal lobe is involved in recognition memory. Different protocols to segment subfields in MRI exist, in [`Fig. 1`](Fig_1), several commonly used approaches are shown. 
+
+:::{figure-md} Fig_1 \
+<img src="../static/hippocampal_subfields.png" class="bg-primary mb-1" width="600px">
+
+This figure was published by {cite:t}`olsen_progress_2019`. 
+Different hippocampal subfield segmentations performed by three neuroanatomists 
+using the same data are displayed. Abbreviations: dentate gyrus/fascia dentata (DG/FD); 
+prosubiculum (ProS); presubiculum (PreS); parasubiculum (PaS/ParaS); subiculum (Sub).
+
+:::
+
+```{bibliography}
+:filter: docname in docnames
+```

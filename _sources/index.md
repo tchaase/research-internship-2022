@@ -16,8 +16,11 @@ Please visit these pages again in the next few weeks for further information.
 
 This notebook was created as part of the Msc5, a module of the neuro-major at Goethe-University Frankfurt. In the following notebook, I will...
 
-- [Describe what data I am working with and develop my research question](https://tchaase.github.io/research-internship-2022/markdown/data_set.html)
-- [Outline the various ressources I have used](https://tchaase.github.io/research-internship-2022/markdown/documentation.html)
-- [Explore the data-set and provide descriptive results](https://tchaase.github.io/research-internship-2022/code/data_exploration.html)
-- [Develop a linear model to analyze the data](https://tchaase.github.io/research-internship-2022/code/linear_model.html)
-- [Discuss the project I have made within this project](https://tchaase.github.io/research-internship-2022/markdown/discussion.html)
+- [Describe what data I am working with and develop my research question.](https://tchaase.github.io/research-internship-2022/markdown/data_set.html)
+- [Outline the various ressources I have used.](https://tchaase.github.io/research-internship-2022/markdown/documentation.html)
+- [Explore the data-set and provide descriptive results.](https://tchaase.github.io/research-internship-2022/code/data_exploration.html)
+- [Develop a linear model to analyze the data.](https://tchaase.github.io/research-internship-2022/code/linear_model.html)
+- [Discuss the project I have made within this project.](https://tchaase.github.io/research-internship-2022/markdown/discussion.html)
+
+
+![](https://giphy.com/embed/IwAZ6dvvvaTtdI8SD5)
