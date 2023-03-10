@@ -24,4 +24,8 @@ This notebook was created as part of the MSc5, a module of the [neuro-major](htt
 
 I want to thank [Peer Herholz](https://github.com/PeerHerholz), [Michael Ernst](https://github.com/M-earnest) and all the others from [Fiebach lab](http://www.fiebachlab.org/).
 
-<p align="center"><iframe src="https://giphy.com/embed/IwAZ6dvvvaTtdI8SD5" width="360" height="360" frameBorder="0" vspace="0" class="giphy-embed" allowFullScreen></iframe></p><p align="center"><a href="https://giphy.com/gifs/theoffice-the-office-tv-michaels-birthday-IwAZ6dvvvaTtdI8SD5<small>via GIPHY</small></a></p></p>
+
+<center>Then lets begin!</center>
+
+<center><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjRiYmVlNTc3ZGI5NjI1NjIxYzZhYTFlNTcyYTE0ZDcyNjA2NTc3MyZjdD1n/IwAZ6dvvvaTtdI8SD5/giphy.gif" alt="logo" title="Github" width="400" height="280" /></center>
+<center><sub><sup><sub><sup><sup>https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjRiYmVlNTc3ZGI5NjI1NjIxYzZhYTFlNTcyYTE0ZDcyNjA2NTc3MyZjdD1n/IwAZ6dvvvaTtdI8SD5/giphy.gif </sup></sup></sub></sup></sub></center>
