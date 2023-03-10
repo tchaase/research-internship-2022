@@ -5,7 +5,7 @@
 
 #######################################################################################
 # Book settings
-title                       : "Old-new Association Memory Analyses"  # The title of the book. Will be placed in the left navbar.
+title                       : "Recog-Memory Analyses"  # The title of the book. Will be placed in the left navbar.
 author                      : Tobias C. Haase  # The author of the book
 copyright                   : "2023"  # Copyright year to be placed in the footer
 logo                        : "static/logo.png"  # A path to the book logo
