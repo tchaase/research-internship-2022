@@ -3,17 +3,17 @@
 ## What data is used for this project?
 
 In the following, a data-set from {cite:t}`wanjia_abrupt_2021` that is available on [OpenNeuro](https://openneuro.org/datasets/ds003707/versions/1.0.0) will be used. The goal is to assess if a machine learning algorithm trained on the `old` vs `new` images is able to predict if an object was seen before based on the brain activation. 
-Thus, the question is, with what precision will the algorithm be able to predict if a picture has been previously studied or not. 
+Thus, the question is, with what precision will the algorithm be able to predict if a picture has been seen or not. 
 
 ```{note}
-The data-set will be explored witin the [data-exploration section](../code/data_exploration.ipynb) section. 
-Here, the idea behind the research question will be outlined. 
+In the upcoming section on [data exploration](../code/data_exploration.ipynb), the data will be explored and the task will be explained. 
+Here, the idea behind the research question is outlined. 
 ```
 
 **What was the goal of the original study?** 
 ```{toggle}
 The primary goal of the authors of the original study was to answer a very different question than the one pursued here. 
-Wanjia et al. were interested in how  brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) show a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to be a pattern that leads to these memory traces being less similar, therefore aiding memory performance. 
+Wanjia et al. were interested in how  brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) shows a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to be a pattern that leads to these memory traces being less similar, therefore aiding memory performance. 
 
 In the present study, the design of the study described above will be used to pursue a very different question: 
 How well can machine-learning be used to classify brain activation for the classic old-new recognition paradigm.
@@ -21,13 +21,13 @@ How well can machine-learning be used to classify brain activation for the class
 
 ## The old-vs-new paradigm
 
-Let's take a look on what ChatGPT answers when we ask it to provide us some information on the old-new paradigm (ChatGPT, personal communication, 2022, March the 5th).
+Let's see what ChatGPT has to say on the classic old-new paradigm:
 <blockquote>
 <p> Several studies have examined the neural correlates of old-new recognition using fMRI. For example, some studies have found that successful old-new recognition is associated with increased activity in the medial temporal lobe (MTL), including the hippocampus and parahippocampal gyrus, which are known to be important for long-term memory formation and retrieval (e.g., Davachi et al., 2003; Eldridge et al., 2000).
 
 Other studies have focused on the role of the prefrontal cortex (PFC) in old-new recognition. The PFC is thought to play a critical role in monitoring and manipulating information in working memory, which may also be important for successful old-new recognition. For example, some studies have found that successful old-new recognition is associated with increased activity in the dorsolateral prefrontal cortex (DLPFC), which is thought to be involved in working memory processes (e.g., Ranganath et al., 2000; Simons et al., 2005).
 
-Overall, the literature suggests that successful old-new recognition is associated with activity in both the MTL and PFC, which may reflect the complementary roles of these regions in long-term memory formation and retrieval. </p>
+Overall, the literature suggests that successful old-new recognition is associated with activity in both the MTL and PFC, which may reflect the complementary roles of these regions in long-term memory formation and retrieval. (ChatGPT, personal communication, 2022, March 5th).</p>
 </blockquote>
 
 In the following, I will outline what this paradigm is about and what we can expect, diving into the literature that ChatGPT recommended. 
@@ -35,7 +35,7 @@ In the following, I will outline what this paradigm is about and what we can exp
 ## What can we expect from the previous literature?
 **Which areas play a role for recognition memory?**
 
-Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as apart of which we are able to *encode*, *store* and *retrieve* information {cite:p}`melton_implications_1963`. Even though this ability is remarkable, it has only been in the recent years that human-kind has began to unravel how our memory function and how it is implemented on the neuronal level {cite:p}`tulving_episodic_2002`. 
+Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as a part of which we are able to *encode*, *store* and *retrieve* information {cite:p}`melton_implications_1963`. Even though this ability is remarkable, it has only been in the recent years that humankind has begun to unravel how our memory function and how it is implemented on the neuronal level {cite:p}`tulving_episodic_2002`. 
 
 Different areas of the brain are known to be important for the ability to recognize what was previously seen, i.e. `recognition memory`. Although the goal of the present project is not to relate areas of the medial temporal lobe (MTL) to recognition memory,the current literature is briefly summarized below. 
 
@@ -43,7 +43,7 @@ Different areas of the brain are known to be important for the ability to recogn
 ```{toggle}
 Different areas of the MTL receive different inputs and are thought to be involved in different computations. In this section, it will briefly be outlined how different areas of the MTL may have varying importance for recognition memory. 
 
-The perirhinal corte, which is known to play a role in object recongition {cite:p}`davachi_multiple_2003`, as well as object identification {cite:p}`murray_parahippocampal_2000`, has in the past been associated with the ventral visual stream {cite:p}`uzuki_neuroanatomy_1996`. The parahippocampal cortex on the other hand, is known to mainly receive input from areas within the dorsal visual stream. In this sense, for monkeys it has been shown that the parahippocampal cortex receives input from the dorsolateral prefrontal cortex {cite:p}`goldman-rakic_dual_1984` and the retrosplenial cortex {cite:p}`suzuki_neuroanatomy_1996`, which is involved in spatial cognition {cite:p}`mitchell_retrosplenial_2018`. Both of these areas are a major source of input to the entorhinal cortex, which in turn provides input to the hippocampus - at least in macaque monkeys {cite:p}`witter_entorhinal_1991`. 
+The perirhinal corte, which is known to play a role in object recognition {cite:p}`davachi_multiple_2003`, as well as object identification {cite:p}`murray_parahippocampal_2000`, has in the past been associated with the ventral visual stream {cite:p}`uzuki_neuroanatomy_1996`. The parahippocampal cortex on the other hand, is known to mainly receive input from areas within the dorsal visual stream. In this sense, for monkeys it has been shown that the parahippocampal cortex receives input from the dorsolateral prefrontal cortex {cite:p}`goldman-rakic_dual_1984` and the retrosplenial cortex {cite:p}`suzuki_neuroanatomy_1996`, which is involved in spatial cognition {cite:p}`mitchell_retrosplenial_2018`. Both of these areas are a major source of input to the entorhinal cortex, which in turn provides input to the hippocampus - at least in macaque monkeys {cite:p}`witter_entorhinal_1991` . 
 
 Thus, anatomically different regions of the MTL receive different inputs. Furthermore, they may also differ in their functionality, as lesion data suggests. Lesions to both the perihinal cortex and the parahippocampal gyrus lead to impairments in object recognition to a greater degree compared to monkeys that had a lesion in the hippocampus, amygdala and the adjacent cortices {cite:p}`zola-morgan_lesions_1989`. Ablatations of the perirhinal cortex in rhesus monkeys resulted in greater object recognition difficulties than ablatations of the entorhinal cortex {cite:p}`meunier_effects_1993, meunier_effects_1993`. In another study, the ablatation of the rhinal cortex has been shown to have similar implications for recogntion memory as a ablatation of the hippocampus {cite:p}`murray_visual_1986`. However, lesions to other of the above mentioned areas compared to lesion to the parahinal cortex alone have been associated with reduced recognition memory performance, but with the magnitude of such performance reduction being greatly decreased compared to perirhinal lesions alone {cite:p}`alvarez_damage_1995`. Although the studies above were performed using monkeys, it became apparent that one substructure - the perirhinal cortex may in particular be associated with recognition memory. 
 
