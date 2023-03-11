@@ -1,12 +1,15 @@
 
+
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction &#8212; Old-new Association Memory Analyses</title>
+    <title>Introduction &#8212; Recog-Memory Analyses</title>
   
   
   
@@ -16,18 +19,18 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -35,8 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -45,7 +48,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -62,264 +65,89 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'markdown/data_set';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Preprocessing" href="../code/preprocessing.html" />
+    <link rel="next" title="Ressources" href="documentation.html" />
     <link rel="prev" title="Welcome!" href="../index.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
   
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-
   
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
+</form></div>
   </div>
-
   
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
-  </label>
-  <div id="navbar-start">
-    
-    
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
-
-<a class="navbar-brand logo" href="../index.html">
-
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    
-  </div>
-
-  
-  <div class="col-lg-9 navbar-header-items">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Introduction
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../code/data_exploration.html">
-                        Exploration of the Data
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../code/linear_model.html">
-                        Development of the Linear Model
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="discussion.html">
-                        Discussion
-                      </a>
-                    </li>
-                
-    </ul>
-</nav>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-        <div class="navbar-end-item navbar-persistent--container">
-          
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-        </div>
-      
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
-  </div>
-
-
-  
-  
-    <div class="navbar-persistent--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-    </div>
-  
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
-  
-
-</div>
-  </nav>
-  
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       <div class="bd-sidebar-primary bd-sidebar">
         
+
   
   <div class="sidebar-header-items sidebar-primary__section">
     
     
-      <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Introduction
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../code/data_exploration.html">
-                        Exploration of the Data
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../code/linear_model.html">
-                        Development of the Linear Model
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="discussion.html">
-                        Discussion
-                      </a>
-                    </li>
-                
-    </ul>
-</nav>
-      </div>
-      
-      </div>
     
-
-    
-    
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
     
   </div>
-
   
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
   
-
 
 <a class="navbar-brand logo" href="../index.html">
-
   
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
-  
-
-  
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image">
-    <img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    </div>
-    <div class="sidebar-start-items__item">
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
-    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -331,57 +159,174 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../code/preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html">Ressources</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../code/preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/data_exploration.html">Exploration of the Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/linear_model.html">Development of the Linear Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="discussion.html">Discussion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
     </div>
-</nav>
+</nav></div>
     </div>
-  </div>
   
-
   
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-
   
   <div id="rtd-footer-container"></div>
 
+
       </div>
+      
       <main id="main-content" class="bd-main">
         
         
 
 <div class="sbt-scroll-pixel-helper"></div>
 
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
-            <span class="fa-solid fa-bars"></span>
-        </label>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/edit/main/content/markdown/data_set.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tchaase/research-internship-2022/issues/new?title=Issue%20on%20page%20%2Fmarkdown/data_set.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/markdown/data_set.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
@@ -392,108 +337,34 @@ title="Fullscreen mode"
 </button>
 
 
-
-<div class="dropdown dropdown-repository-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="https://github.com/tchaase/research-internship-2022" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">repository</span>
-</a>
-</a>
-      
-      <li><a href="https://github.com/tchaase/research-internship-2022/issues/new?title=Issue%20on%20page%20%2Fmarkdown/data_set.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">open issue</span>
-</a>
-</a>
-      
-      <li><a href="https://github.com/tchaase/research-internship-2022/edit/main/content/markdown/data_set.md" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="btn__text-container">suggest edit</span>
-</a>
-</a>
-      
-  </ul>
-</div>
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="../_sources/markdown/data_set.md" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.md</span>
-</a>
-</a>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
       
-      <li>
-<button onclick="printPdf(this)"
-  class="btn btn-sm dropdown-item"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</a>
-      
-  </ul>
-</div>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
-            <span class="fa-solid fa-list"></span>
-        </label>
     </div>
+  
 </div>
-            </div>
-            
-            
+</div>
+              
+              
 
 <div id="jb-print-docs-body" class="onlyprint">
     <h1>Introduction</h1>
@@ -506,80 +377,200 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-data-is-used-for-this-project">
-   What data is used for this project?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-old-vs-new-paradigm">
-   The old-vs-new paradigm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-can-we-expect-from-the-previous-literature">
-   What can we expect from the previous literature?
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-data-is-used-for-this-project">What data is used for this project?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-old-vs-new-paradigm">The old-vs-new paradigm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-can-we-expect-from-the-previous-literature">What can we expect from the previous literature?</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
 
-            <article class="bd-article" role="main">
               
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <section id="what-data-is-used-for-this-project">
 <h2>What data is used for this project?<a class="headerlink" href="#what-data-is-used-for-this-project" title="Permalink to this heading">#</a></h2>
-<p>In the following, a data-set from <span id="id1">Wanjia <em>et al.</em> [<a class="reference internal" href="#id7" title="Guo Wanjia, Serra E. Favila, Ghootae Kim, Robert J. Molitor, and Brice A. Kuhl. Abrupt hippocampal remapping signals resolution of memory interference. Nature Communications, 12(1):4816, August 2021. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-021-25126-0 (visited on 2023-03-05), doi:10.1038/s41467-021-25126-0.">2021</a>]</span> that is available on <a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">OpenNeuro</a> will be used. The goal is to assess if a machine learning algorithm trained on the <code class="docutils literal notranslate"><span class="pre">old</span></code> vs <code class="docutils literal notranslate"><span class="pre">new</span></code> images is able to predict the activity on subsequent
-images. Thus, the question is, with what precision will the algorithm be able to predict if a picture has been previously studied or not.</p>
-<p>The data-set will be explored witin the <a class="reference internal" href="../code/data_exploration.html"><span class="doc std std-doc">data-exploration section</span></a> section.
-Here, the idea is mainly to oultine the idea behind the research question.</p>
-<p>The primary goal of the authors of the original study was to answer a very different question than the one pursued here. Wanjia et al. were interested in how the brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) show a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to a pattern that leads to these memory traces being less similar, therefore aiding memory performance.</p>
-<p>In the present study, the design of the study described above will be used to pursue answering a very different question. How well can machine-learning be used to classify brain activation for the classic old-new recognition paradigm.</p>
+<p>In the following, a data-set from <span id="id1">Wanjia <em>et al.</em> [<a class="reference internal" href="references.html#id3" title="Guo Wanjia, Serra E. Favila, Ghootae Kim, Robert J. Molitor, and Brice A. Kuhl. Abrupt hippocampal remapping signals resolution of memory interference. Nature Communications, 12(1):4816, August 2021. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-021-25126-0 (visited on 2023-03-05), doi:10.1038/s41467-021-25126-0.">2021</a>]</span> that is available on <a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">OpenNeuro</a> will be used. The goal is to assess if a machine learning algorithm trained on the <code class="docutils literal notranslate"><span class="pre">old</span></code> vs <code class="docutils literal notranslate"><span class="pre">new</span></code> images is able to predict if an object was seen before based on the brain activation.
+Thus, the question is, with what precision will the algorithm be able to predict if a picture has been seen or not.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the upcoming section on <a class="reference internal" href="../code/data_exploration.html"><span class="doc std std-doc">data exploration</span></a>, the data will be explored and the task will be explained.
+Here, the idea behind the research question is outlined.</p>
+</div>
+<p><strong>What was the goal of the original study?</strong></p>
+<div class="toggle docutils container">
+<p>The primary goal of the authors of the original study was to answer a very different question than the one pursued here.
+Wanjia et al. were interested in how  brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) shows a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to be a pattern that leads to these memory traces being less similar, therefore aiding memory performance.</p>
+<p>In the present study, the design of the study described above will be used to pursue a very different question:
+How well can machine-learning be used to classify brain activation for the classic old-new recognition paradigm.</p>
+</div>
 </section>
 <section id="the-old-vs-new-paradigm">
 <h2>The old-vs-new paradigm<a class="headerlink" href="#the-old-vs-new-paradigm" title="Permalink to this heading">#</a></h2>
-<p>Let’s take a look on what ChatGPT would answer when we ask it to provide us some information on the old-new paradigm (ChatGPT, personal communication, 2022, March the 5th)</p>
+<p>Let’s see what ChatGPT has to say on the classic old-new paradigm:</p>
 <blockquote>
 <p> Several studies have examined the neural correlates of old-new recognition using fMRI. For example, some studies have found that successful old-new recognition is associated with increased activity in the medial temporal lobe (MTL), including the hippocampus and parahippocampal gyrus, which are known to be important for long-term memory formation and retrieval (e.g., Davachi et al., 2003; Eldridge et al., 2000).
 <p>Other studies have focused on the role of the prefrontal cortex (PFC) in old-new recognition. The PFC is thought to play a critical role in monitoring and manipulating information in working memory, which may also be important for successful old-new recognition. For example, some studies have found that successful old-new recognition is associated with increased activity in the dorsolateral prefrontal cortex (DLPFC), which is thought to be involved in working memory processes (e.g., Ranganath et al., 2000; Simons et al., 2005).</p>
-<p>Overall, the literature suggests that successful old-new recognition is associated with activity in both the MTL and PFC, which may reflect the complementary roles of these regions in long-term memory formation and retrieval. </p></p>
+<p>Overall, the literature suggests that successful old-new recognition is associated with activity in both the MTL and PFC, which may reflect the complementary roles of these regions in long-term memory formation and retrieval. (ChatGPT, personal communication, 2022, March 5th).</p></p>
 </blockquote>
 <p>In the following, I will outline what this paradigm is about and what we can expect, diving into the literature that ChatGPT recommended.</p>
 </section>
 <section id="what-can-we-expect-from-the-previous-literature">
 <h2>What can we expect from the previous literature?<a class="headerlink" href="#what-can-we-expect-from-the-previous-literature" title="Permalink to this heading">#</a></h2>
-<p>Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as apart of which we are able to <em>encode</em>, <em>store</em> and <em>retrieve</em> information <span id="id2">Melton [<a class="reference internal" href="#id10" title="Arthur W. Melton. Implications of short-term memory for a general theory of memory. Journal of Verbal Learning and Verbal Behavior, 2(1):1–21, July 1963. URL: https://www.sciencedirect.com/science/article/pii/S0022537163800638 (visited on 2023-03-05), doi:10.1016/S0022-5371(63)80063-8.">1963</a>]</span>. Even though this ability is remarkable, it has only been in the recent years that human-kind has began to unravel how our memory function and how it is implemented on the neuronal level <span id="id3">[<a class="reference internal" href="#id11" title="Endel Tulving. Episodic Memory: From Mind to Brain. Annual Review of Psychology, 53(1):1–25, 2002. _eprint: https://doi.org/10.1146/annurev.psych.53.100901.135114. URL: https://doi.org/10.1146/annurev.psych.53.100901.135114 (visited on 2023-03-07), doi:10.1146/annurev.psych.53.100901.135114.">Tulving, 2002</a>]</span>.</p>
-<p>Different areas of the brain are known to be important for the ability to recognize what was previously seen, i.e. <code class="docutils literal notranslate"><span class="pre">recognition</span> <span class="pre">memory</span></code>. Although the goal of the present project is not to relate hippocampal subfields to recognition memory,the current literature will be briefly summarized. However, all in all it will become clear, that the medial temporal lobe is involved in recognition memory. Different protocols to segment subfields in MRI exist, in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Fig.</span> <span class="pre">1</span></code></span>, several commonly used approaches are shown.</p>
+<p><strong>Which areas play a role for recognition memory?</strong></p>
+<p>Differentiating what we have previously seen from what we have never encountered is a skill we rely on in various areas of our every day life. This ability is inherent to our memory, as a part of which we are able to <em>encode</em>, <em>store</em> and <em>retrieve</em> information <span id="id2">[<a class="reference internal" href="references.html#id5" title="Arthur W. Melton. Implications of short-term memory for a general theory of memory. Journal of Verbal Learning and Verbal Behavior, 2(1):1–21, July 1963. URL: https://www.sciencedirect.com/science/article/pii/S0022537163800638 (visited on 2023-03-05), doi:10.1016/S0022-5371(63)80063-8.">Melton, 1963</a>]</span>. Even though this ability is remarkable, it has only been in the recent years that humankind has begun to unravel how our memory function and how it is implemented on the neuronal level <span id="id3">[<a class="reference internal" href="references.html#id6" title="Endel Tulving. Episodic Memory: From Mind to Brain. Annual Review of Psychology, 53(1):1–25, 2002. _eprint: https://doi.org/10.1146/annurev.psych.53.100901.135114. URL: https://doi.org/10.1146/annurev.psych.53.100901.135114 (visited on 2023-03-07), doi:10.1146/annurev.psych.53.100901.135114.">Tulving, 2002</a>]</span>.</p>
+<p>Different areas of the brain are known to be important for the ability to recognize what was previously seen, i.e. <code class="docutils literal notranslate"><span class="pre">recognition</span> <span class="pre">memory</span></code>. Although the goal of the present project is not to relate areas of the medial temporal lobe (MTL) to recognition memory,the current literature is briefly summarized below.</p>
+<p><strong>Areas within the MTL and their importance for recognition memory</strong></p>
+<div class="toggle docutils container">
+<p>Different areas of the MTL receive different inputs and are thought to be involved in different computations. In this section, it will briefly be outlined how different areas of the MTL may have varying importance for recognition memory.</p>
+<p>The perirhinal corte, which is known to play a role in object recognition <span id="id4">[<a class="reference internal" href="references.html#id12" title="Lila Davachi, Jason P. Mitchell, and Anthony D. Wagner. Multiple routes to memory: Distinct medial temporal lobe processes build item and source memories. Proceedings of the National Academy of Sciences, 100(4):2157–2162, February 2003. Publisher: Proceedings of the National Academy of Sciences. URL: https://www.pnas.org/doi/10.1073/pnas.0337195100 (visited on 2023-03-09), doi:10.1073/pnas.0337195100.">Davachi <em>et al.</em>, 2003</a>]</span>, as well as object identification <span id="id5">[<a class="reference internal" href="references.html#id8" title="E. A. Murray, T. J. Bussey, R. R. Hampton, and L. M. Saksida. The Parahippocampal Region and Object Identification. Annals of the New York Academy of Sciences, 911(1):166–174, 2000. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1749-6632.2000.tb06725.x. URL: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-6632.2000.tb06725.x (visited on 2023-03-09), doi:10.1111/j.1749-6632.2000.tb06725.x.">Murray <em>et al.</em>, 2000</a>]</span>, has in the past been associated with the ventral visual stream <span id="id6">[]</span>. The parahippocampal cortex on the other hand, is known to mainly receive input from areas within the dorsal visual stream. In this sense, for monkeys it has been shown that the parahippocampal cortex receives input from the dorsolateral prefrontal cortex <span id="id7">[<a class="reference internal" href="references.html#id13" title="P. S. Goldman-Rakic, L. D. Selemon, and M. L. Schwartz. Dual pathways connecting the dorsolateral prefrontal cortex with the hippocampal formation and parahippocampal cortex in the rhesus monkey. Neuroscience, 12(3):719–743, July 1984. URL: https://www.sciencedirect.com/science/article/pii/0306452284901660 (visited on 2023-03-09), doi:10.1016/0306-4522(84)90166-0.">Goldman-Rakic <em>et al.</em>, 1984</a>]</span> and the retrosplenial cortex <span id="id8">[<a class="reference internal" href="references.html#id16" title="Wendy A. Suzuki. Neuroanatomy of the monkey entorhinal, perirhinal and parahippocampal cortices: Organization of cortical inputs and interconnections with amygdala and striatum. Seminars in Neuroscience, 8(1):3–12, February 1996. URL: https://www.sciencedirect.com/science/article/pii/S1044576596900020 (visited on 2023-03-09), doi:10.1006/smns.1996.0002.">Suzuki, 1996</a>]</span>, which is involved in spatial cognition <span id="id9">[<a class="reference internal" href="references.html#id15" title="Anna S. Mitchell, Rafal Czajkowski, Ningyu Zhang, Kate Jeffery, and Andrew J. D. Nelson. Retrosplenial cortex and its role in spatial cognition. Brain and Neuroscience Advances, 2:2398212818757098, March 2018. URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6095108/ (visited on 2023-03-09), doi:10.1177/2398212818757098.">Mitchell <em>et al.</em>, 2018</a>]</span>. Both of these areas are a major source of input to the entorhinal cortex, which in turn provides input to the hippocampus - at least in macaque monkeys <span id="id10">[<a class="reference internal" href="references.html#id34" title="M.P. Witter and D.G. Amaral. Entorhinal cortex of the monkey: V. Projections to the dentate gyrus, hippocampus, and subicular complex. Journal of Comparative Neurology, 307:437–459, 1991. doi:https://doi.org/10.1002/cne.903070308.">Witter and Amaral, 1991</a>]</span> .</p>
+<p>Thus, anatomically different regions of the MTL receive different inputs. Furthermore, they may also differ in their functionality, as lesion data suggests. Lesions to both the perihinal cortex and the parahippocampal gyrus lead to impairments in object recognition to a greater degree compared to monkeys that had a lesion in the hippocampus, amygdala and the adjacent cortices <span id="id11">[<a class="reference internal" href="references.html#id17" title="S. Zola-Morgan, L. R. Squire, D. G. Amaral, and W. A. Suzuki. Lesions of perirhinal and parahippocampal cortex that spare the amygdala and hippocampal formation produce severe memory impairment. Journal of Neuroscience, 9(12):4355–4370, December 1989. Publisher: Society for Neuroscience Section: Articles. URL: https://www.jneurosci.org/content/9/12/4355 (visited on 2023-03-09), doi:10.1523/JNEUROSCI.09-12-04355.1989.">Zola-Morgan <em>et al.</em>, 1989</a>]</span>. Ablatations of the perirhinal cortex in rhesus monkeys resulted in greater object recognition difficulties than ablatations of the entorhinal cortex <span id="id12">[<a class="reference internal" href="references.html#id18" title="M. Meunier, J. Bachevalier, M. Mishkin, and E. A. Murray. Effects on visual recognition of combined and separate ablations of the entorhinal and perirhinal cortex in rhesus monkeys. Journal of Neuroscience, 13(12):5418–5432, December 1993. Publisher: Society for Neuroscience Section: Articles. URL: https://www.jneurosci.org/content/13/12/5418 (visited on 2023-03-09), doi:10.1523/JNEUROSCI.13-12-05418.1993.">Meunier <em>et al.</em>, 1993</a>]</span>. In another study, the ablatation of the rhinal cortex has been shown to have similar implications for recogntion memory as a ablatation of the hippocampus <span id="id13">[<a class="reference internal" href="references.html#id19" title="E. A. Murray and M. Mishkin. Visual recognition in monkeys following rhinal cortical ablations combined with either amygdalectomy or hippocampectomy. Journal of Neuroscience, 6(7):1991–2003, July 1986. Publisher: Society for Neuroscience Section: Articles. URL: https://www.jneurosci.org/content/6/7/1991 (visited on 2023-03-09), doi:10.1523/JNEUROSCI.06-07-01991.1986.">Murray and Mishkin, 1986</a>]</span>. However, lesions to other of the above mentioned areas compared to lesion to the parahinal cortex alone have been associated with reduced recognition memory performance, but with the magnitude of such performance reduction being greatly decreased compared to perirhinal lesions alone <span id="id14">[<a class="reference internal" href="references.html#id21" title="P. Alvarez, S. Zola-Morgan, and L. R. Squire. Damage limited to the hippocampal region produces long-lasting memory impairment in monkeys. Journal of Neuroscience, 15(5):3796–3807, May 1995. Publisher: Society for Neuroscience Section: Articles. URL: https://www.jneurosci.org/content/15/5/3796 (visited on 2023-03-09), doi:10.1523/JNEUROSCI.15-05-03796.1995.">Alvarez <em>et al.</em>, 1995</a>]</span>. Although the studies above were performed using monkeys, it became apparent that one substructure - the perirhinal cortex may in particular be associated with recognition memory.</p>
+<p>How this translates to humans is difficult to estimate, as lesion studies with humans are rare <span id="id15">[<a class="reference internal" href="references.html#id12" title="Lila Davachi, Jason P. Mitchell, and Anthony D. Wagner. Multiple routes to memory: Distinct medial temporal lobe processes build item and source memories. Proceedings of the National Academy of Sciences, 100(4):2157–2162, February 2003. Publisher: Proceedings of the National Academy of Sciences. URL: https://www.pnas.org/doi/10.1073/pnas.0337195100 (visited on 2023-03-09), doi:10.1073/pnas.0337195100.">Davachi <em>et al.</em>, 2003</a>]</span>. It has been founnd that damage limited to the hippocampus can be associated in particular with impairments toward recollection, not recognition <span id="id16">[<a class="reference internal" href="references.html#id24" title="J.s. Holdstock, A.r. Mayes, N. Roberts, E. Cezayirli, C.l. Isaac, R.c. O'Reilly, and K.a. Norman. Under what conditions is recognition spared relative to recall after selective hippocampal damage in humans? Hippocampus, 12(3):341–351, 2002. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.10011. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.10011 (visited on 2023-03-09), doi:10.1002/hipo.10011.">Holdstock <em>et al.</em>, 2002</a>, <a class="reference internal" href="references.html#id25" title="A.r. Mayes, J.s. Holdstock, C.l. Isaac, N.m. Hunkin, and N. Roberts. Relative sparing of item recognition memory in a patient with adult-onset damage limited to the hippocampus. Hippocampus, 12(3):325–340, 2002. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.1111. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.1111 (visited on 2023-03-09), doi:10.1002/hipo.1111.">Mayes <em>et al.</em>, 2002</a>]</span>. Within tasks that require recollection of details, recognition memory may however be impaired as a result of hippocampal insults <span id="id17">[<a class="reference internal" href="references.html#id24" title="J.s. Holdstock, A.r. Mayes, N. Roberts, E. Cezayirli, C.l. Isaac, R.c. O'Reilly, and K.a. Norman. Under what conditions is recognition spared relative to recall after selective hippocampal damage in humans? Hippocampus, 12(3):341–351, 2002. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.10011. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.10011 (visited on 2023-03-09), doi:10.1002/hipo.10011.">Holdstock <em>et al.</em>, 2002</a>]</span>.  However, studies exist that link selective hippocampal damage and impairments for recongition memory (mann recongition) or that do not find a relatively greater impairment for recollection and familarity <span id="id18">[<a class="reference internal" href="references.html#id27" title="Craig E. L. Stark, Peter J. Bayley, and Larry R. Squire. Recognition Memory for Single Items and for Associations Is Similarly Impaired Following Damage to the Hippocampal Region. Learning &amp; Memory, 9(5):238–242, September 2002. Company: Cold Spring Harbor Laboratory Press Distributor: Cold Spring Harbor Laboratory Press Institution: Cold Spring Harbor Laboratory Press Label: Cold Spring Harbor Laboratory Press Publisher: Cold Spring Harbor Lab. URL: http://learnmem.cshlp.org/content/9/5/238 (visited on 2023-03-09), doi:10.1101/lm.51802.">Stark <em>et al.</em>, 2002</a>]</span>.</p>
+<p>Although the literature is not clear as to wheather a clear division can be made between an association of the perrhinal cortex and recognition, as well as the hippocampus and recollection, such a division has been proposed by <span id="id19">[<a class="reference internal" href="references.html#id23" title="Malcolm W. Brown and John P. Aggleton. Recognition memory: What are the roles of the perirhinal cortex and hippocampus? Nature Reviews Neuroscience, 2(1):51–61, January 2001. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/35049064 (visited on 2023-03-09), doi:10.1038/35049064.">Brown and Aggleton, 2001</a>]</span>. They state the main role of the perirhinal cortex to may be the processing of novel information, which is thought to occur in a rapid manner. Meanwhile, within the hippocampus they state there to be a recollection system. This has been supported by encoding activation within the hippocampus predicting recollection and encoding activatioin in the perirhinal cortex predicting later recognition, but not the other way around <span id="id20">[<a class="reference internal" href="references.html#id12" title="Lila Davachi, Jason P. Mitchell, and Anthony D. Wagner. Multiple routes to memory: Distinct medial temporal lobe processes build item and source memories. Proceedings of the National Academy of Sciences, 100(4):2157–2162, February 2003. Publisher: Proceedings of the National Academy of Sciences. URL: https://www.pnas.org/doi/10.1073/pnas.0337195100 (visited on 2023-03-09), doi:10.1073/pnas.0337195100.">Davachi <em>et al.</em>, 2003</a>]</span>.</p>
+<p>It should be noted, that furthermore different subregions of the hippocampus may play differerent roles for memory as a whole. <span id="id21">Eldridge <em>et al.</em> [<a class="reference internal" href="references.html#id33" title="Laura L. Eldridge, Stephen A. Engel, Michael M. Zeineh, Susan Y. Bookheimer, and Barbara J. Knowlton. A Dissociation of Encoding and Retrieval Processes in the Human Hippocampus. Journal of Neuroscience, 25(13):3280–3286, March 2005. Publisher: Society for Neuroscience Section: Behavioral/Systems/Cognitive. URL: https://www.jneurosci.org/content/25/13/3280 (visited on 2023-03-09), doi:10.1523/JNEUROSCI.3420-04.2005.">2005</a>]</span> found encoding and retrieval processes to be associated with different sub regions of the hippocampus. the dentate gyrus and the second and third field of the  cornu ammonis (CA) being associated with memory formation, while areas later in the hippocampal circuit (such as the subiculum) are associated with memory retrieval. However, this will not be covered in detail. The different subfields of the hippocampus are shown in <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Fig.</span> <span class="pre">1</span></code></span>.</p>
 <figure class="align-default" id="fig-1">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/hippocampal_subfields.png"><img alt="../_images/hippocampal_subfields.png" class="bg-primary mb-1" src="../_images/hippocampal_subfields.png" style="width: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">This figure was published by <span id="id4">Olsen <em>et al.</em> [<a class="reference internal" href="#id12" title="Rosanna K. Olsen, Valerie A. Carr, Ana M. Daugherty, Renaud La Joie, Robert S.C. Amaral, Katrin Amunts, Jean C. Augustinack, Arnold Bakker, Andrew R. Bender, David Berron, Marina Boccardi, Martina Bocchetta, Alison C. Burggren, M. Mallar Chakravarty, Gaël Chételat, Robin de Flores, Jordan DeKraker, Song-Lin Ding, Mirjam I. Geerlings, Yushan Huang, Ricardo Insausti, Elliott G. Johnson, Prabesh Kanel, Olga Kedo, Kristen M. Kennedy, Attila Keresztes, Joshua K. Lee, Ulman Lindenberger, Susanne G. Mueller, Elizabeth M. Mulligan, Noa Ofen, Daniela J. Palombo, Lorenzo Pasquini, John Pluta, Naftali Raz, Karen M. Rodrigue, Margaret L. Schlichting, Yee Lee Shing, Craig E.L. Stark, Trevor A. Steve, Nanthia A. Suthana, Lei Wang, Markus Werkle-Bergner, Paul A. Yushkevich, Qijing Yu, Laura E.M. Wisse, and Hippocampal Subfields Group. Progress update from the hippocampal subfields group. Alzheimer's &amp; Dementia: Diagnosis, Assessment &amp; Disease Monitoring, 11(1):439–449, 2019. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1016/j.dadm.2019.04.001. URL: https://onlinelibrary.wiley.com/doi/abs/10.1016/j.dadm.2019.04.001 (visited on 2023-03-07), doi:10.1016/j.dadm.2019.04.001.">2019</a>]</span>.
-Different hippocampal subfield segmentations performed by three neuroanatomists
-using the same data are displayed. Abbreviations: dentate gyrus/fascia dentata (DG/FD);
-prosubiculum (ProS); presubiculum (PreS); parasubiculum (PaS/ParaS); subiculum (Sub).</span><a class="headerlink" href="#fig-1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">This figure was published by <span id="id22">Olsen <em>et al.</em> [<a class="reference internal" href="references.html#id7" title="Rosanna K. Olsen, Valerie A. Carr, Ana M. Daugherty, Renaud La Joie, Robert S.C. Amaral, Katrin Amunts, Jean C. Augustinack, Arnold Bakker, Andrew R. Bender, David Berron, Marina Boccardi, Martina Bocchetta, Alison C. Burggren, M. Mallar Chakravarty, Gaël Chételat, Robin de Flores, Jordan DeKraker, Song-Lin Ding, Mirjam I. Geerlings, Yushan Huang, Ricardo Insausti, Elliott G. Johnson, Prabesh Kanel, Olga Kedo, Kristen M. Kennedy, Attila Keresztes, Joshua K. Lee, Ulman Lindenberger, Susanne G. Mueller, Elizabeth M. Mulligan, Noa Ofen, Daniela J. Palombo, Lorenzo Pasquini, John Pluta, Naftali Raz, Karen M. Rodrigue, Margaret L. Schlichting, Yee Lee Shing, Craig E.L. Stark, Trevor A. Steve, Nanthia A. Suthana, Lei Wang, Markus Werkle-Bergner, Paul A. Yushkevich, Qijing Yu, Laura E.M. Wisse, and Hippocampal Subfields Group. Progress update from the hippocampal subfields group. Alzheimer's &amp; Dementia: Diagnosis, Assessment &amp; Disease Monitoring, 11(1):439–449, 2019. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1016/j.dadm.2019.04.001. URL: https://onlinelibrary.wiley.com/doi/abs/10.1016/j.dadm.2019.04.001 (visited on 2023-03-07), doi:10.1016/j.dadm.2019.04.001.">2019</a>]</span>. Different hippocampal subfield segmentations performed by three neuroanatomists using the same data are displayed.  bbreviations: dentate gyrus/fascia dentata (DG/FD); prosubiculum (ProS); presubiculum (PreS); parasubiculum (PaS/ParaS); subiculum (Sub).</span><a class="headerlink" href="#fig-1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="docutils container" id="id5">
-<div class="citation" id="id10" role="doc-biblioentry">
+</div>
+<p>One can summarize the lizerature in the following way: The MTL is involved in recognition memory. Different subregions play different roles for recognition memory <span id="id23">[<a class="reference internal" href="references.html#id12" title="Lila Davachi, Jason P. Mitchell, and Anthony D. Wagner. Multiple routes to memory: Distinct medial temporal lobe processes build item and source memories. Proceedings of the National Academy of Sciences, 100(4):2157–2162, February 2003. Publisher: Proceedings of the National Academy of Sciences. URL: https://www.pnas.org/doi/10.1073/pnas.0337195100 (visited on 2023-03-09), doi:10.1073/pnas.0337195100.">Davachi <em>et al.</em>, 2003</a>]</span>.</p>
+<p>While it was previously outlined that areas within the MTL are known to be particularily associated with recognition memory, Chat-GPT mentioned areas outside of the MTL to play a role for recognition memory.
+One study by <span id="id24">Simons <em>et al.</em> [<a class="reference internal" href="references.html#id31" title="Jon S. Simons, Polly V. Peers, David Y. Hwang, Brandon A. Ally, Paul C. Fletcher, and Andrew E. Budson. Is the parietal lobe necessary for recollection in humans? Neuropsychologia, 46(4):1185–1191, March 2008. doi:10.1016/j.neuropsychologia.2007.07.024.">2008</a>]</span> suggested by Chat-GPT however did not look into recognition memory and instead associated parietal activation with successful recollection. Chat-GPT did however point towards there being relatively little research on how the hippocampal formation and the cortex interact as part of episodic memory formation <span id="id25">[<a class="reference internal" href="references.html#id32" title="Charan Ranganath, Aaron Heller, Michael X. Cohen, Craig J. Brozinsky, and Jesse Rissman. Functional connectivity with the hippocampus during successful memory formation. Hippocampus, 15(8):997–1005, 2005. doi:10.1002/hipo.20141.">Ranganath <em>et al.</em>, 2005</a>]</span>. This furthermore raises the question - if the previously outlined literature does not fall short in regards to the complex activation patterns displayed during successul retrieval. <span id="id26">Ranganath <em>et al.</em> [<a class="reference internal" href="references.html#id32" title="Charan Ranganath, Aaron Heller, Michael X. Cohen, Craig J. Brozinsky, and Jesse Rissman. Functional connectivity with the hippocampus during successful memory formation. Hippocampus, 15(8):997–1005, 2005. doi:10.1002/hipo.20141.">2005</a>]</span> showed a distributed network of activity to aid successful memory retrieval.</p>
+<p><strong>What role does the cortex play for (recognition) memory?</strong></p>
+<div class="toggle docutils container">
+<p>Firstly, it was outlined that the ventral stream of the visual pathways is one of the major sources of input for the perirhinal cortex. It has also been outlined that the perirhinal cortex in particular can be associated with recognition memory. In this sense, areas of the inferior temporal cortex can be linked to object identify and this area is known to be a part of a network that enables object recognition <span id="id27">[<a class="reference internal" href="references.html#id36" title="Kohitij Kar, Jonas Kubilius, Kailyn Schmidt, Elias B. Issa, and James J. DiCarlo. Evidence that recurrent circuits are critical to the ventral stream’s execution of core object recognition behavior. Nature Neuroscience, 22(6):974–983, June 2019. URL: https://doi.org/10.1038/s41593-019-0392-5, doi:10.1038/s41593-019-0392-5.">Kar <em>et al.</em>, 2019</a>]</span>. It has been shown that pharmacologically inactivation of one node within the network (the ventrolateral prefrontal cortex) is associated with decreased performance for certain types of object recognition <span id="id28">[<a class="reference internal" href="references.html#id35" title="Kohitij Kar and James J. DiCarlo. Fast Recurrent Processing via Ventrolateral Prefrontal Cortex Is Needed by the Primate Ventral Stream for Robust Core Visual Object Recognition. Neuron, 109(1):164–176.e5, January 2021. URL: https://www.sciencedirect.com/science/article/pii/S0896627320307595 (visited on 2023-03-10), doi:10.1016/j.neuron.2020.09.035.">Kar and DiCarlo, 2021</a>]</span>. The ventromedial prefrontal cortex has also been associated to play an important role in recognition memory <span id="id29">[<a class="reference internal" href="references.html#id39" title="Irit Akirav and Mouna Maroun. Ventromedial Prefrontal Cortex Is Obligatory for Consolidation and Reconsolidation of Object Recognition Memory. Cerebral Cortex, 16(12):1759–1765, December 2006. URL: https://doi.org/10.1093/cercor/bhj114 (visited on 2023-03-10), doi:10.1093/cercor/bhj114.">Akirav and Maroun, 2006</a>]</span>. Note however, that these findings come from studies with macaque monkeys. Furthermore it has been shown in rodents that the medial prefrontal cortex can be linked to associative recognition memory via projects into the lateral entorhinal cortex <span id="id30">[<a class="reference internal" href="references.html#id37" title="Owen Y. Chao, Joseph P. Huston, Jay-Shake Li, An-Li Wang, and Maria A. de Souza Silva. The medial prefrontal cortex—lateral entorhinal cortex circuit is essential for episodic-like memory and associative object-recognition. Hippocampus, 26(5):633–645, 2016. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.22547. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.22547 (visited on 2023-03-10), doi:10.1002/hipo.22547.">Chao <em>et al.</em>, 2016</a>]</span>.</p>
+<p>Outlining the general activation patterns between limbic areas and the cortex and their role for memory functioning would exceed the goal of this section. The neural circutry that enables memory formation is far more complex <span id="id31">[<a class="reference internal" href="references.html#id38" title="Stephen Frey and Michael Petrides. Orbitofrontal Cortex and Memory Formation. Neuron, 36(1):171–176, September 2002. URL: https://www.sciencedirect.com/science/article/pii/S0896627302009017 (visited on 2023-03-10), doi:10.1016/S0896-6273(02)00901-7.">Frey and Petrides, 2002</a>]</span>. Several aspects have not been covered, for example what role the insular cortex plays for object recognition memory <span id="id32">[<a class="reference internal" href="references.html#id40" title="Federico Bermudez-Rattoni. The forgotten insular cortex: Its role on recognition memory formation. Neurobiology of Learning and Memory, 109:207–216, March 2014. URL: https://www.sciencedirect.com/science/article/pii/S1074742714000021 (visited on 2023-03-10), doi:10.1016/j.nlm.2014.01.001.">Bermudez-Rattoni, 2014</a>]</span>.</p>
+</div>
+<p>Although the above description barely scratches the surface of how the brain enables us to recognize what was previously seen, it did become apparent what areas activity should be expected in. This will serve as the basis for what is expected within the exploratory analyses and the linear model. Thus, in the following, it shall be explored if the recognition of objects depends soley on activation within the MTL.</p>
+<p>Following this, it will be explored if a supervised model can be trained to predict if an item was previously seen!</p>
+<p>Also, here is a TED-talk on an aspect of memory I did not cover at all I found interesting!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Q4tbqEAMMLw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="toggle docutils container">
+<p>Totally not because as a psychologist I don’t know anything about molecules.</p>
+<center><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif" alt="logo" title="Github" width="400" height="280" /></center>
+<center><sub><sup><sub><sup><sup>https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif </sup></sup></sub></sup></sub></center>
+</div>
+<p><strong>References</strong></p>
+<div class="toggle docutils container">
+<div class="docutils container" id="id33">
+<div class="citation" id="id71" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id29">AM06</a><span class="fn-bracket">]</span></span>
+<p>Irit Akirav and Mouna Maroun. Ventromedial Prefrontal Cortex Is Obligatory for Consolidation and Reconsolidation of Object Recognition Memory. <em>Cerebral Cortex</em>, 16(12):1759–1765, December 2006. URL: <a class="reference external" href="https://doi.org/10.1093/cercor/bhj114">https://doi.org/10.1093/cercor/bhj114</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1093/cercor/bhj114">doi:10.1093/cercor/bhj114</a>.</p>
+</div>
+<div class="citation" id="id53" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">AZMS95</a><span class="fn-bracket">]</span></span>
+<p>P. Alvarez, S. Zola-Morgan, and L. R. Squire. Damage limited to the hippocampal region produces long-lasting memory impairment in monkeys. <em>Journal of Neuroscience</em>, 15(5):3796–3807, May 1995. Publisher: Society for Neuroscience Section: Articles. URL: <a class="reference external" href="https://www.jneurosci.org/content/15/5/3796">https://www.jneurosci.org/content/15/5/3796</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1523/JNEUROSCI.15-05-03796.1995">doi:10.1523/JNEUROSCI.15-05-03796.1995</a>.</p>
+</div>
+<div class="citation" id="id72" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id32">BR14</a><span class="fn-bracket">]</span></span>
+<p>Federico Bermudez-Rattoni. The forgotten insular cortex: Its role on recognition memory formation. <em>Neurobiology of Learning and Memory</em>, 109:207–216, March 2014. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1074742714000021">https://www.sciencedirect.com/science/article/pii/S1074742714000021</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1016/j.nlm.2014.01.001">doi:10.1016/j.nlm.2014.01.001</a>.</p>
+</div>
+<div class="citation" id="id55" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">BA01</a><span class="fn-bracket">]</span></span>
+<p>Malcolm W. Brown and John P. Aggleton. Recognition memory: What are the roles of the perirhinal cortex and hippocampus? <em>Nature Reviews Neuroscience</em>, 2(1):51–61, January 2001. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/35049064">https://www.nature.com/articles/35049064</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1038/35049064">doi:10.1038/35049064</a>.</p>
+</div>
+<div class="citation" id="id69" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id30">CHL+16</a><span class="fn-bracket">]</span></span>
+<p>Owen Y. Chao, Joseph P. Huston, Jay-Shake Li, An-Li Wang, and Maria A. de Souza Silva. The medial prefrontal cortex—lateral entorhinal cortex circuit is essential for episodic-like memory and associative object-recognition. <em>Hippocampus</em>, 26(5):633–645, 2016. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.22547. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.22547">https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.22547</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1002/hipo.22547">doi:10.1002/hipo.22547</a>.</p>
+</div>
+<div class="citation" id="id44" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>DMW03<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id15">2</a>,<a role="doc-backlink" href="#id20">3</a>,<a role="doc-backlink" href="#id23">4</a>)</span>
+<p>Lila Davachi, Jason P. Mitchell, and Anthony D. Wagner. Multiple routes to memory: Distinct medial temporal lobe processes build item and source memories. <em>Proceedings of the National Academy of Sciences</em>, 100(4):2157–2162, February 2003. Publisher: Proceedings of the National Academy of Sciences. URL: <a class="reference external" href="https://www.pnas.org/doi/10.1073/pnas.0337195100">https://www.pnas.org/doi/10.1073/pnas.0337195100</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1073/pnas.0337195100">doi:10.1073/pnas.0337195100</a>.</p>
+</div>
+<div class="citation" id="id65" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">EEZ+05</a><span class="fn-bracket">]</span></span>
+<p>Laura L. Eldridge, Stephen A. Engel, Michael M. Zeineh, Susan Y. Bookheimer, and Barbara J. Knowlton. A Dissociation of Encoding and Retrieval Processes in the Human Hippocampus. <em>Journal of Neuroscience</em>, 25(13):3280–3286, March 2005. Publisher: Society for Neuroscience Section: Behavioral/Systems/Cognitive. URL: <a class="reference external" href="https://www.jneurosci.org/content/25/13/3280">https://www.jneurosci.org/content/25/13/3280</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1523/JNEUROSCI.3420-04.2005">doi:10.1523/JNEUROSCI.3420-04.2005</a>.</p>
+</div>
+<div class="citation" id="id70" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id31">FP02</a><span class="fn-bracket">]</span></span>
+<p>Stephen Frey and Michael Petrides. Orbitofrontal Cortex and Memory Formation. <em>Neuron</em>, 36(1):171–176, September 2002. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0896627302009017">https://www.sciencedirect.com/science/article/pii/S0896627302009017</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1016/S0896-6273(02)00901-7">doi:10.1016/S0896-6273(02)00901-7</a>.</p>
+</div>
+<div class="citation" id="id45" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">GRSS84</a><span class="fn-bracket">]</span></span>
+<p>P. S. Goldman-Rakic, L. D. Selemon, and M. L. Schwartz. Dual pathways connecting the dorsolateral prefrontal cortex with the hippocampal formation and parahippocampal cortex in the rhesus monkey. <em>Neuroscience</em>, 12(3):719–743, July 1984. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/0306452284901660">https://www.sciencedirect.com/science/article/pii/0306452284901660</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1016/0306-4522(84)90166-0">doi:10.1016/0306-4522(84)90166-0</a>.</p>
+</div>
+<div class="citation" id="id56" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HMR+02<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id16">1</a>,<a role="doc-backlink" href="#id17">2</a>)</span>
+<p>J.s. Holdstock, A.r. Mayes, N. Roberts, E. Cezayirli, C.l. Isaac, R.c. O'Reilly, and K.a. Norman. Under what conditions is recognition spared relative to recall after selective hippocampal damage in humans? <em>Hippocampus</em>, 12(3):341–351, 2002. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.10011. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.10011">https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.10011</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1002/hipo.10011">doi:10.1002/hipo.10011</a>.</p>
+</div>
+<div class="citation" id="id67" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">KD21</a><span class="fn-bracket">]</span></span>
+<p>Kohitij Kar and James J. DiCarlo. Fast Recurrent Processing via Ventrolateral Prefrontal Cortex Is Needed by the Primate Ventral Stream for Robust Core Visual Object Recognition. <em>Neuron</em>, 109(1):164–176.e5, January 2021. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0896627320307595">https://www.sciencedirect.com/science/article/pii/S0896627320307595</a> (visited on 2023-03-10), <a class="reference external" href="https://doi.org/10.1016/j.neuron.2020.09.035">doi:10.1016/j.neuron.2020.09.035</a>.</p>
+</div>
+<div class="citation" id="id68" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id27">KKS+19</a><span class="fn-bracket">]</span></span>
+<p>Kohitij Kar, Jonas Kubilius, Kailyn Schmidt, Elias B. Issa, and James J. DiCarlo. Evidence that recurrent circuits are critical to the ventral stream’s execution of core object recognition behavior. <em>Nature Neuroscience</em>, 22(6):974–983, June 2019. URL: <a class="reference external" href="https://doi.org/10.1038/s41593-019-0392-5">https://doi.org/10.1038/s41593-019-0392-5</a>, <a class="reference external" href="https://doi.org/10.1038/s41593-019-0392-5">doi:10.1038/s41593-019-0392-5</a>.</p>
+</div>
+<div class="citation" id="id57" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">MHI+02</a><span class="fn-bracket">]</span></span>
+<p>A.r. Mayes, J.s. Holdstock, C.l. Isaac, N.m. Hunkin, and N. Roberts. Relative sparing of item recognition memory in a patient with adult-onset damage limited to the hippocampus. <em>Hippocampus</em>, 12(3):325–340, 2002. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/hipo.1111. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.1111">https://onlinelibrary.wiley.com/doi/abs/10.1002/hipo.1111</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1002/hipo.1111">doi:10.1002/hipo.1111</a>.</p>
+</div>
+<div class="citation" id="id37" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Mel63</a><span class="fn-bracket">]</span></span>
 <p>Arthur W. Melton. Implications of short-term memory for a general theory of memory. <em>Journal of Verbal Learning and Verbal Behavior</em>, 2(1):1–21, July 1963. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0022537163800638">https://www.sciencedirect.com/science/article/pii/S0022537163800638</a> (visited on 2023-03-05), <a class="reference external" href="https://doi.org/10.1016/S0022-5371(63)80063-8">doi:10.1016/S0022-5371(63)80063-8</a>.</p>
 </div>
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">OCD+19</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id50" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">MBMM93</a><span class="fn-bracket">]</span></span>
+<p>M. Meunier, J. Bachevalier, M. Mishkin, and E. A. Murray. Effects on visual recognition of combined and separate ablations of the entorhinal and perirhinal cortex in rhesus monkeys. <em>Journal of Neuroscience</em>, 13(12):5418–5432, December 1993. Publisher: Society for Neuroscience Section: Articles. URL: <a class="reference external" href="https://www.jneurosci.org/content/13/12/5418">https://www.jneurosci.org/content/13/12/5418</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1523/JNEUROSCI.13-12-05418.1993">doi:10.1523/JNEUROSCI.13-12-05418.1993</a>.</p>
+</div>
+<div class="citation" id="id47" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">MCZ+18</a><span class="fn-bracket">]</span></span>
+<p>Anna S. Mitchell, Rafal Czajkowski, Ningyu Zhang, Kate Jeffery, and Andrew J. D. Nelson. Retrosplenial cortex and its role in spatial cognition. <em>Brain and Neuroscience Advances</em>, 2:2398212818757098, March 2018. URL: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6095108/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6095108/</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1177/2398212818757098">doi:10.1177/2398212818757098</a>.</p>
+</div>
+<div class="citation" id="id40" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">MBHS00</a><span class="fn-bracket">]</span></span>
+<p>E. A. Murray, T. J. Bussey, R. R. Hampton, and L. M. Saksida. The Parahippocampal Region and Object Identification. <em>Annals of the New York Academy of Sciences</em>, 911(1):166–174, 2000. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1749-6632.2000.tb06725.x. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-6632.2000.tb06725.x">https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1749-6632.2000.tb06725.x</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1111/j.1749-6632.2000.tb06725.x">doi:10.1111/j.1749-6632.2000.tb06725.x</a>.</p>
+</div>
+<div class="citation" id="id51" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">MM86</a><span class="fn-bracket">]</span></span>
+<p>E. A. Murray and M. Mishkin. Visual recognition in monkeys following rhinal cortical ablations combined with either amygdalectomy or hippocampectomy. <em>Journal of Neuroscience</em>, 6(7):1991–2003, July 1986. Publisher: Society for Neuroscience Section: Articles. URL: <a class="reference external" href="https://www.jneurosci.org/content/6/7/1991">https://www.jneurosci.org/content/6/7/1991</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1523/JNEUROSCI.06-07-01991.1986">doi:10.1523/JNEUROSCI.06-07-01991.1986</a>.</p>
+</div>
+<div class="citation" id="id39" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id22">OCD+19</a><span class="fn-bracket">]</span></span>
 <p>Rosanna K. Olsen, Valerie A. Carr, Ana M. Daugherty, Renaud La Joie, Robert S.C. Amaral, Katrin Amunts, Jean C. Augustinack, Arnold Bakker, Andrew R. Bender, David Berron, Marina Boccardi, Martina Bocchetta, Alison C. Burggren, M. Mallar Chakravarty, Gaël Chételat, Robin de Flores, Jordan DeKraker, Song-Lin Ding, Mirjam I. Geerlings, Yushan Huang, Ricardo Insausti, Elliott G. Johnson, Prabesh Kanel, Olga Kedo, Kristen M. Kennedy, Attila Keresztes, Joshua K. Lee, Ulman Lindenberger, Susanne G. Mueller, Elizabeth M. Mulligan, Noa Ofen, Daniela J. Palombo, Lorenzo Pasquini, John Pluta, Naftali Raz, Karen M. Rodrigue, Margaret L. Schlichting, Yee Lee Shing, Craig E.L. Stark, Trevor A. Steve, Nanthia A. Suthana, Lei Wang, Markus Werkle-Bergner, Paul A. Yushkevich, Qijing Yu, Laura E.M. Wisse, and Hippocampal Subfields Group. Progress update from the hippocampal subfields group. <em>Alzheimer's &amp; Dementia: Diagnosis, Assessment &amp; Disease Monitoring</em>, 11(1):439–449, 2019. _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1016/j.dadm.2019.04.001. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1016/j.dadm.2019.04.001">https://onlinelibrary.wiley.com/doi/abs/10.1016/j.dadm.2019.04.001</a> (visited on 2023-03-07), <a class="reference external" href="https://doi.org/10.1016/j.dadm.2019.04.001">doi:10.1016/j.dadm.2019.04.001</a>.</p>
 </div>
-<div class="citation" id="id11" role="doc-biblioentry">
+<div class="citation" id="id64" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RHC+05<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id25">1</a>,<a role="doc-backlink" href="#id26">2</a>)</span>
+<p>Charan Ranganath, Aaron Heller, Michael X. Cohen, Craig J. Brozinsky, and Jesse Rissman. Functional connectivity with the hippocampus during successful memory formation. <em>Hippocampus</em>, 15(8):997–1005, 2005. <a class="reference external" href="https://doi.org/10.1002/hipo.20141">doi:10.1002/hipo.20141</a>.</p>
+</div>
+<div class="citation" id="id63" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">SPH+08</a><span class="fn-bracket">]</span></span>
+<p>Jon S. Simons, Polly V. Peers, David Y. Hwang, Brandon A. Ally, Paul C. Fletcher, and Andrew E. Budson. Is the parietal lobe necessary for recollection in humans? <em>Neuropsychologia</em>, 46(4):1185–1191, March 2008. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2007.07.024">doi:10.1016/j.neuropsychologia.2007.07.024</a>.</p>
+</div>
+<div class="citation" id="id59" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">SBS02</a><span class="fn-bracket">]</span></span>
+<p>Craig E. L. Stark, Peter J. Bayley, and Larry R. Squire. Recognition Memory for Single Items and for Associations Is Similarly Impaired Following Damage to the Hippocampal Region. <em>Learning &amp; Memory</em>, 9(5):238–242, September 2002. Company: Cold Spring Harbor Laboratory Press Distributor: Cold Spring Harbor Laboratory Press Institution: Cold Spring Harbor Laboratory Press Label: Cold Spring Harbor Laboratory Press Publisher: Cold Spring Harbor Lab. URL: <a class="reference external" href="http://learnmem.cshlp.org/content/9/5/238">http://learnmem.cshlp.org/content/9/5/238</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1101/lm.51802">doi:10.1101/lm.51802</a>.</p>
+</div>
+<div class="citation" id="id48" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Suz96</a><span class="fn-bracket">]</span></span>
+<p>Wendy A. Suzuki. Neuroanatomy of the monkey entorhinal, perirhinal and parahippocampal cortices: Organization of cortical inputs and interconnections with amygdala and striatum. <em>Seminars in Neuroscience</em>, 8(1):3–12, February 1996. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1044576596900020">https://www.sciencedirect.com/science/article/pii/S1044576596900020</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1006/smns.1996.0002">doi:10.1006/smns.1996.0002</a>.</p>
+</div>
+<div class="citation" id="id38" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Tul02</a><span class="fn-bracket">]</span></span>
 <p>Endel Tulving. Episodic Memory: From Mind to Brain. <em>Annual Review of Psychology</em>, 53(1):1–25, 2002. _eprint: https://doi.org/10.1146/annurev.psych.53.100901.135114. URL: <a class="reference external" href="https://doi.org/10.1146/annurev.psych.53.100901.135114">https://doi.org/10.1146/annurev.psych.53.100901.135114</a> (visited on 2023-03-07), <a class="reference external" href="https://doi.org/10.1146/annurev.psych.53.100901.135114">doi:10.1146/annurev.psych.53.100901.135114</a>.</p>
 </div>
-<div class="citation" id="id7" role="doc-biblioentry">
+<div class="citation" id="id35" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">WFK+21</a><span class="fn-bracket">]</span></span>
 <p>Guo Wanjia, Serra E. Favila, Ghootae Kim, Robert J. Molitor, and Brice A. Kuhl. Abrupt hippocampal remapping signals resolution of memory interference. <em>Nature Communications</em>, 12(1):4816, August 2021. Number: 1 Publisher: Nature Publishing Group. URL: <a class="reference external" href="https://www.nature.com/articles/s41467-021-25126-0">https://www.nature.com/articles/s41467-021-25126-0</a> (visited on 2023-03-05), <a class="reference external" href="https://doi.org/10.1038/s41467-021-25126-0">doi:10.1038/s41467-021-25126-0</a>.</p>
+</div>
+<div class="citation" id="id66" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">WA91</a><span class="fn-bracket">]</span></span>
+<p>M.P. Witter and D.G. Amaral. Entorhinal cortex of the monkey: V. Projections to the dentate gyrus, hippocampus, and subicular complex. <em>Journal of Comparative Neurology</em>, 307:437–459, 1991. <a class="reference external" href="https://doi.org/https://doi.org/10.1002/cne.903070308">doi:https://doi.org/10.1002/cne.903070308</a>.</p>
+</div>
+<div class="citation" id="id49" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">ZMSAS89</a><span class="fn-bracket">]</span></span>
+<p>S. Zola-Morgan, L. R. Squire, D. G. Amaral, and W. A. Suzuki. Lesions of perirhinal and parahippocampal cortex that spare the amygdala and hippocampal formation produce severe memory impairment. <em>Journal of Neuroscience</em>, 9(12):4355–4370, December 1989. Publisher: Society for Neuroscience Section: Articles. URL: <a class="reference external" href="https://www.jneurosci.org/content/9/12/4355">https://www.jneurosci.org/content/9/12/4355</a> (visited on 2023-03-09), <a class="reference external" href="https://doi.org/10.1523/JNEUROSCI.09-12-04355.1989">doi:10.1523/JNEUROSCI.09-12-04355.1989</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -608,71 +599,59 @@ prosubiculum (ProS); presubiculum (PreS); parasubiculum (PaS/ParaS); subiculum (
     </script>
     <script>kernelName = 'python3'</script>
 
-            </article>
-            
+                </article>
+              
 
-            
-            
-            <footer class="bd-footer-article">
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-          <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Welcome!</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome!</p>
       </div>
-  </a>
-  <a class='right-next' id="next-link" href="../code/preprocessing.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Preprocessing</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
-  </a>
+    </a>
+    <a class="right-next"
+       href="documentation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ressources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-            </footer>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-data-is-used-for-this-project">What data is used for this project?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-old-vs-new-paradigm">The old-vs-new paradigm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-can-we-expect-from-the-previous-literature">What can we expect from the previous literature?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
-              
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-data-is-used-for-this-project">
-   What data is used for this project?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-old-vs-new-paradigm">
-   The old-vs-new paradigm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-can-we-expect-from-the-previous-literature">
-   What can we expect from the previous literature?
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-            </div>
-          
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
-            
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -685,38 +664,36 @@ By Tobias C. Haase
   
   <div class="footer-item">
     
-<p class="copyright">
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
 
-    &copy; Copyright 2023.<br>
-
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    <p class="last-updated">
-Last updated on None.<br>
-</p>
   </div>
   
   <div class="footer-item">
     
   </div>
   
-</div>
-          </div>
-        </footer>
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
         
 
       </main>
     </div>
   </div>
-
   
-    
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
