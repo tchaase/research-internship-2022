@@ -16,11 +16,13 @@ Please visit these pages again in the next few weeks for further information.
 
 This notebook was created as part of the MSc5, a module of the [neuro-major](https://www.psychologie.uni-frankfurt.de/101732497/Schwerpunkte_im_M_Sc__Studiengang_Psychologie#kn) at Goethe-University Frankfurt. In the following notebook, I will...
 
-- [...describe what data I am working with and develop my research question.](./markdown/data_set.md)
-- [...outline the various ressources I have used.](./markdown/documentation.md)
-- [...explore the data-set and provide descriptive results.](./code/data_exploration.ipynb)
-- [...develop a linear model to analyze the data.](./code/linear_model.ipynb)
-- [...discuss the project I have made within this project.](./markdown/discussion.md)
+* [...describe what data I am working with and develop my research question.](./markdown/data_set.md)
+* [...outline the various ressources I have used.](./markdown/documentation.md)
+* [...show what didn't work during data preprocessing](./code/prepocessing.ipynb)
+* [...explore the data-set and provide descriptive results.](./code/data_exploration.ipynb)
+* [...develop a linear model to analyze the data.](./code/linear_model.ipynb)
+* [...discuss the project I have made within this project.](./markdown/discussion.md)
+* [...and the documentation of the progress within this project](./markdown/lab_notebook.md)
 
 I want to thank [Peer Herholz](https://github.com/PeerHerholz), [Michael Ernst](https://github.com/M-earnest) and all the others from [Fiebach lab](http://www.fiebachlab.org/).
 
