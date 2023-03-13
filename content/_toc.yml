@@ -8,4 +8,22 @@ chapters:
 - file: code/data_exploration.ipynb
 - file: code/linear_model.ipynb
 - file: markdown/discussion.md
+- file: markdown/lab_notebook.md
+  sections:
+  - file: open_lab_notebook/week_1.md
+  - file: open_lab_notebook/week_2.md
+  - file: open_lab_notebook/week_3.md
+  - file: open_lab_notebook/week_4.md
+  - file: open_lab_notebook/week_5.md
+  - file: open_lab_notebook/week_6.md
+  - file: open_lab_notebook/week_7.md
+  - file: open_lab_notebook/week_8.md
+  - file: open_lab_notebook/week_9.md
+  - file: open_lab_notebook/week_10-11.md
+  - file: open_lab_notebook/week_12.md
+  - file: open_lab_notebook/week_13.md
+  - file: open_lab_notebook/week_14.md
+  - file: open_lab_notebook/week_15-16.md
+  - file: open_lab_notebook/week_17-18.md
+  - file: open_lab_notebook/week_19-20.md
 - file: markdown/references.md
