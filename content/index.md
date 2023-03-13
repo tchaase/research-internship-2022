@@ -18,7 +18,7 @@ This notebook was created as part of the MSc5, a module of the [neuro-major](htt
 
 * [...describe what data I am working with and develop my research question.](./markdown/data_set.md)
 * [...outline the various ressources I have used.](./markdown/documentation.md)
-* [...show what didn't work during data preprocessing](./code/prepocessing.ipynb)
+* [...show what didn't work during data preprocessing](./code/preprocessing.ipynb)
 * [...explore the data-set and provide descriptive results.](./code/data_exploration.ipynb)
 * [...develop a linear model to analyze the data.](./code/linear_model.ipynb)
 * [...discuss the project I have made within this project.](./markdown/discussion.md)

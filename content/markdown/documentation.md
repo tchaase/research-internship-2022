@@ -1,51 +1,50 @@
-# Ressources
+# Resources
 
-In the following, the different plattforms, packages and tools that were used will be briefly outlined. Firstly, I will give an overview of how the data was accessed. Then the data-set and the documentation of it will briefly be outlined. Then I will shortly mention the Git-Hub-Repo, the OSF site and the Zotero library and lastly I will mention a few packages / pipelines used and try to explain why the are helpful! 
+In the following, the different platforms, packages and tools that were used will be briefly described. Firstly, I will give an overview of how the data was accessed. Then the data-set and the documentation of it will briefly be outlined. Then I will shortly mention the Git-Hub-Repo, the OSF site and the Zotero library, Lastly, I will mention a few packages and pipelines used and explain why they are helpful.
 
 ## Data management 
 
 All the data is available on [OpenNeuro](https://openneuro.org/datasets/ds003707/versions/1.0.0). The data was downloaded locally using [Data-Lad](https://www.datalad.org/)
 
-**What is data-lad?**
 ```{toggle}
-Data-lad is free and open source. It is used in the command line and allows to manage data-sets. The major upside of data-lad is that it allows keeping track of changes within the data. Data-lad allows version control of data, and therefore aids in project and data management. If the data-set were to be updated, I could have easily fetched those updates. 
+Data-Lad is free and open source. It is used in the command line and allows to manage data-sets. The major upside of data-lad is that it allows keeping track of changes within the data. Data-Lad allows version control of data, and therefore aids in project and data management. his means that if the dataset were to be updated, one could easily fetch those updates. 
 
 The data-set was *installed* using the following command:
-`datalad install https://github.com/OpenNeuroDatasets/ds003707.git`
+        datalad install https://github.com/OpenNeuroDatasets/ds003707.git
 
 After the installation of the data-set, one must use [datalad get](http://docs.datalad.org/en/stable/generated/man/datalad-get.html) to actually download the other files. The example below shows how to get all anatomical images for subject 1!
 `datalad get ds003707/sub-01/anat/*
 ```
 
-Then, after several attempts to [preprocess](./code/prepocessing.ipynb) the data, the data was uploaded to [brain-life](https://brainlife.io/project/63a02e876881d56fbfdeddfd). Here, the preprocessing of the data was done, as preprocessing on my own device using [docker](https://docs.docker.com/get-started/overview/) was not successful. 
+Then, after several attempts to [preprocess](./code/prepocessing.ipynb) the data, the data was uploaded to [Brain-Fife](https://brainlife.io/project/63a02e876881d56fbfdeddfd). Here, the preprocessing of the data was done, as preprocessing on my own device using [docker](https://docs.docker.com/get-started/overview/) was not successful. 
 
 ### Evaluation of the documentation
-The data-set that was thankfully published by {cite:t}`wanjia_abrupt_2021` was complete. There were no major files missing and the data was provided in the [BIDS](https://bids.neuroimaging.io/)-structure. However, a few files were missing and the documentation regarding the description of variable, as well as hints towards successful preprocessing were not sufficient. 
+The data-set that was thankfully provided by {cite:t}`wanjia_abrupt_2021`. Overall, the data-set was complete. There were no major files missing and the data was provided in the [BIDS](https://bids.neuroimaging.io/) structure. However, a few files were missing and the documentation regarding the description of variables, as well as hints towards successful preprocessing were not sufficient. 
 
-**Missing files**: A `.tsv` file containing participant information was missing. Therefore, participant information couldn't be used as covariates. 
+**Missing files**: The lack of a `.tsv file` containing participant information prevented the use of this information as covariates.
 
-**Insufficient documentation**: Naming of the variables within the event files and their correspondence to images/objects was hard to understand solely with the files contained within the data-set (i.e. the `.json` could have contained more descriptions). There were however some issues with the preprocessing. Although the individual steps were outlined within the paper, the data could not be processed. As the functional and T2w images were partial, the preprocessing pipelines often failed. However, this may also be caused by my specific device. More information regarding the computing environment as well as how the preprocessing pipelines were run would have helped. 
+**Insufficient documentation**: The naming of variables within the event files and their correspondence to images/objects was difficult to understand based solely on the files contained within the dataset (i.e. the `.json` could have contained more descriptions). There were however some issues with the preprocessing. Although the individual steps were outlined within the paper, the data could not be processed. As the functional and T2w images were partial, the preprocessing pipelines often failed. However, this may also be caused by my specific device. More information regarding the computing environment as well as how the preprocessing pipelines were run would have helped. 
 
-**Code documentation**: Lastly, the analyses steps outlined within the code that was thankfully available (!) were hard to understand given that the code was not commented.
+**Code documentation**: The code documentation was insufficient, as the analysis steps outlined within the code were not clearly commented.
 
 
 ## Git-Hub Repro
 
-The repository for this projet is available [here](https://github.com/tchaase/research-internship-2022). The repository has the following content
+The repository for this project is available [here](https://github.com/tchaase/research-internship-2022). The repository has the following content
 
-- [/content](https://github.com/tchaase/research-internship-2022/tree/main/content): Contains the content analyses files and markdown. 
+- [/content](https://github.com/tchaase/research-internship-2022/tree/main/content): Contains the analyses and markdown files. 
     - [/content/code](https://github.com/tchaase/research-internship-2022/tree/main/content/code): Contains the `.ipynb`.
     - [/content/markdown](https://github.com/tchaase/research-internship-2022/tree/main/content/markdown): Contains the `md`.
-    - Within this folder there are furthermore the files for the jupyter book (`_toc`, `_config`, `con.py`)
+    - Additionally, this folder contains the files for the jupyter book (`_toc`, `_config`, `con.py`)
 The analyses were carried out within the [code](https://github.com/tchaase/research-internship-2022/tree/main/content/code) section. 
     - [/content/static](https://github.com/tchaase/research-internship-2022/tree/main/content/static): This folder contains images etc.
-- [/data](https://github.com/tchaase/research-internship-2022/tree/main/data): If any data is added that is necessary for this project, it will be added to this folder. Currently empty. 
+- [/data](https://github.com/tchaase/research-internship-2022/tree/main/data): If any necessary data is added to this project, it will be added to this folder. Currently empty. 
 - [/open_lab_notebook](https://github.com/tchaase/research-internship-2022/tree/main/open_lab_notebook): Contains documentation of the project. 
 
 
 ## Zotero 
 
-The exported library is accesible [here](https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib) and shown below!
+The exported library is accessible [here](https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib) and displayed below!
 
 <iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
 
@@ -61,7 +60,7 @@ Documentation about the projects progress is available [here](https://github.com
 
 Firstly, the file [requirements.txt](https://raw.githubusercontent.com/tchaase/research-internship-2022/main/requirements.txt) within the root folder of this project contains the required packages for the jupyter-book rendering.
 
-The `environment.yml` within the [code](https://raw.githubusercontent.com/tchaase/research-internship-2022/main/content/code/environment.yml) folder contains the conda-environment specifications for the computational environment used for all analyses processes. 
+The [environment.yml](https://raw.githubusercontent.com/tchaase/research-internship-2022/main/content/code/environment.yml) within the `/content/code/` folder contains the conda-environment specifications for the computational environment used for all analyses processes. 
 
 **How to use these files?**
 ```{toggle}
@@ -111,7 +110,7 @@ The data was attempted to be preprocessed via docker on my device...
 ```{toggle}
 I tried to preprocess the data on my device using [docker](https://www.docker.com/). Outlining the advantages of using containers would far exceed the goal of this section, but in short: Docker is a type of software container. It's open source. When using docker, everything required will be within a `container`, thereby the application will run in isolation from things that could influence the computations but are not necessary. If someone else were to use the same `docker image` we should get very much comparable results - much more comparable then if we ran them with all our differing depedencies etc. This [article](https://www.freecodecamp.org/news/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b/#.3giab6wvo) greatly helped me to understand what docker is and what the upsides of it are. 
 ```
-...but was preprocessed on [brain-life](https://brainlife.io/projects)! 
+...but was preprocessed on [brain-life](https://brainlife.io/project/63a02e876881d56fbfdeddfd)! 
 
 Also consult this article {cite:t}`esteban_analysis_2020`, in which the sub-work-flows are outlined etc. 
 
@@ -125,7 +124,9 @@ Sadly, `brainlife` does not provide the group report files, thus they cannot be 
 
 The structure of the data-set was explored using [pybids](https://github.com/bids-standard/pybids). This tool is simply amazing to explore a BIDS data-sets...
 
-```{note} What does BIDS even mean?
+```{note} 
+**What does BIDS stand for?**
+
 BIDS refers to the [brain imaging data strucuture](https://bids.neuroimaging.io/). When we do experiments using various neuroimaging methods, the resulting files can be very hard to keep track of. Imagine you had to pick a project up where someone else left it behind and you had no idea what the file `13032020_03_1244.dcm` means. With BIDS, both a structure of the files is suggested. Thus you will know which file you can expect where. Furthermore the file formats etc. is specified. Thus if the data-set you were given was in the BIDS structure, you would have very little troubles understanding what is already available and what you need to do! Also refer a description of this provided by {cite:t}`gorgolewski_brain_2016` .
 ```
 
@@ -134,6 +135,6 @@ BIDS refers to the [brain imaging data strucuture](https://bids.neuroimaging.io/
 
 **nilearn**
 
-The analyses within the [linear_model](./code/linear_model.ipynb)-notebook were largely performed using [nilearn](https://nilearn.github.io/stable/index.html). 
+The analyses within the [linear_model](../code/linear_model.ipynb) notebook were largely performed using [nilearn](https://nilearn.github.io/stable/index.html). 
 
 The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation! 
