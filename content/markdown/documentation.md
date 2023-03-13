@@ -31,13 +31,27 @@ The data-set that was thankfully published by {cite:t}`wanjia_abrupt_2021` was c
 
 ## Git-Hub Repro
 
-The repository for this projet is available [here](https://github.com/tchaase/research-internship-2022) 
-The analyses were carried out within the [code](https://github.com/tchaase/research-internship-2022/tree/main/content/code) section.  
+The repository for this projet is available [here](https://github.com/tchaase/research-internship-2022). The repository has the following content
+
+- [/content](https://github.com/tchaase/research-internship-2022/tree/main/content): Contains the content analyses files and markdown. 
+    - [/content/code](https://github.com/tchaase/research-internship-2022/tree/main/content/code): Contains the `.ipynb`.
+    - [/content/markdown](https://github.com/tchaase/research-internship-2022/tree/main/content/markdown): Contains the `md`.
+    - Within this folder there are furthermore the files for the jupyter book (`_toc`, `_config`, `con.py`)
+The analyses were carried out within the [code](https://github.com/tchaase/research-internship-2022/tree/main/content/code) section. 
+    - [/content/static](https://github.com/tchaase/research-internship-2022/tree/main/content/static): This folder contains images etc.
+- [/data](https://github.com/tchaase/research-internship-2022/tree/main/data): If any data is added that is necessary for this project, it will be added to this folder. Currently empty. 
+- [/open_lab_notebook](https://github.com/tchaase/research-internship-2022/tree/main/open_lab_notebook): Contains documentation of the project. 
 
 
-## Zotero & OSF-page
+## Zotero 
 
-Other ressources regarding this project can be accessed via the [Open-Science-Framework Repository](https://osf.io/xwsm7/?view_only=7fa6bfda3b174b0e96083a1fcd466b32). 
+The exported library is accesible [here](https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib) and shown below!
+
+<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
+
+## OSF-page
+
+Other ressources for this project are available on the projects repository on [OSF](https://osf.io/xwsm7/?view_only=7fa6bfda3b174b0e96083a1fcd466b32). 
 
 ## Open-Lab Notebook
 
@@ -48,6 +62,44 @@ Documentation about the projects progress is available [here](https://github.com
 Firstly, the file [requirements.txt](https://raw.githubusercontent.com/tchaase/research-internship-2022/main/requirements.txt) within the root folder of this project contains the required packages for the jupyter-book rendering.
 
 The `environment.yml` within the [code](https://raw.githubusercontent.com/tchaase/research-internship-2022/main/content/code/environment.yml) folder contains the conda-environment specifications for the computational environment used for all analyses processes. 
+
+**How to use these files?**
+```{toggle}
+I assume that you already have access to the `Windows Subsytem for Linux`. If anything doesn't work also consult the [docs](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). 
+
+**Installation of conda.**
+1. Open a new terminal and type the following lines (separately) into the terminal, pressing `Enter` after each one:
+
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        bash Miniconda3-latest-Linux-x86_64.sh
+    - This command downloads the latest version of Miniconda3 for Linux from the Anaconda repository.". 
+1. A license agreement will be displayed and the bottom of the terminal will read `--More--`.
+   Press `Enter` or the space bar until you are prompted with "Do you accept the license terms? [yes|no]."
+   Type `yes` and then press `Enter`
+1. The installation script will inform you that it is going to install into a default directory (e.g., `/home/$USER/miniconda3`).
+   Leave this default and press `Enter`.
+1. When you are asked "Do you wish the installer to initialize Miniconda3 by running conda init? [yes|no]," type `yes` and press `Enter`. Exit the terminal once the installation has finished.
+1. Re-open the Ubuntu application.
+   Type `which python` into the terminal and it should return a path (e.g., `/home/$USER/miniconda3/bin/python`).
+   - If you do not see a path like this then please try typing `conda init`, closing your terminal, and repeating this step.
+     If your issue is still not resolved skip the following step and contact an instructor on the #help-installation channel on the BHS Slack.
+1. Type the following to remove the installation script that was downloaded:
+
+        rm ./Miniconda3-latest-Linux-x86_64.sh
+
+**Python packages**
+
+Open a terminal and type the following commands:
+
+        conda config --append channels conda-forge
+        conda config --set channel_priority strict
+        conda create env ---name yourname -f environment.yml 
+
+Special thanks to [Peer Herholz](https://github.com/PeerHerholz) for allowing me to shamlessly copy and paste his introduction!
+
+And lastly of course don't forget to...
+        conda activate yourname
+```
 
 ## Packages and Pipelines used
 
@@ -65,13 +117,23 @@ Also consult this article {cite:t}`esteban_analysis_2020`, in which the sub-work
 
 **MRI-QC**
 
-The data was attempted to be quality controlled via ...unfortunately there were no group reports. Given the limited availability of data, standard procedure to exclude participants was ignored to progress this project. However,...
+The data was attempted to be quality controlled via [MRI-QC](https://github.com/nipreps/mriqc)(20.2.3; . In parallel to fMRI-prep, this was first attempted via docker. The data was quality controlled via brainlife. 
+
+Sadly, `brainlife` does not provide the group report files, thus they cannot be linked here. Given the limited availability of data, standard procedure to exclude participants was ignored to progress this project. 
 
 **pybids**
 
-The structure of the data-set was explored using the...
+The structure of the data-set was explored using [pybids](https://github.com/bids-standard/pybids). This tool is simply amazing to explore a BIDS data-sets...
+
+```{note} What does BIDS even mean?
+BIDS refers to the [brain imaging data strucuture](https://bids.neuroimaging.io/). When we do experiments using various neuroimaging methods, the resulting files can be very hard to keep track of. Imagine you had to pick a project up where someone else left it behind and you had no idea what the file `13032020_03_1244.dcm` means. With BIDS, both a structure of the files is suggested. Thus you will know which file you can expect where. Furthermore the file formats etc. is specified. Thus if the data-set you were given was in the BIDS structure, you would have very little troubles understanding what is already available and what you need to do! Also refer a description of this provided by {cite:t}`gorgolewski_brain_2016` .
+```
+
+...as within a BIDS data-set one knows which information is expected to be where, this allows convenient functions to explore such data-sets. This is something pybids enables. Also refer to {cite:t}`yarkoni_pybids_2019` .
 
 
 **nilearn**
 
-The analyses within the [linear_model](./code/linear_model.ipynb)-notebook were largely performed using...
+The analyses within the [linear_model](./code/linear_model.ipynb)-notebook were largely performed using [nilearn](https://nilearn.github.io/stable/index.html). 
+
+The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation! 
