@@ -2,7 +2,7 @@
 
 This section covers two topics. 
 
-1. Can I answer my question that was formulated and developed in the [introduction](./markdown/data_set.md)?
+1. Can I answer my question that was formulated and developed in the [introduction](data_set.md)?
 2. Secondly, how was this whole project? Did I learn much? What were the biggest issues I ran into?
 
 ## Answering the research question
@@ -33,3 +33,8 @@ When starting this project, I did have experience running scripts to analyze MRI
 ### What would I have done differently?
 
 With every step of this project, I did have doubts if I am able to perform these analyses / preprocess the data, etc. From an outsider's perspective, a lot of the steps seemed insurmountable and as if they would require vast knowledge in programming. Although some coding knowledge was required, the documentation for all functions was stellar, and whenever I started working on a step, it was very much doable. However, some steps - such as preprocessing - did require a lot of time. If I were to restart this module now, I would choose data that is already preprocessed so I can spend more time on analyses. I also overestimated my device and its memory. I thought I could analyze multi-run data easily, which my device could not handle. Therefore, I would have choosen a simpler data-set. 
+
+
+
+<center><img src="https://media.giphy.com/media/XCXOOR22U4RtwBTnve/giphy.gif" alt="logo" title="Github" width="400" height="280" /></center>
+<center><sub><sup><sub><sup><sup>https://media.giphy.com/media/XCXOOR22U4RtwBTnve/giphy.gif </sup></sup></sub></sup></sub></center>

@@ -16,7 +16,7 @@ After the installation of the data-set, one must use [datalad get](http://docs.d
 `datalad get ds003707/sub-01/anat/*
 ```
 
-Then, after several attempts to [preprocess](./code/prepocessing.ipynb) the data, the data was uploaded to [Brain-Fife](https://brainlife.io/project/63a02e876881d56fbfdeddfd). Here, the preprocessing of the data was done, as preprocessing on my own device using [docker](https://docs.docker.com/get-started/overview/) was not successful. 
+Then, after several attempts to [preprocess](../code/preprocessing.ipynb) the data, the data was uploaded to [Brain-Fife](https://brainlife.io/project/63a02e876881d56fbfdeddfd). Here, the preprocessing of the data was done, as preprocessing on my own device using [docker](https://docs.docker.com/get-started/overview/) was not successful. 
 
 ### Evaluation of the documentation
 The data-set that was thankfully provided by {cite:t}`wanjia_abrupt_2021`. Overall, the data-set was complete. There were no major files missing and the data was provided in the [BIDS](https://bids.neuroimaging.io/) structure. However, a few files were missing and the documentation regarding the description of variables, as well as hints towards successful preprocessing were not sufficient. 
@@ -137,4 +137,4 @@ BIDS refers to the [brain imaging data strucuture](https://bids.neuroimaging.io/
 
 The analyses within the [linear_model](../code/linear_model.ipynb) notebook were largely performed using [nilearn](https://nilearn.github.io/stable/index.html). 
 
-The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation! 
+The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation!
