@@ -692,7 +692,7 @@ We also see that there is a certain response time - if this is failed the trial 
 </div>
 </div>
 <p>This model still lacks the confounds.</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -701,19 +701,275 @@ We also see that there is a certain response time - if this is failed the trial 
 <span class="c1">#The delimiter needs to be set to \t as it uses tab to differentiate different entries. </span>
 
 <span class="n">column_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">confounds_run1_sub06</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">column_names</span><span class="o">.</span><span class="n">head</span>
+<span class="n">column_names</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_33988</span><span class="o">/</span><span class="mf">4122585976.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">column_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">confounds_run1_sub06</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">column_names</span><span class="o">.</span><span class="n">head</span>
-
-<span class="ne">AttributeError</span>: &#39;list&#39; object has no attribute &#39;head&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;global_signal&#39;,
+ &#39;global_signal_derivative1&#39;,
+ &#39;global_signal_power2&#39;,
+ &#39;global_signal_derivative1_power2&#39;,
+ &#39;csf&#39;,
+ &#39;csf_derivative1&#39;,
+ &#39;csf_derivative1_power2&#39;,
+ &#39;csf_power2&#39;,
+ &#39;white_matter&#39;,
+ &#39;white_matter_derivative1&#39;,
+ &#39;white_matter_power2&#39;,
+ &#39;white_matter_derivative1_power2&#39;,
+ &#39;csf_wm&#39;,
+ &#39;tcompcor&#39;,
+ &#39;std_dvars&#39;,
+ &#39;dvars&#39;,
+ &#39;framewise_displacement&#39;,
+ &#39;rmsd&#39;,
+ &#39;t_comp_cor_00&#39;,
+ &#39;t_comp_cor_01&#39;,
+ &#39;t_comp_cor_02&#39;,
+ &#39;t_comp_cor_03&#39;,
+ &#39;t_comp_cor_04&#39;,
+ &#39;t_comp_cor_05&#39;,
+ &#39;t_comp_cor_06&#39;,
+ &#39;t_comp_cor_07&#39;,
+ &#39;t_comp_cor_08&#39;,
+ &#39;t_comp_cor_09&#39;,
+ &#39;t_comp_cor_10&#39;,
+ &#39;t_comp_cor_11&#39;,
+ &#39;t_comp_cor_12&#39;,
+ &#39;t_comp_cor_13&#39;,
+ &#39;a_comp_cor_00&#39;,
+ &#39;a_comp_cor_01&#39;,
+ &#39;a_comp_cor_02&#39;,
+ &#39;a_comp_cor_03&#39;,
+ &#39;a_comp_cor_04&#39;,
+ &#39;a_comp_cor_05&#39;,
+ &#39;a_comp_cor_06&#39;,
+ &#39;a_comp_cor_07&#39;,
+ &#39;a_comp_cor_08&#39;,
+ &#39;a_comp_cor_09&#39;,
+ &#39;a_comp_cor_10&#39;,
+ &#39;a_comp_cor_11&#39;,
+ &#39;a_comp_cor_12&#39;,
+ &#39;a_comp_cor_13&#39;,
+ &#39;a_comp_cor_14&#39;,
+ &#39;a_comp_cor_15&#39;,
+ &#39;a_comp_cor_16&#39;,
+ &#39;a_comp_cor_17&#39;,
+ &#39;a_comp_cor_18&#39;,
+ &#39;a_comp_cor_19&#39;,
+ &#39;a_comp_cor_20&#39;,
+ &#39;a_comp_cor_21&#39;,
+ &#39;a_comp_cor_22&#39;,
+ &#39;a_comp_cor_23&#39;,
+ &#39;a_comp_cor_24&#39;,
+ &#39;a_comp_cor_25&#39;,
+ &#39;a_comp_cor_26&#39;,
+ &#39;a_comp_cor_27&#39;,
+ &#39;a_comp_cor_28&#39;,
+ &#39;a_comp_cor_29&#39;,
+ &#39;a_comp_cor_30&#39;,
+ &#39;a_comp_cor_31&#39;,
+ &#39;a_comp_cor_32&#39;,
+ &#39;a_comp_cor_33&#39;,
+ &#39;a_comp_cor_34&#39;,
+ &#39;a_comp_cor_35&#39;,
+ &#39;a_comp_cor_36&#39;,
+ &#39;a_comp_cor_37&#39;,
+ &#39;a_comp_cor_38&#39;,
+ &#39;a_comp_cor_39&#39;,
+ &#39;a_comp_cor_40&#39;,
+ &#39;a_comp_cor_41&#39;,
+ &#39;a_comp_cor_42&#39;,
+ &#39;a_comp_cor_43&#39;,
+ &#39;a_comp_cor_44&#39;,
+ &#39;a_comp_cor_45&#39;,
+ &#39;a_comp_cor_46&#39;,
+ &#39;a_comp_cor_47&#39;,
+ &#39;a_comp_cor_48&#39;,
+ &#39;a_comp_cor_49&#39;,
+ &#39;a_comp_cor_50&#39;,
+ &#39;a_comp_cor_51&#39;,
+ &#39;a_comp_cor_52&#39;,
+ &#39;a_comp_cor_53&#39;,
+ &#39;a_comp_cor_54&#39;,
+ &#39;a_comp_cor_55&#39;,
+ &#39;a_comp_cor_56&#39;,
+ &#39;a_comp_cor_57&#39;,
+ &#39;a_comp_cor_58&#39;,
+ &#39;a_comp_cor_59&#39;,
+ &#39;a_comp_cor_60&#39;,
+ &#39;a_comp_cor_61&#39;,
+ &#39;a_comp_cor_62&#39;,
+ &#39;a_comp_cor_63&#39;,
+ &#39;a_comp_cor_64&#39;,
+ &#39;a_comp_cor_65&#39;,
+ &#39;a_comp_cor_66&#39;,
+ &#39;a_comp_cor_67&#39;,
+ &#39;a_comp_cor_68&#39;,
+ &#39;a_comp_cor_69&#39;,
+ &#39;a_comp_cor_70&#39;,
+ &#39;a_comp_cor_71&#39;,
+ &#39;a_comp_cor_72&#39;,
+ &#39;a_comp_cor_73&#39;,
+ &#39;a_comp_cor_74&#39;,
+ &#39;a_comp_cor_75&#39;,
+ &#39;a_comp_cor_76&#39;,
+ &#39;a_comp_cor_77&#39;,
+ &#39;a_comp_cor_78&#39;,
+ &#39;a_comp_cor_79&#39;,
+ &#39;a_comp_cor_80&#39;,
+ &#39;a_comp_cor_81&#39;,
+ &#39;a_comp_cor_82&#39;,
+ &#39;a_comp_cor_83&#39;,
+ &#39;a_comp_cor_84&#39;,
+ &#39;a_comp_cor_85&#39;,
+ &#39;a_comp_cor_86&#39;,
+ &#39;a_comp_cor_87&#39;,
+ &#39;a_comp_cor_88&#39;,
+ &#39;a_comp_cor_89&#39;,
+ &#39;a_comp_cor_90&#39;,
+ &#39;a_comp_cor_91&#39;,
+ &#39;a_comp_cor_92&#39;,
+ &#39;a_comp_cor_93&#39;,
+ &#39;a_comp_cor_94&#39;,
+ &#39;a_comp_cor_95&#39;,
+ &#39;a_comp_cor_96&#39;,
+ &#39;a_comp_cor_97&#39;,
+ &#39;a_comp_cor_98&#39;,
+ &#39;a_comp_cor_99&#39;,
+ &#39;a_comp_cor_100&#39;,
+ &#39;a_comp_cor_101&#39;,
+ &#39;a_comp_cor_102&#39;,
+ &#39;a_comp_cor_103&#39;,
+ &#39;a_comp_cor_104&#39;,
+ &#39;a_comp_cor_105&#39;,
+ &#39;a_comp_cor_106&#39;,
+ &#39;a_comp_cor_107&#39;,
+ &#39;a_comp_cor_108&#39;,
+ &#39;a_comp_cor_109&#39;,
+ &#39;a_comp_cor_110&#39;,
+ &#39;a_comp_cor_111&#39;,
+ &#39;a_comp_cor_112&#39;,
+ &#39;a_comp_cor_113&#39;,
+ &#39;a_comp_cor_114&#39;,
+ &#39;a_comp_cor_115&#39;,
+ &#39;a_comp_cor_116&#39;,
+ &#39;a_comp_cor_117&#39;,
+ &#39;a_comp_cor_118&#39;,
+ &#39;a_comp_cor_119&#39;,
+ &#39;a_comp_cor_120&#39;,
+ &#39;a_comp_cor_121&#39;,
+ &#39;a_comp_cor_122&#39;,
+ &#39;a_comp_cor_123&#39;,
+ &#39;a_comp_cor_124&#39;,
+ &#39;a_comp_cor_125&#39;,
+ &#39;a_comp_cor_126&#39;,
+ &#39;a_comp_cor_127&#39;,
+ &#39;a_comp_cor_128&#39;,
+ &#39;a_comp_cor_129&#39;,
+ &#39;a_comp_cor_130&#39;,
+ &#39;a_comp_cor_131&#39;,
+ &#39;a_comp_cor_132&#39;,
+ &#39;a_comp_cor_133&#39;,
+ &#39;a_comp_cor_134&#39;,
+ &#39;a_comp_cor_135&#39;,
+ &#39;a_comp_cor_136&#39;,
+ &#39;a_comp_cor_137&#39;,
+ &#39;a_comp_cor_138&#39;,
+ &#39;a_comp_cor_139&#39;,
+ &#39;a_comp_cor_140&#39;,
+ &#39;a_comp_cor_141&#39;,
+ &#39;a_comp_cor_142&#39;,
+ &#39;a_comp_cor_143&#39;,
+ &#39;a_comp_cor_144&#39;,
+ &#39;a_comp_cor_145&#39;,
+ &#39;a_comp_cor_146&#39;,
+ &#39;a_comp_cor_147&#39;,
+ &#39;a_comp_cor_148&#39;,
+ &#39;a_comp_cor_149&#39;,
+ &#39;a_comp_cor_150&#39;,
+ &#39;a_comp_cor_151&#39;,
+ &#39;a_comp_cor_152&#39;,
+ &#39;a_comp_cor_153&#39;,
+ &#39;a_comp_cor_154&#39;,
+ &#39;a_comp_cor_155&#39;,
+ &#39;a_comp_cor_156&#39;,
+ &#39;a_comp_cor_157&#39;,
+ &#39;a_comp_cor_158&#39;,
+ &#39;a_comp_cor_159&#39;,
+ &#39;a_comp_cor_160&#39;,
+ &#39;a_comp_cor_161&#39;,
+ &#39;a_comp_cor_162&#39;,
+ &#39;a_comp_cor_163&#39;,
+ &#39;a_comp_cor_164&#39;,
+ &#39;a_comp_cor_165&#39;,
+ &#39;a_comp_cor_166&#39;,
+ &#39;a_comp_cor_167&#39;,
+ &#39;a_comp_cor_168&#39;,
+ &#39;a_comp_cor_169&#39;,
+ &#39;a_comp_cor_170&#39;,
+ &#39;a_comp_cor_171&#39;,
+ &#39;a_comp_cor_172&#39;,
+ &#39;a_comp_cor_173&#39;,
+ &#39;a_comp_cor_174&#39;,
+ &#39;a_comp_cor_175&#39;,
+ &#39;a_comp_cor_176&#39;,
+ &#39;a_comp_cor_177&#39;,
+ &#39;a_comp_cor_178&#39;,
+ &#39;a_comp_cor_179&#39;,
+ &#39;a_comp_cor_180&#39;,
+ &#39;a_comp_cor_181&#39;,
+ &#39;a_comp_cor_182&#39;,
+ &#39;a_comp_cor_183&#39;,
+ &#39;a_comp_cor_184&#39;,
+ &#39;a_comp_cor_185&#39;,
+ &#39;a_comp_cor_186&#39;,
+ &#39;a_comp_cor_187&#39;,
+ &#39;a_comp_cor_188&#39;,
+ &#39;a_comp_cor_189&#39;,
+ &#39;a_comp_cor_190&#39;,
+ &#39;a_comp_cor_191&#39;,
+ &#39;cosine00&#39;,
+ &#39;cosine01&#39;,
+ &#39;cosine02&#39;,
+ &#39;cosine03&#39;,
+ &#39;trans_x&#39;,
+ &#39;trans_x_derivative1&#39;,
+ &#39;trans_x_power2&#39;,
+ &#39;trans_x_derivative1_power2&#39;,
+ &#39;trans_y&#39;,
+ &#39;trans_y_derivative1&#39;,
+ &#39;trans_y_power2&#39;,
+ &#39;trans_y_derivative1_power2&#39;,
+ &#39;trans_z&#39;,
+ &#39;trans_z_derivative1&#39;,
+ &#39;trans_z_derivative1_power2&#39;,
+ &#39;trans_z_power2&#39;,
+ &#39;rot_x&#39;,
+ &#39;rot_x_derivative1&#39;,
+ &#39;rot_x_power2&#39;,
+ &#39;rot_x_derivative1_power2&#39;,
+ &#39;rot_y&#39;,
+ &#39;rot_y_derivative1&#39;,
+ &#39;rot_y_derivative1_power2&#39;,
+ &#39;rot_y_power2&#39;,
+ &#39;rot_z&#39;,
+ &#39;rot_z_derivative1&#39;,
+ &#39;rot_z_power2&#39;,
+ &#39;rot_z_derivative1_power2&#39;,
+ &#39;aroma_motion_01&#39;,
+ &#39;aroma_motion_02&#39;,
+ &#39;aroma_motion_03&#39;,
+ &#39;aroma_motion_04&#39;,
+ &#39;aroma_motion_06&#39;,
+ &#39;aroma_motion_10&#39;,
+ &#39;aroma_motion_15&#39;,
+ &#39;aroma_motion_18&#39;,
+ &#39;aroma_motion_20&#39;,
+ &#39;aroma_motion_21&#39;,
+ &#39;aroma_motion_22&#39;,
+ &#39;aroma_motion_23&#39;]
 </pre></div>
 </div>
 </div>
@@ -1311,16 +1567,12 @@ A sample mask can be used to remove them, which is an option I am not going to d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_33988</span><span class="o">/</span><span class="mf">1936138996.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">atlasreader</span> <span class="kn">import</span> <span class="n">create_output</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">create_output</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>               <span class="n">cluster_extent</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">voxel_thresh</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span>             <span class="c1">#With the zmap, the previously defined treshold and the zmap, this function creates multiple files that</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;atlasreader&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Python package you are importing, AtlasReader, is licensed under the
+BSD-3 license; however, the atlases it uses are separately licensed under more
+restrictive frameworks.
+By using AtlasReader, you agree to abide by the license terms of the
+individual atlases. Information on these terms can be found online at:
+https://github.com/miykael/atlasreader/tree/master/atlasreader/data
 </pre></div>
 </div>
 </div>
@@ -1334,6 +1586,184 @@ A sample mask can be used to remove them, which is an option I am not going to d
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster_id</th>
+      <th>peak_x</th>
+      <th>peak_y</th>
+      <th>peak_z</th>
+      <th>peak_value</th>
+      <th>volume_mm</th>
+      <th>aal</th>
+      <th>desikan_killiany</th>
+      <th>harvard_oxford</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>-50.546000</td>
+      <td>44.508</td>
+      <td>8.2</td>
+      <td>-5.74692</td>
+      <td>152.6620</td>
+      <td>Frontal_Inf_Tri_L</td>
+      <td>Unknown</td>
+      <td>25.0% Left_Frontal_Pole</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>-26.718000</td>
+      <td>-95.056</td>
+      <td>25.2</td>
+      <td>6.21470</td>
+      <td>83.7176</td>
+      <td>no_label</td>
+      <td>Unknown</td>
+      <td>45.0% Left_Occipital_Pole</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>-26.718000</td>
+      <td>54.720</td>
+      <td>33.7</td>
+      <td>-5.08772</td>
+      <td>78.7931</td>
+      <td>Frontal_Mid_2_L</td>
+      <td>Unknown</td>
+      <td>24.0% Left_Frontal_Pole</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>0.514001</td>
+      <td>-45.698</td>
+      <td>-56.4</td>
+      <td>5.79484</td>
+      <td>78.7931</td>
+      <td>no_label</td>
+      <td>Unknown</td>
+      <td>61.0% Brain-Stem</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>-30.122000</td>
+      <td>-86.546</td>
+      <td>26.9</td>
+      <td>5.85252</td>
+      <td>78.7931</td>
+      <td>Occipital_Mid_L</td>
+      <td>ctx-lh-inferiorparietal</td>
+      <td>61.0% Left_Lateral_Occipital_Cortex_superior_d...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>-1.188000</td>
+      <td>53.018</td>
+      <td>-2.0</td>
+      <td>-5.41669</td>
+      <td>68.9439</td>
+      <td>Cingulate_Ant_L</td>
+      <td>Unknown</td>
+      <td>39.0% Left_Paracingulate_Gyrus; 15.0% Left_Fro...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>-42.036000</td>
+      <td>39.402</td>
+      <td>9.9</td>
+      <td>-5.36347</td>
+      <td>68.9439</td>
+      <td>Frontal_Inf_Tri_L</td>
+      <td>ctx-lh-parstriangularis</td>
+      <td>47.0% Left_Frontal_Pole; 19.0% Left_Inferior_F...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>-19.910000</td>
+      <td>-95.056</td>
+      <td>32.0</td>
+      <td>6.44907</td>
+      <td>68.9439</td>
+      <td>no_label</td>
+      <td>Unknown</td>
+      <td>27.0% Left_Occipital_Pole</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>54.978000</td>
+      <td>22.382</td>
+      <td>20.1</td>
+      <td>-5.01476</td>
+      <td>64.0194</td>
+      <td>Frontal_Inf_Tri_R</td>
+      <td>Right-Cerebral-White-Matter</td>
+      <td>38.0% Right_Inferior_Frontal_Gyrus_pars_opercu...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>-62.460000</td>
+      <td>12.170</td>
+      <td>23.5</td>
+      <td>-5.99125</td>
+      <td>59.0948</td>
+      <td>Frontal_Inf_Oper_L</td>
+      <td>Unknown</td>
+      <td>7.0% Left_Precentral_Gyrus</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>53.276000</td>
+      <td>39.402</td>
+      <td>11.6</td>
+      <td>-5.51272</td>
+      <td>54.1702</td>
+      <td>Frontal_Inf_Tri_R</td>
+      <td>Unknown</td>
+      <td>52.0% Right_Frontal_Pole; 10.0% Right_Inferior...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>-11.400000</td>
+      <td>-32.082</td>
+      <td>83.0</td>
+      <td>4.72878</td>
+      <td>54.1702</td>
+      <td>no_label</td>
+      <td>Unknown</td>
+      <td>0% no_label</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Let’s visualize this:</p>
 <div class="cell docutils container">
@@ -1342,6 +1772,9 @@ A sample mask can be used to remove them, which is an option I am not going to d
 <span class="n">Image</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;sub-06_task-scene_run-01_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.png&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/29d167f9d5f4e863bc329e4d194e7f963602592342d5a1dc47f61e2b770fec49.png" src="../_images/29d167f9d5f4e863bc329e4d194e7f963602592342d5a1dc47f61e2b770fec49.png" />
 </div>
 </div>
 <p>Having explored this all in detail, let’s take the short-cut of just using the glm report function and see what this function comes up with.</p>
@@ -1363,6 +1796,9 @@ A sample mask can be used to remove them, which is an option I am not going to d
                        <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">cut_coords</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c3fde118ddead3639c0ae03ea198fa68e449f492d817a3f64f3b9bcc9a321bbd.png" src="../_images/c3fde118ddead3639c0ae03ea198fa68e449f492d817a3f64f3b9bcc9a321bbd.png" />
 </div>
 </div>
 </section>
@@ -1529,7 +1965,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span> <span class="s2">&quot;fmri-prep_20.2.3-2&quot;</span><span class="p">,</span> <span class="s2">&quot;sub-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">subject_test</span><span class="p">)))</span>
 <span class="n">glm</span> <span class="o">=</span> <span class="n">fmri_glm_loop</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fmri_img_path</span><span class="p">,</span> <span class="n">design_matrices</span> <span class="o">=</span> <span class="n">design_matrix_all_runs</span><span class="p">)</span>
@@ -2377,7 +2813,7 @@ Saving z-maps 36, 07
 <h2>Second Level Model<a class="headerlink" href="#second-level-model" title="Permalink to this heading">#</a></h2>
 <p>The next goal is to perform a group-level model. For every subject, the contrasts were defined.</p>
 <p>First, the individual contrast maps need to be gathered.</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 <span class="n">list_z_maps</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outdir_path</span><span class="p">,</span> <span class="s2">&quot;sub-*&quot;</span> <span class="p">,</span> <span class="s1">&#39;sub-*_task-scene_run-*_space-MNI152nlin2009casym_desc-learnedvsfoil_zmap.nii.gz&#39;</span><span class="p">))</span>

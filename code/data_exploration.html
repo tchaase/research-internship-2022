@@ -495,7 +495,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: ...ngsmodul/project/data/ds003707 | Subjects: 36 | Sessions: 0 | Runs: 288
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIDS Layout: ...ngsmodul/project/data/ds003707 | Subjects: 35 | Sessions: 0 | Runs: 280
 </pre></div>
 </div>
 </div>
@@ -588,7 +588,7 @@ There are 2 runs for the task object.
 </div>
 </div>
 <p>Now that the basic structure is known, what is there to explore within the dataset? Which <code class="docutils literal notranslate"><span class="pre">entities</span></code> does pybids detect?</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout_entities</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_entities</span><span class="p">()</span>
 <span class="n">layout_entities</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
@@ -721,7 +721,7 @@ Dicoms were converted to NIfTI-1 format using dcm2niix (v1.0.20171215 GCC5.3.1).
 " width="600" height="268.0" frameBorder="0"></iframe></div></div>
 </div>
 <p>This appears normal. How was this image taken?</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
 </pre></div>
@@ -801,7 +801,7 @@ Dicoms were converted to NIfTI-1 format using dcm2niix (v1.0.20171215 GCC5.3.1).
 </div>
 <p>It is visible that the occipital cortex is largely cut off. This is also the case for all participants… <br />
 However, this was expected, as the study has a particular region of interest - the hippocampus.</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2w_sub06_bids</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
 </pre></div>
@@ -1057,7 +1057,7 @@ Therefore, across the 8 runs there were 36 scenes and 12 objects that were simpl
 <h3>Exploration of the Functional Data<a class="headerlink" href="#exploration-of-the-functional-data" title="Permalink to this heading">#</a></h3>
 <p>Now onto the functional data for these runs!
 First, here is the meta-data for one run.</p>
-<div class="cell docutils container">
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scene_run1_sub06_bold</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;06&#39;</span><span class="p">],</span> <span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;scene&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">scene_run1_sub06_bold</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
