@@ -159,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="data_set.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="documentation.html">Ressources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../code/preprocessing.html">Preprocessing</a></li>
@@ -397,6 +397,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#answering-the-research-question">Answering the research question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-i-learn-here">What did I learn here?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-would-i-have-done-differently">What would I have done differently?</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -410,11 +414,31 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="discussion">
 <h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h1>
-<p>This section cover two topics.</p>
-<p>Firstly, can I answer my question that was formulated and developed in the <span class="xref myst">introduction</span>. Secondly, how was this whole project? Did I learn much? What were the biggest issues I ran into?</p>
+<p>This section covers two topics.</p>
+<ol class="arabic simple">
+<li><p>Can I answer my question that was formulated and developed in the <span class="xref myst">introduction</span>?</p></li>
+<li><p>Secondly, how was this whole project? Did I learn much? What were the biggest issues I ran into?</p></li>
+</ol>
 <section id="answering-the-research-question">
 <h2>Answering the research question<a class="headerlink" href="#answering-the-research-question" title="Permalink to this heading">#</a></h2>
-<p>…or at least trying to!</p>
+<p>As of now, I am in no position to answer the research question. I did not manage to run a group-level model at this point. Therefore, I do not know if the chosen contrasts and the two conditions of previously seen images and previously not encountered images and objects differ statistically significantly in the brain activity between them. Thus, confirmatory statistics have not been performed yet.</p>
+<p>Furthermore, no machine learning model was run yet. The main question that I wanted to answer within this project was if machine models can be used to predict if an image was seen before. I did not perform the corresponding analyses yet. Thus, the main goal was not reached.</p>
+<p>I also mentioned that I am interested in hippocampal subfields. I did not even initiate the topic of hippocampal subfields in my analyses.</p>
+<p>All in all, <em>no research question was therefore answered</em>. In the future, I need to firstly figure out how I can run the group-level models with enough memory. I am thinking about upgrading the memory on my device and then running the analyses again.</p>
+<p>Still, this project was far from a failure. Given that my main motivation was to learn how to analyse MRI data, I want to outline how this goal was reached in the next section and point towards areas where I want to learn more about.</p>
+</section>
+<section id="what-did-i-learn-here">
+<h2>What did I learn here?<a class="headerlink" href="#what-did-i-learn-here" title="Permalink to this heading">#</a></h2>
+<p>I want to take the opportunity to briefly reflect on my progress within the research internship.</p>
+<p>When starting this project, I did have experience running scripts to analyze MRI data for me from a previous seminar on fMRI. I did not know what the individual steps meant, what they referred to, and why one would change certain variables (for example, in the <a class="reference external" href="https://nilearn.github.io/dev/modules/generated/nilearn.glm.first_level.FirstLevelModel.html">FirstLevelModel</a>). After this project, I still do not have all the answers, but I did pick up various things that I want to mention:</p>
+<p><strong>Docker</strong>: Within this project, I had the opportunity to work with Docker to run preprocessing pipelines. In the beginning, Docker seemed like something I could never understand as it seemed incredibly complicated, but getting firsthand experiences with it, showed me that one can understand how Docker and the preprocessing pipelines work. However, I need more experience using this in the future and need to read further resources to gain more insight than a basic understanding of Docker.</p>
+<p><strong>Preprocessing of fMRI data</strong>: My data was previously not preprocessed. When choosing the dataset, I was not aware that the scans were partial scans and that this may cause issues for the preprocessing pipelines. I did not know that multi-run MRI data might require vast computational resources to preprocess the data. I did not know how to begin preprocessing the data. After this project, I am at a point where I could be given a dataset and preprocess it myself using various resources. Preprocessing was the area that I required most time for, but also what I learned most about.</p>
+<p><strong>Machine learning</strong>: The research internship involved a lot of sessions on what machine learning is, what it can do, and where the limits are. Even though I did not get to apply it for this project, it was largely demystified for me. I got to know some of the underlying math, and I am looking forward to using it as a tool in the future. Thus, I did not gain any actual experience with using it as of writing this, but I did gain knowledge on it.</p>
+<p><strong>Projet management</strong>: I want to explicitly mention that one valuable skill gained from this research internship is handling, organizing, and analyzing data in a way that others are able to perform the same analyses and gain the same insights. My data was organized with the BIDS structure, and along the way, I tried to make my data as <strong>f</strong>indable, <strong>a</strong>ccessible, <strong>i</strong>nteroperable, and <strong>r</strong>eusable. I linked all the resources used and used an openly accessible data set. The analyses and the data exploration and all parts of this project are accessible on GitHub. With the provided environments and the tips on how to use this environment, everything should be interoperable. Lastly, by using data previously published, I am reusing data and therefore adhering to the <code class="docutils literal notranslate"><span class="pre">FAIR</span></code> principle.</p>
+<section id="what-would-i-have-done-differently">
+<h3>What would I have done differently?<a class="headerlink" href="#what-would-i-have-done-differently" title="Permalink to this heading">#</a></h3>
+<p>With every step of this project, I did have doubts if I am able to perform these analyses / preprocess the data, etc. From an outsider’s perspective, a lot of the steps seemed insurmountable and as if they would require vast knowledge in programming. Although some coding knowledge was required, the documentation for all functions was stellar, and whenever I started working on a step, it was very much doable. However, some steps - such as preprocessing - did require a lot of time. If I were to restart this module now, I would choose data that is already preprocessed so I can spend more time on analyses. I also overestimated my device and its memory. I thought I could analyze multi-run data easily, which my device could not handle. Therefore, I would have choosen a simpler data-set.</p>
+</section>
 </section>
 </section>
 
@@ -480,6 +504,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#answering-the-research-question">Answering the research question</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-i-learn-here">What did I learn here?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-would-i-have-done-differently">What would I have done differently?</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

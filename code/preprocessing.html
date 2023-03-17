@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Exploration of the Data" href="data_exploration.html" />
-    <link rel="prev" title="Ressources" href="../markdown/documentation.html" />
+    <link rel="prev" title="Resources" href="../markdown/documentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../markdown/data_set.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../markdown/documentation.html">Ressources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../markdown/documentation.html">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing</a></li>
@@ -428,7 +428,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-of-the-raw-data">Import of the raw Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-controle-with-mri-qc">Quality Controle with MRI-QC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-via-fmri-prep">Preprocessing via fMRI-Prep</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempet-1">Attempet 1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-2">Attempt 2</a></li>
@@ -439,6 +438,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-7">Attempt 7</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-controle-with-mri-qc">Quality Controle with MRI-QC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution">The Solution</a></li>
 </ul>
             </nav>
@@ -453,9 +453,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="preprocessing">
 <h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h1>
-<p>Tobias C. Haase <br />
-Master’s student of Psychology at <a class="reference external" href="https://www.goethe-university-frankfurt.de/en?locale=en">Goethe-University Frankfurt</a></p>
-<p>Dataset: <a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">Abrupt hippocampal remapping signals resolution of memory interference</a></p>
+<p>In this section I will outline what attempts to preprocess the data were made. I will link to the corresponding files with errors and I will outline my reasoning for these failures!</p>
+<p>The (<a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">data-set</a>) was previously obtained via data-lad (also repated in the first step of this notebook).</p>
+<p>Before attempting to run preprocessing pipelines using docker, one should have already installed docker. I want to mention a few ressources that helped me in setting up docker correctly:</p>
+<ul class="simple">
+<li><p>Various sites from the docker installation guidances - for example I had issues by not doing the post-installation steps correctly, as it’s clearly outlined <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">here</a>. I used the steps as they are outlined for ubuntu, as thats my OS. For the installation guidance for your OS, check the <a class="reference external" href="https://docs.docker.com/engine/install/">docker docs</a></p></li>
+<li><p>the fMRI-prep documentation on how to use it with docker:  <a class="reference external" href="https://fmriprep.org/en/stable/usage.html#command-line-arguments">Here</a></p></li>
+<li><p>the MRI-QC documentation on how to use it with docker: <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/docker.html">Here</a></p></li>
+</ul>
 <section id="import-of-the-raw-data">
 <h2>Import of the raw Data<a class="headerlink" href="#import-of-the-raw-data" title="Permalink to this heading">#</a></h2>
 <p>Using datalad, the data of the first person is imported below.</p>
@@ -471,25 +476,9 @@ Master’s student of Psychology at <a class="reference external" href="https://
 </div>
 </div>
 </section>
-<section id="quality-controle-with-mri-qc">
-<h2>Quality Controle with MRI-QC<a class="headerlink" href="#quality-controle-with-mri-qc" title="Permalink to this heading">#</a></h2>
-<p>Using docker, I will first compute quality measures for each participant.
-More information is available <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/docker.html">here</a></p>
-<p>This will first be done for participant one, to ensure that there is no mistake. Full data is also imported later!</p>
-<p>The following line is work in progress. Perhaps still need to swap pipepline from nipreps.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!docker run -it --rm -v  /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707:/data:ro \
-        -v /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/derivatives:/out nipreps/mriqc:16.0.0 \
-        /data /out participant --participant_label 01
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="preprocessing-via-fmri-prep">
 <h2>Preprocessing via fMRI-Prep<a class="headerlink" href="#preprocessing-via-fmri-prep" title="Permalink to this heading">#</a></h2>
-<p>Multiple attempts to preprocess failed. In the following they are outlined.</p>
+<p>Multiple attempts to preprocess the data on my device failed. In the following they are outlined.</p>
 <section id="attempet-1">
 <h3>Attempet 1<a class="headerlink" href="#attempet-1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -501,7 +490,7 @@ More information is available <a class="reference external" href="https://mriqc.
 </div>
 </div>
 </div>
-<p>This produced an error related to the <code class="docutils literal notranslate"><span class="pre">resample</span></code> workflow. The respective error-message (bash output and error-log) is in the folder <code class="docutils literal notranslate"><span class="pre">attempt_1</span></code>.</p>
+<p>This produced an error related to the <code class="docutils literal notranslate"><span class="pre">resample</span></code> workflow. The respective error-message (bash output and error-log) is in the folder <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_1">attempt_1</a>.</p>
 <p>Following this attempt, I specified <code class="docutils literal notranslate"><span class="pre">output-spaced</span></code>. Also the correct argument regarding aroma (<code class="docutils literal notranslate"><span class="pre">--use-armoa</span></code>) was inserted.</p>
 </section>
 <section id="attempt-2">
@@ -515,7 +504,7 @@ More information is available <a class="reference external" href="https://mriqc.
 </div>
 </div>
 </div>
-<p>This still produced errors, it was suspected it might be due to memory limitations. The respective error-message is in: <code class="docutils literal notranslate"><span class="pre">fmriprep_error_2</span></code>.
+<p>This still produced errors, it was suspected it might be due to memory limitations. The respective error-message is in the folder <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_2/">attempt_2</a>.
 After deleting contents of the <code class="docutils literal notranslate"><span class="pre">work-dir</span></code>, the following was attempted.</p>
 </section>
 <section id="attempt-3">
@@ -529,8 +518,8 @@ After deleting contents of the <code class="docutils literal notranslate"><span 
 </div>
 </div>
 </div>
-<p>This lead to early abruption of the process, abrupton of the process. The respective error message is in:<code class="docutils literal notranslate"><span class="pre">fmriprep_error_3</span></code>.</p>
-<p>This error persists unless the <code class="docutils literal notranslate"><span class="pre">-m</span></code>argument is removed. As an attempt to solve this issue, the working directory was specified as shown below:</p>
+<p>This lead to early abruption of the process, abrupton of the process. The respective error message is in the folder <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_3">attempt_3</a>.</p>
+<p>This error persists unless the <code class="docutils literal notranslate"><span class="pre">-m</span></code> argument is removed. As an attempt to solve this issue, the working directory was specified as shown below:</p>
 </section>
 <section id="attempt-4">
 <h3>Attempt 4<a class="headerlink" href="#attempt-4" title="Permalink to this heading">#</a></h3>
@@ -544,17 +533,17 @@ After deleting contents of the <code class="docutils literal notranslate"><span 
 </div>
 </div>
 </div>
-<p>The respective error message is in <code class="docutils literal notranslate"><span class="pre">fmriprep_error_4</span></code>.</p>
+<p>The respective error message is in <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_4">attempt_4</a>.</p>
 </section>
 <section id="attempt-5">
 <h3>Attempt 5<a class="headerlink" href="#attempt-5" title="Permalink to this heading">#</a></h3>
-<p>The docker command above was run without the memory related arguments. The respective files are in the folder for attempt 5.</p>
+<p>The docker command above was run without the memory related arguments. The respective files are in the folder for <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_5">attempt_5</a>.</p>
 <p>I further attemepted the above arguments with multiple versions of docker and across participants. Using different participants did not result in different errors. Changing to much older fmriprep-versions did result in altered error-messages, but didn’t provide success.</p>
 </section>
 <section id="attempt-6">
 <h3>Attempt 6<a class="headerlink" href="#attempt-6" title="Permalink to this heading">#</a></h3>
 <p>This attempt involved using not only the <code class="docutils literal notranslate"><span class="pre">--low-memory</span></code> function but also only preprocessing anatomical data (<code class="docutils literal notranslate"><span class="pre">--anat-only</span></code>).
-Respective documents are in attempt 6.</p>
+Respective documents are in <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_6">attempt_6</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!docker run -it --rm -m 14gb --cpus=&quot;16&quot; -v  /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707:/data:ro \
@@ -580,12 +569,42 @@ Respective documents are in attempt 6.</p>
 </div>
 </div>
 </div>
-<p>This resultes in a <code class="docutils literal notranslate"><span class="pre">git-annex</span></code> error.</p>
+<p>This resultes in a <code class="docutils literal notranslate"><span class="pre">git-annex</span></code> error. The respective error logs are in the folder <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code/preprocessing_attempts/error_logs/attempt_7">attempt_7</a></p>
 </section>
+</section>
+<section id="quality-controle-with-mri-qc">
+<h2>Quality Controle with MRI-QC<a class="headerlink" href="#quality-controle-with-mri-qc" title="Permalink to this heading">#</a></h2>
+<p>Using docker, I also tried to compute quality measures for each participant.</p>
+<p>More information on the pipeline that is used to compute these measures is available <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/docker.html">here</a></p>
+<p>To ensure that the pipeline would work, the following command is specified to only run for one participant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!docker run -it --rm -v  /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/ds003707:/data:ro \
+        -v /home/tchaase/Documents/Universitaet/Forschungsmodul/project/data/derivatives:/out nipreps/mriqc:16.0.0 \
+        /data /out participant --participant_label 01
+</pre></div>
+</div>
+</div>
+</div>
+<p>This did not work. As errors were similar to fMRI-prep and I documented how I tried to handle those erros in depth I will not describe those steps for MRI-QC.</p>
 </section>
 <section id="the-solution">
 <h2>The Solution<a class="headerlink" href="#the-solution" title="Permalink to this heading">#</a></h2>
-<p>I have now managed to get the data preprocessed. While the various attempts failed as outlined above, I was able to preprocess most participants using <a class="reference external" href="https://brainlife.io/">brainlife</a>.</p>
+<p>I have now managed to get the data preprocessed. While the various attempts failed as outlined above, I was able to preprocess most participants using <a class="reference external" href="https://brainlife.io/">brainlife</a>. Here are some notes on what was requires to get the data preprocessed on brainlife.</p>
+<ul class="simple">
+<li><p>Multiple pipelines were created for every run, else the pipelines would fail.</p></li>
+<li><p>brainlife created new anatomic files for each of these pipelines. As every new pipeline that is initiated will also use the files, if preprocessed anatomical files already exist, the pipeline might not start with the following warning: `Ambiguous: Multiple input objects match the criteria and can’t submit a task’.</p>
+<ul>
+<li><p>I also manually added an <code class="docutils literal notranslate"><span class="pre">anat</span></code> tag to the unpreprocessed images, in order to be able to specify that I am referring to the not preprocessed data.</p></li>
+</ul>
+</li>
+<li><p>Downloading a lot of data lead to fails. I therefore only downloaded a few files at a time, else it was very hard to keep track of what data I have and what I still need.</p></li>
+</ul>
+<p>Brainlife therefore was the plattform that enables me to continue with this project, as I did not have access to the computational ressources to do the preprocessing myself. However, I want to mention two things regarding brainlife that I did not like:</p>
+<ol class="arabic simple">
+<li><p>Brainlife probably does not expect me to want to analyze the data on my own. When downloading the data, the data is no longer in the BIDS formate. Reformatting the data took a lot of time and movement of files.</p></li>
+<li><p>Brainlife did not provide group-level outputs for MRI-QC. As a newbie in cognitive neuroscience, interpreting the quality measures without reference of the other subjects is tedious. But one has to mention again, that I would not have access to the data quality metrics if it weren’t for brainlife!</p></li>
+</ol>
 </section>
 </section>
 
@@ -623,7 +642,7 @@ Respective documents are in attempt 6.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ressources</p>
+        <p class="prev-next-title">Resources</p>
       </div>
     </a>
     <a class="right-next"
@@ -651,7 +670,6 @@ Respective documents are in attempt 6.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-of-the-raw-data">Import of the raw Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-controle-with-mri-qc">Quality Controle with MRI-QC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-via-fmri-prep">Preprocessing via fMRI-Prep</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempet-1">Attempet 1</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-2">Attempt 2</a></li>
@@ -662,6 +680,7 @@ Respective documents are in attempt 6.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attempt-7">Attempt 7</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-controle-with-mri-qc">Quality Controle with MRI-QC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution">The Solution</a></li>
 </ul>
   </nav></div>

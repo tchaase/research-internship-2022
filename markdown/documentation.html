@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Ressources &#8212; Recog-Memory Analyses</title>
+    <title>Resources &#8212; Recog-Memory Analyses</title>
   
   
   
@@ -159,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="data_set.html">Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ressources</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../code/preprocessing.html">Preprocessing</a></li>
@@ -386,7 +386,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ressources</h1>
+    <h1>Resources</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,49 +417,48 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ressources">
-<h1>Ressources<a class="headerlink" href="#ressources" title="Permalink to this heading">#</a></h1>
-<p>In the following, the different plattforms, packages and tools that were used will be briefly outlined. Firstly, I will give an overview of how the data was accessed. Then the data-set and the documentation of it will briefly be outlined. Then I will shortly mention the Git-Hub-Repo, the OSF site and the Zotero library and lastly I will mention a few packages / pipelines used and try to explain why the are helpful!</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="resources">
+<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h1>
+<p>In the following, the different platforms, packages and tools that were used will be briefly described. Firstly, I will give an overview of how the data was accessed. Then the data-set and the documentation of it will briefly be outlined. Then I will shortly mention the Git-Hub-Repo, the OSF site and the Zotero library, Lastly, I will mention a few packages and pipelines used and explain why they are helpful.</p>
 <section id="data-management">
 <h2>Data management<a class="headerlink" href="#data-management" title="Permalink to this heading">#</a></h2>
 <p>All the data is available on <a class="reference external" href="https://openneuro.org/datasets/ds003707/versions/1.0.0">OpenNeuro</a>. The data was downloaded locally using <a class="reference external" href="https://www.datalad.org/">Data-Lad</a></p>
-<p><strong>What is data-lad?</strong></p>
 <div class="toggle docutils container">
-<p>Data-lad is free and open source. It is used in the command line and allows to manage data-sets. The major upside of data-lad is that it allows keeping track of changes within the data. Data-lad allows version control of data, and therefore aids in project and data management. If the data-set were to be updated, I could have easily fetched those updates.</p>
+<p>Data-Lad is free and open source. It is used in the command line and allows to manage data-sets. The major upside of data-lad is that it allows keeping track of changes within the data. Data-Lad allows version control of data, and therefore aids in project and data management. his means that if the dataset were to be updated, one could easily fetch those updates.</p>
 <p>The data-set was <em>installed</em> using the following command:
-<code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">install</span> <span class="pre">https://github.com/OpenNeuroDatasets/ds003707.git</span></code></p>
+datalad install <a class="github reference external" href="https://github.com/OpenNeuroDatasets/ds003707.git">OpenNeuroDatasets/ds003707.git</a></p>
 <p>After the installation of the data-set, one must use <a class="reference external" href="http://docs.datalad.org/en/stable/generated/man/datalad-get.html">datalad get</a> to actually download the other files. The example below shows how to get all anatomical images for subject 1!
 `datalad get ds003707/sub-01/anat/*</p>
 </div>
-<p>Then, after several attempts to <span class="xref myst">preprocess</span> the data, the data was uploaded to <a class="reference external" href="https://brainlife.io/project/63a02e876881d56fbfdeddfd">brain-life</a>. Here, the preprocessing of the data was done, as preprocessing on my own device using <a class="reference external" href="https://docs.docker.com/get-started/overview/">docker</a> was not successful.</p>
+<p>Then, after several attempts to <span class="xref myst">preprocess</span> the data, the data was uploaded to <a class="reference external" href="https://brainlife.io/project/63a02e876881d56fbfdeddfd">Brain-Fife</a>. Here, the preprocessing of the data was done, as preprocessing on my own device using <a class="reference external" href="https://docs.docker.com/get-started/overview/">docker</a> was not successful.</p>
 <section id="evaluation-of-the-documentation">
 <h3>Evaluation of the documentation<a class="headerlink" href="#evaluation-of-the-documentation" title="Permalink to this heading">#</a></h3>
-<p>The data-set that was thankfully published by <span id="id1">Wanjia <em>et al.</em> [<a class="reference internal" href="references.html#id3" title="Guo Wanjia, Serra E. Favila, Ghootae Kim, Robert J. Molitor, and Brice A. Kuhl. Abrupt hippocampal remapping signals resolution of memory interference. Nature Communications, 12(1):4816, August 2021. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-021-25126-0 (visited on 2023-03-05), doi:10.1038/s41467-021-25126-0.">2021</a>]</span> was complete. There were no major files missing and the data was provided in the <a class="reference external" href="https://bids.neuroimaging.io/">BIDS</a>-structure. However, a few files were missing and the documentation regarding the description of variable, as well as hints towards successful preprocessing were not sufficient.</p>
-<p><strong>Missing files</strong>: A <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> file containing participant information was missing. Therefore, participant information couldn’t be used as covariates.</p>
-<p><strong>Insufficient documentation</strong>: Naming of the variables within the event files and their correspondence to images/objects was hard to understand solely with the files contained within the data-set (i.e. the <code class="docutils literal notranslate"><span class="pre">.json</span></code> could have contained more descriptions). There were however some issues with the preprocessing. Although the individual steps were outlined within the paper, the data could not be processed. As the functional and T2w images were partial, the preprocessing pipelines often failed. However, this may also be caused by my specific device. More information regarding the computing environment as well as how the preprocessing pipelines were run would have helped.</p>
-<p><strong>Code documentation</strong>: Lastly, the analyses steps outlined within the code that was thankfully available (!) were hard to understand given that the code was not commented.</p>
+<p>The data-set that was thankfully provided by <span id="id1">Wanjia <em>et al.</em> [<a class="reference internal" href="references.html#id3" title="Guo Wanjia, Serra E. Favila, Ghootae Kim, Robert J. Molitor, and Brice A. Kuhl. Abrupt hippocampal remapping signals resolution of memory interference. Nature Communications, 12(1):4816, August 2021. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41467-021-25126-0 (visited on 2023-03-05), doi:10.1038/s41467-021-25126-0.">2021</a>]</span>. Overall, the data-set was complete. There were no major files missing and the data was provided in the <a class="reference external" href="https://bids.neuroimaging.io/">BIDS</a> structure. However, a few files were missing and the documentation regarding the description of variables, as well as hints towards successful preprocessing were not sufficient.</p>
+<p><strong>Missing files</strong>: The lack of a <code class="docutils literal notranslate"><span class="pre">.tsv</span> <span class="pre">file</span></code> containing participant information prevented the use of this information as covariates.</p>
+<p><strong>Insufficient documentation</strong>: The naming of variables within the event files and their correspondence to images/objects was difficult to understand based solely on the files contained within the dataset (i.e. the <code class="docutils literal notranslate"><span class="pre">.json</span></code> could have contained more descriptions). There were however some issues with the preprocessing. Although the individual steps were outlined within the paper, the data could not be processed. As the functional and T2w images were partial, the preprocessing pipelines often failed. However, this may also be caused by my specific device. More information regarding the computing environment as well as how the preprocessing pipelines were run would have helped.</p>
+<p><strong>Code documentation</strong>: The code documentation was insufficient, as the analysis steps outlined within the code were not clearly commented.</p>
 </section>
 </section>
 <section id="git-hub-repro">
 <h2>Git-Hub Repro<a class="headerlink" href="#git-hub-repro" title="Permalink to this heading">#</a></h2>
-<p>The repository for this projet is available <a class="reference external" href="https://github.com/tchaase/research-internship-2022">here</a>. The repository has the following content</p>
+<p>The repository for this project is available <a class="reference external" href="https://github.com/tchaase/research-internship-2022">here</a>. The repository has the following content</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content">/content</a>: Contains the content analyses files and markdown.</p>
+<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content">/content</a>: Contains the analyses and markdown files.</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code">/content/code</a>: Contains the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/markdown">/content/markdown</a>: Contains the <code class="docutils literal notranslate"><span class="pre">md</span></code>.</p></li>
-<li><p>Within this folder there are furthermore the files for the jupyter book (<code class="docutils literal notranslate"><span class="pre">_toc</span></code>, <code class="docutils literal notranslate"><span class="pre">_config</span></code>, <code class="docutils literal notranslate"><span class="pre">con.py</span></code>)
+<li><p>Additionally, this folder contains the files for the jupyter book (<code class="docutils literal notranslate"><span class="pre">_toc</span></code>, <code class="docutils literal notranslate"><span class="pre">_config</span></code>, <code class="docutils literal notranslate"><span class="pre">con.py</span></code>)
 The analyses were carried out within the <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code">code</a> section.</p></li>
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/static">/content/static</a>: This folder contains images etc.</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/data">/data</a>: If any data is added that is necessary for this project, it will be added to this folder. Currently empty.</p></li>
+<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/data">/data</a>: If any necessary data is added to this project, it will be added to this folder. Currently empty.</p></li>
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/open_lab_notebook">/open_lab_notebook</a>: Contains documentation of the project.</p></li>
 </ul>
 </section>
 <section id="zotero">
 <h2>Zotero<a class="headerlink" href="#zotero" title="Permalink to this heading">#</a></h2>
-<p>The exported library is accesible <a class="reference external" href="https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib">here</a> and shown below!</p>
+<p>The exported library is accessible <a class="reference external" href="https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib">here</a> and displayed below!</p>
 <iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
 </section>
 <section id="osf-page">
@@ -473,7 +472,7 @@ The analyses were carried out within the <a class="reference external" href="htt
 <section id="computational-environment">
 <h2>Computational Environment<a class="headerlink" href="#computational-environment" title="Permalink to this heading">#</a></h2>
 <p>Firstly, the file <a class="reference external" href="https://raw.githubusercontent.com/tchaase/research-internship-2022/main/requirements.txt">requirements.txt</a> within the root folder of this project contains the required packages for the jupyter-book rendering.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> within the <a class="reference external" href="https://raw.githubusercontent.com/tchaase/research-internship-2022/main/content/code/environment.yml">code</a> folder contains the conda-environment specifications for the computational environment used for all analyses processes.</p>
+<p>The <a class="reference external" href="https://raw.githubusercontent.com/tchaase/research-internship-2022/main/content/code/environment.yml">environment.yml</a> within the <code class="docutils literal notranslate"><span class="pre">/content/code/</span></code> folder contains the conda-environment specifications for the computational environment used for all analyses processes.</p>
 <p><strong>How to use these files?</strong></p>
 <div class="toggle docutils container">
 <p>I assume that you already have access to the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Subsytem</span> <span class="pre">for</span> <span class="pre">Linux</span></code>. If anything doesn’t work also consult the <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html">docs</a>.</p>
@@ -527,7 +526,7 @@ conda activate yourname</p>
 <div class="toggle docutils container">
 <p>I tried to preprocess the data on my device using <a class="reference external" href="https://www.docker.com/">docker</a>. Outlining the advantages of using containers would far exceed the goal of this section, but in short: Docker is a type of software container. It’s open source. When using docker, everything required will be within a <code class="docutils literal notranslate"><span class="pre">container</span></code>, thereby the application will run in isolation from things that could influence the computations but are not necessary. If someone else were to use the same <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span></code> we should get very much comparable results - much more comparable then if we ran them with all our differing depedencies etc. This <a class="reference external" href="https://www.freecodecamp.org/news/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b/#.3giab6wvo">article</a> greatly helped me to understand what docker is and what the upsides of it are.</p>
 </div>
-<p>…but was preprocessed on <a class="reference external" href="https://brainlife.io/projects">brain-life</a>!</p>
+<p>…but was preprocessed on <a class="reference external" href="https://brainlife.io/project/63a02e876881d56fbfdeddfd">brain-life</a>!</p>
 <p>Also consult this article <span id="id4">Esteban <em>et al.</em> [<a class="reference internal" href="references.html#id39" title="Oscar Esteban, Rastko Ciric, Karolina Finc, Ross W. Blair, Christopher J. Markiewicz, Craig A. Moodie, James D. Kent, Mathias Goncalves, Elizabeth DuPre, Daniel E. P. Gomez, Zhifang Ye, Taylor Salo, Romain Valabregue, Inge K. Amlien, Franziskus Liem, Nir Jacoby, Hrvoje Stojić, Matthew Cieslak, Sebastian Urchs, Yaroslav O. Halchenko, Satrajit S. Ghosh, Alejandro De La Vega, Tal Yarkoni, Jessey Wright, William H. Thompson, Russell A. Poldrack, and Krzysztof J. Gorgolewski. Analysis of task-based functional MRI data preprocessed with fMRIPrep. Nature Protocols, 15(7):2186–2202, July 2020. Number: 7 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41596-020-0327-3 (visited on 2023-03-11), doi:10.1038/s41596-020-0327-3.">2020</a>]</span>, in which the sub-work-flows are outlined etc.</p>
 <p><strong>MRI-QC</strong></p>
 <p>The data was attempted to be quality controlled via <a class="reference external" href="https://github.com/nipreps/mriqc">MRI-QC</a>(20.2.3; . In parallel to fMRI-prep, this was first attempted via docker. The data was quality controlled via brainlife.</p>
@@ -536,12 +535,12 @@ conda activate yourname</p>
 <p>The structure of the data-set was explored using <a class="reference external" href="https://github.com/bids-standard/pybids">pybids</a>. This tool is simply amazing to explore a BIDS data-sets…</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>What does BIDS even mean?
-BIDS refers to the <a class="reference external" href="https://bids.neuroimaging.io/">brain imaging data strucuture</a>. When we do experiments using various neuroimaging methods, the resulting files can be very hard to keep track of. Imagine you had to pick a project up where someone else left it behind and you had no idea what the file <code class="docutils literal notranslate"><span class="pre">13032020_03_1244.dcm</span></code> means. With BIDS, both a structure of the files is suggested. Thus you will know which file you can expect where. Furthermore the file formats etc. is specified. Thus if the data-set you were given was in the BIDS structure, you would have very little troubles understanding what is already available and what you need to do! Also refer a description of this provided by <span id="id5">Gorgolewski <em>et al.</em> [<a class="reference internal" href="references.html#id45" title="Krzysztof J. Gorgolewski, Tibor Auer, Vince D. Calhoun, R. Cameron Craddock, Samir Das, Eugene P. Duff, Guillaume Flandin, Satrajit S. Ghosh, Tristan Glatard, Yaroslav O. Halchenko, Daniel A. Handwerker, Michael Hanke, David Keator, Xiangrui Li, Zachary Michael, Camille Maumet, B. Nolan Nichols, Thomas E. Nichols, John Pellman, Jean-Baptiste Poline, Ariel Rokem, Gunnar Schaefer, Vanessa Sochat, William Triplett, Jessica A. Turner, Gaël Varoquaux, and Russell A. Poldrack. The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Scientific Data, 3(1):160044, June 2016. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/sdata201644 (visited on 2023-03-13), doi:10.1038/sdata.2016.44.">2016</a>]</span> .</p>
+<p><strong>What does BIDS stand for?</strong></p>
+<p>BIDS refers to the <a class="reference external" href="https://bids.neuroimaging.io/">brain imaging data strucuture</a>. When we do experiments using various neuroimaging methods, the resulting files can be very hard to keep track of. Imagine you had to pick a project up where someone else left it behind and you had no idea what the file <code class="docutils literal notranslate"><span class="pre">13032020_03_1244.dcm</span></code> means. With BIDS, both a structure of the files is suggested. Thus you will know which file you can expect where. Furthermore the file formats etc. is specified. Thus if the data-set you were given was in the BIDS structure, you would have very little troubles understanding what is already available and what you need to do! Also refer a description of this provided by <span id="id5">Gorgolewski <em>et al.</em> [<a class="reference internal" href="references.html#id45" title="Krzysztof J. Gorgolewski, Tibor Auer, Vince D. Calhoun, R. Cameron Craddock, Samir Das, Eugene P. Duff, Guillaume Flandin, Satrajit S. Ghosh, Tristan Glatard, Yaroslav O. Halchenko, Daniel A. Handwerker, Michael Hanke, David Keator, Xiangrui Li, Zachary Michael, Camille Maumet, B. Nolan Nichols, Thomas E. Nichols, John Pellman, Jean-Baptiste Poline, Ariel Rokem, Gunnar Schaefer, Vanessa Sochat, William Triplett, Jessica A. Turner, Gaël Varoquaux, and Russell A. Poldrack. The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Scientific Data, 3(1):160044, June 2016. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/sdata201644 (visited on 2023-03-13), doi:10.1038/sdata.2016.44.">2016</a>]</span> .</p>
 </div>
 <p>…as within a BIDS data-set one knows which information is expected to be where, this allows convenient functions to explore such data-sets. This is something pybids enables. Also refer to <span id="id6">Yarkoni <em>et al.</em> [<a class="reference internal" href="references.html#id46" title="Tal Yarkoni, Christopher J Markiewicz, Alejandro de la Vega, Krzysztof J Gorgolewski, Taylor Salo, Yaroslav O Halchenko, Quinten McNamara, Krista DeStasio, Jean-Baptiste Poline, Dmitry Petrov, Valérie Hayot-Sasson, Dylan M Nielson, Johan Carlin, Gregory Kiar, Kirstie Whitaker, Elizabeth DuPre, Adina Wagner, Lee S Tirrell, Mainak Jas, Michael Hanke, Russell A Poldrack, Oscar Esteban, Stefan Appelhoff, Chris Holdgraf, Isla Staden, Bertrand Thirion, Dave F Kleinschmidt, John A Lee, Matteo Visconti di Oleggio Castello, Michael P Notter, and Ross Blair. PyBIDS: Python tools for BIDS datasets. Journal of open source software, 4(40):1294, 2019. URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7409983/ (visited on 2023-03-13), doi:10.21105/joss.01294.">2019</a>]</span> .</p>
 <p><strong>nilearn</strong></p>
-<p>The analyses within the <span class="xref myst">linear_model</span>-notebook were largely performed using <a class="reference external" href="https://nilearn.github.io/stable/index.html">nilearn</a>.</p>
+<p>The analyses within the <a class="reference internal" href="../code/linear_model.html"><span class="doc std std-doc">linear_model</span></a> notebook were largely performed using <a class="reference external" href="https://nilearn.github.io/stable/index.html">nilearn</a>.</p>
 <p>The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation!</p>
 </section>
 </section>
