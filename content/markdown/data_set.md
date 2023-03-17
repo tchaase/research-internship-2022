@@ -10,7 +10,19 @@ In the upcoming section on [data exploration](../code/data_exploration.ipynb), t
 Here, the idea behind the research question is outlined. 
 ```
 
-**What was the goal of the original study?** 
+**Disclaimer**
+
+Before I dive briefly into the literature and outline what I am expecting, I want to explain my motivation behind this project. First of all, I do have an interest in memory and I wanted to consolidate my knowledge about memory, brain anatomy and neuroimaging method. Therefore I chooose a project where I can potentially work with hippocampal MRI data. As a bonus, this data-set provided the opportunity to work with hippocampal subfields. As it is so often, one does not really understand data until one works with it. I therefore wanted to gain more experience in this area by working with it. Thus, my goals were the following: 
+
+1. Work with a memory related topic. 
+2. Learn about machine learning. 
+3. Apply machine learning to memory. 
+4. See how one can relate machine learning to hippocampal subfields.
+
+The overall idea of this project does have a basis in the literature, but my motivation behind this project was largely based on the urge to explore memory data and learn if I can use machine learning algorithms to learn more about memory processes. As it will be outlined within the (./discussion.md), not all of the goals were reached. 
+
+
+## What was the goal of the original study?
 ```{toggle}
 The primary goal of the authors of the original study was to answer a very different question than the one pursued here. 
 Wanjia et al. were interested in how  brain activity changes in relation to highly similar images. They wanted to show, in what way a decorrrelation of hippocampal activation may relate to a subsequent resolution of memory interference. In their study, the authors were able to show that activity in the regions of the dentate gyrus and one subregion of the hippocampus (CA3) shows a decorrelation pattern that is associated with learning. While memories traces that interfere will overlap during the initial encoding, over time the authors found there to be a pattern that leads to these memory traces being less similar, therefore aiding memory performance. 
@@ -81,6 +93,7 @@ Outlining the general activation patterns between limbic areas and the cortex an
 Although the above description barely scratches the surface of how the brain enables us to recognize what was previously seen, it did become apparent what areas activity should be expected in. This will serve as the basis for what is expected within the exploratory analyses and the linear model. Thus, in the following, it shall be explored if the recognition of objects depends soley on activation within the MTL. 
 
 Following this, it will be explored if a supervised model can be trained to predict if an item was previously seen! 
+
 
 
 Also, here is a TED-talk on an aspect of memory I did not cover at all I found interesting!
