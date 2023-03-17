@@ -10,9 +10,11 @@ As of now, I am in no position to answer the research question. I did not manage
 
 Furthermore, no machine learning model was run yet. The main question that I wanted to answer within this project was if machine models can be used to predict if an image was seen before. I did not perform the corresponding analyses yet. Thus, the main goal was not reached.
 
-In the future, I need to firstly figure out how I can run the group-level models with enough memory. I am thinking about upgrading the memory on my device and then running the analyses again.
+I also mentioned that I am interested in hippocampal subfields. I did not even initiate the topic of hippocampal subfields in my analyses. 
 
-For the machine learning model, the main problem was the time. I spent a lot of time on preprocessing, as it will be outlined within the next section.
+All in all, *no research question was therefore answered*. In the future, I need to firstly figure out how I can run the group-level models with enough memory. I am thinking about upgrading the memory on my device and then running the analyses again.
+
+Still, this project was far from a failure. Given that my main motivation was to learn how to analyse MRI data, I want to outline how this goal was reached in the next section and point towards areas where I want to learn more about. 
 
 ## What did I learn here?
 
@@ -30,4 +32,4 @@ When starting this project, I did have experience running scripts to analyze MRI
 
 ### What would I have done differently?
 
-With every step of this project, I did have doubts if I am able to perform these analyses / preprocess the data, etc. From an outsider's perspective, a lot of the steps seemed insurmountable and as if they would require vast knowledge in programming. Although some coding knowledge was required, the documentation for all functions was stellar, and whenever I started working on a step, it was very much doable. However, some steps - such as preprocessing - did require a lot of time. If I were to restart this module, I would choose data that is already preprocessed so I can spend more time on analyses. I also overestimated my device and its memory. I thought I could analyze multi-run data easily, which my device could not handle.
+With every step of this project, I did have doubts if I am able to perform these analyses / preprocess the data, etc. From an outsider's perspective, a lot of the steps seemed insurmountable and as if they would require vast knowledge in programming. Although some coding knowledge was required, the documentation for all functions was stellar, and whenever I started working on a step, it was very much doable. However, some steps - such as preprocessing - did require a lot of time. If I were to restart this module now, I would choose data that is already preprocessed so I can spend more time on analyses. I also overestimated my device and its memory. I thought I could analyze multi-run data easily, which my device could not handle. Therefore, I would have choosen a simpler data-set. 
