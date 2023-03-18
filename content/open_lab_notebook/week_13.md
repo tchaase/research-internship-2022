@@ -1,12 +1,12 @@
 # Week 13 (Janurary 16th, 2023)
 
-## goals for this time frame
-- Still try to preprocess more data, reorganizing files into BIDS structure
-- progress the GLM
+**goals for this time frame**
+- Continue preprocessing more data and reorganize files into BIDS structure.
+- Make progress on the GLM.
 
-## work conducted for this time frame
-- Reorganized files
-- continued the glm slightly, but not as much as I hoped. 
+**work conducted for this time frame**
+- Reorganized files into the BIDS structure. 
+- Continued working on the GLM, but not as much as I hoped. 
 
-## problems encountered during this time frame
-- some backend process on brainlife's side didn't work, was not able to download all - still occured.  
+**problems encountered during this time frame**
+- Still experienced backend issues on brainlife's side, which prevented the download of all necessary data.
