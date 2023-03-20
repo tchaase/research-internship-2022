@@ -19,7 +19,7 @@ Before I dive briefly into the literature and outline what I am expecting, I wan
 3. Apply machine learning to memory. 
 4. See how one can relate machine learning to hippocampal subfields.
 
-The overall idea of this project does have a basis in the literature, but my motivation behind this project was largely based on the urge to explore memory data and learn if I can use machine learning algorithms to learn more about memory processes. As it will be outlined within the (./discussion.md), not all of the goals were reached. 
+The overall idea of this project does have a basis in the literature, but my motivation behind this project was largely based on the urge to explore memory data and learn if I can use machine learning algorithms to learn more about memory processes. As it will be outlined within the [discussion](./discussion.md), not all of the goals were reached. 
 
 At the beginning of this project, I had the idea of investigating brain areas related to successful versus unsuccessful retrieval, which was presented in a previous presentation accessible here. However, upon careful consideration, I realized that this idea was not informative enough due to the high accuracy in the participants' memory recall, as evidenced in the data exploration notebook. Therefore, I decided to pursue a different approach for this practice project. To ensure independence and originality in my analysis, I opted to develop my own idea rather than recreating the analyses of the authors
 
