@@ -19,7 +19,7 @@ Before I dive briefly into the literature and outline what I am expecting, I wan
 3. Apply machine learning to memory. 
 4. See how one can relate machine learning to hippocampal subfields.
 
-The overall idea of this project does have a basis in the literature, but my motivation behind this project was largely based on the urge to explore memory data and learn if I can use machine learning algorithms to learn more about memory processes. As it will be outlined within the (./discussion.md), not all of the goals were reached. 
+The overall idea of this project does have a basis in the literature, but my motivation behind this project was largely based on the urge to explore memory data and learn if I can use machine learning algorithms to learn more about memory processes. As it will be outlined within the [discussion](./discussion.md), not all of the goals were reached. 
 
 At the beginning of this project, I had the idea of investigating brain areas related to successful versus unsuccessful retrieval, which was presented in a previous presentation accessible here. However, upon careful consideration, I realized that this idea was not informative enough due to the high accuracy in the participants' memory recall, as evidenced in the data exploration notebook. Therefore, I decided to pursue a different approach for this practice project. To ensure independence and originality in my analysis, I opted to develop my own idea rather than recreating the analyses of the authors
 
@@ -105,7 +105,7 @@ Also, here is a TED-talk on an aspect of memory I did not cover at all I found i
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Q4tbqEAMMLw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```{toggle}
-Totally not because as a psychologist I don't know anything about molecules.
+This may or may not be related to me having limited knowledge on this aspect of memory. 
 <center><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif" alt="logo" title="Github" width="400" height="280" /></center>
 <center><sub><sup><sub><sup><sup>https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif </sup></sup></sub></sup></sub></center>
 ```

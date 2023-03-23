@@ -14,10 +14,10 @@ The goal is to apply a supervised, classification based machine learning model t
 
 ### Structure and content
 
-The "content folder" includes all the information! Inside there, any descriptions of the purpose of the project will be within the folder "markdown". 
-The "code" folder contains all the code, for now this includes only the data exploration and the linear model. 
-The "open lab folder" contains documentation of this project and the progress of the project. 
-Within the "data" folder, all the relevant data for this project is stored. 
+The `content` folder" includes all the information! Inside there, any descriptions of the purpose of the project will be within the folder `markdown`. \
+The `code` folder contains all the code, for now this includes only the data exploration and the linear model. \
+The `open lab notebook` folder contains documentation of this project and the progress of the project. \
+Within the `data` folder, all the relevant data for this project is stored. 
 
 ### Acknowledgements
 

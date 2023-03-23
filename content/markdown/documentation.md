@@ -33,10 +33,9 @@ The data-set that was thankfully provided by {cite:t}`wanjia_abrupt_2021`. Overa
 The repository for this project is available [here](https://github.com/tchaase/research-internship-2022). The repository has the following content
 
 - [/content](https://github.com/tchaase/research-internship-2022/tree/main/content): Contains the analyses and markdown files. 
-    - [/content/code](https://github.com/tchaase/research-internship-2022/tree/main/content/code): Contains the `.ipynb`.
-    - [/content/markdown](https://github.com/tchaase/research-internship-2022/tree/main/content/markdown): Contains the `md`.
+    - [/content/code](https://github.com/tchaase/research-internship-2022/tree/main/content/code): Contains the `.ipynb`, which contain the analyses. 
+    - [/content/markdown](https://github.com/tchaase/research-internship-2022/tree/main/content/markdown): Contains the `.md`.
     - Additionally, this folder contains the files for the jupyter book (`_toc`, `_config`, `con.py`)
-The analyses were carried out within the [code](https://github.com/tchaase/research-internship-2022/tree/main/content/code) section. 
     - [/content/static](https://github.com/tchaase/research-internship-2022/tree/main/content/static): This folder contains images etc.
 - [/data](https://github.com/tchaase/research-internship-2022/tree/main/data): If any necessary data is added to this project, it will be added to this folder. Currently empty. 
 - [/open_lab_notebook](https://github.com/tchaase/research-internship-2022/tree/main/open_lab_notebook): Contains documentation of the project. 
@@ -46,7 +45,7 @@ The analyses were carried out within the [code](https://github.com/tchaase/resea
 
 The exported library is accessible [here](https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib) and displayed below!
 
-<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
+<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fraw.githubusercontent.com%2Ftchaase%2Fresearch-internship-2022%2Fmain%2Fcontent%2Freferences.bib&commas=true&msg=embed"  frameborder="0" width="700" height="370"></iframe>
 
 ## OSF-page
 
@@ -100,7 +99,9 @@ And lastly of course don't forget to...
         conda activate yourname
 ```
 
-## Packages and Pipelines used
+## Packages and Pipelines Used
+  
+<br>
 
 **fMRI-prep**
 
@@ -113,17 +114,21 @@ I tried to preprocess the data on my device using [docker](https://www.docker.co
 ...but was preprocessed on [brain-life](https://brainlife.io/project/63a02e876881d56fbfdeddfd)! 
 
 Also consult this article {cite:t}`esteban_analysis_2020`, in which the sub-work-flows are outlined etc. 
-
+ 
+ <br>
+ 
 **MRI-QC**
 
 The data was attempted to be quality controlled via [MRI-QC](https://github.com/nipreps/mriqc)(20.2.3; . In parallel to fMRI-prep, this was first attempted via docker. The data was quality controlled via brainlife. 
 
 Sadly, `brainlife` does not provide the group report files, thus they cannot be linked here. Given the limited availability of data, standard procedure to exclude participants was ignored to progress this project. 
-
+ 
+ <br>
+ 
 **pybids**
 
 The structure of the data-set was explored using [pybids](https://github.com/bids-standard/pybids). This tool is simply amazing to explore a BIDS data-sets...
-
+ 
 ```{note} 
 **What does BIDS stand for?**
 
@@ -131,8 +136,9 @@ BIDS refers to the [brain imaging data strucuture](https://bids.neuroimaging.io/
 ```
 
 ...as within a BIDS data-set one knows which information is expected to be where, this allows convenient functions to explore such data-sets. This is something pybids enables. Also refer to {cite:t}`yarkoni_pybids_2019` .
-
-
+ 
+ <br>
+ 
 **nilearn**
 
 The analyses within the [linear_model](../code/linear_model.ipynb) notebook were largely performed using [nilearn](https://nilearn.github.io/stable/index.html). 

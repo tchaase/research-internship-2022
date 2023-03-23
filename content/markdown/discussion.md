@@ -2,7 +2,7 @@
 
 This section covers two topics. 
 
-1. Can I answer my question that was formulated and developed in the [introduction](data_set.md)?]
+1. Can I answer my question that was formulated and developed in the [introduction](data_set.md)?
 2. Secondly, how was this whole project? Did I learn much? What were the biggest issues I ran into?
 
 Firstly, let's summarize what has been done within this project so far and then evaluate if it meets the goals I initially outlined.
