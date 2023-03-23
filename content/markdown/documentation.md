@@ -45,7 +45,7 @@ The repository for this project is available [here](https://github.com/tchaase/r
 
 The exported library is accessible [here](https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib) and displayed below!
 
-<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
+<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fraw.githubusercontent.com%2Ftchaase%2Fresearch-internship-2022%2Fmain%2Fcontent%2Freferences.bib&commas=true&msg=embed"  frameborder="0" width="700" height="370"></iframe>
 
 ## OSF-page
 
