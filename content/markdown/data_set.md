@@ -105,7 +105,7 @@ Also, here is a TED-talk on an aspect of memory I did not cover at all I found i
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Q4tbqEAMMLw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```{toggle}
-Totally not because as a psychologist I don't know anything about molecules.
+This may or may not be related to me having limited knowledge on this aspect of memory. 
 <center><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif" alt="logo" title="Github" width="400" height="280" /></center>
 <center><sub><sup><sub><sup><sup>https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI0ZDk3Y2MyZWZhMjhhMzlkMTdmNzhlMDFkNmY0MjYxOWRhNTRkNyZjdD1n/3o6MbgktNOTZWhNlni/giphy.gif </sup></sup></sub></sup></sub></center>
 ```
