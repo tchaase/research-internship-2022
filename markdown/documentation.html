@@ -406,7 +406,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osf-page">OSF-page</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-lab-notebook">Open-Lab Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-environment">Computational Environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-pipelines-used">Packages and Pipelines used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-pipelines-used">Packages and Pipelines Used</a></li>
 </ul>
             </nav>
         </div>
@@ -446,10 +446,9 @@ datalad install <a class="github reference external" href="https://github.com/Op
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content">/content</a>: Contains the analyses and markdown files.</p>
 <ul>
-<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code">/content/code</a>: Contains the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
-<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/markdown">/content/markdown</a>: Contains the <code class="docutils literal notranslate"><span class="pre">md</span></code>.</p></li>
-<li><p>Additionally, this folder contains the files for the jupyter book (<code class="docutils literal notranslate"><span class="pre">_toc</span></code>, <code class="docutils literal notranslate"><span class="pre">_config</span></code>, <code class="docutils literal notranslate"><span class="pre">con.py</span></code>)
-The analyses were carried out within the <a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code">code</a> section.</p></li>
+<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/code">/content/code</a>: Contains the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, which contain the analyses.</p></li>
+<li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/markdown">/content/markdown</a>: Contains the <code class="docutils literal notranslate"><span class="pre">.md</span></code>.</p></li>
+<li><p>Additionally, this folder contains the files for the jupyter book (<code class="docutils literal notranslate"><span class="pre">_toc</span></code>, <code class="docutils literal notranslate"><span class="pre">_config</span></code>, <code class="docutils literal notranslate"><span class="pre">con.py</span></code>)</p></li>
 <li><p><a class="reference external" href="https://github.com/tchaase/research-internship-2022/tree/main/content/static">/content/static</a>: This folder contains images etc.</p></li>
 </ul>
 </li>
@@ -460,7 +459,7 @@ The analyses were carried out within the <a class="reference external" href="htt
 <section id="zotero">
 <h2>Zotero<a class="headerlink" href="#zotero" title="Permalink to this heading">#</a></h2>
 <p>The exported library is accessible <a class="reference external" href="https://github.com/tchaase/research-internship-2022/blob/main/content/references.bib">here</a> and displayed below!</p>
-<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fapi.zotero.org%2Fusers%2F9406157%2Fcollections%2F65LQYM2B%2Fitems%3Fkey%3DjFRwAo92hLMpRKaAChJLLKRs%26format%3Dbibtex%26limit%3D100&msg=embed#"  frameborder="0" width="700" height="370"></iframe>
+<iframe src="https://bibbase.org/show?bib=https%3A%2F%2Fraw.githubusercontent.com%2Ftchaase%2Fresearch-internship-2022%2Fmain%2Fcontent%2Freferences.bib&commas=true&msg=embed"  frameborder="0" width="700" height="370"></iframe>
 </section>
 <section id="osf-page">
 <h2>OSF-page<a class="headerlink" href="#osf-page" title="Permalink to this heading">#</a></h2>
@@ -520,7 +519,8 @@ conda activate yourname</p>
 </div>
 </section>
 <section id="packages-and-pipelines-used">
-<h2>Packages and Pipelines used<a class="headerlink" href="#packages-and-pipelines-used" title="Permalink to this heading">#</a></h2>
+<h2>Packages and Pipelines Used<a class="headerlink" href="#packages-and-pipelines-used" title="Permalink to this heading">#</a></h2>
+<br>
 <p><strong>fMRI-prep</strong></p>
 <p>The data was preprocessed using <a class="reference external" href="https://github.com/nipreps/fmriprep">fMRI-prep</a> (20.2.3). Traditionally, data-sets are preprocessed using various protocols or decision-criteria which may differ from one scientist to the next. <span id="id2">[<a class="reference internal" href="references.html#id41" title="Oscar Esteban, Christopher J. Markiewicz, Ross W. Blair, Craig A. Moodie, A. Ilkay Isik, Asier Erramuzpe, James D. Kent, Mathias Goncalves, Elizabeth DuPre, Madeleine Snyder, Hiroyuki Oya, Satrajit S. Ghosh, Jessey Wright, Joke Durnez, Russell A. Poldrack, and Krzysztof J. Gorgolewski. fMRIPrep: a robust preprocessing pipeline for functional MRI. Nature Methods, 16(1):111–116, January 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41592-018-0235-4 (visited on 2023-03-11), doi:10.1038/s41592-018-0235-4.">Esteban <em>et al.</em>, 2019</a>]</span> introduces fmri-prep as a tool that saves time, but more importantly negates the interindividual differences between scientists when preprocessing data. Thus “<strong>fMRI-prep</strong> adresses the reproducibility concerns of the established protocols for fMRI preprocessing” <span id="id3">[<a class="reference internal" href="references.html#id41" title="Oscar Esteban, Christopher J. Markiewicz, Ross W. Blair, Craig A. Moodie, A. Ilkay Isik, Asier Erramuzpe, James D. Kent, Mathias Goncalves, Elizabeth DuPre, Madeleine Snyder, Hiroyuki Oya, Satrajit S. Ghosh, Jessey Wright, Joke Durnez, Russell A. Poldrack, and Krzysztof J. Gorgolewski. fMRIPrep: a robust preprocessing pipeline for functional MRI. Nature Methods, 16(1):111–116, January 2019. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41592-018-0235-4 (visited on 2023-03-11), doi:10.1038/s41592-018-0235-4.">Esteban <em>et al.</em>, 2019</a>]</span>.</p>
 <p>The data was attempted to be preprocessed via docker on my device…</p>
@@ -529,9 +529,11 @@ conda activate yourname</p>
 </div>
 <p>…but was preprocessed on <a class="reference external" href="https://brainlife.io/project/63a02e876881d56fbfdeddfd">brain-life</a>!</p>
 <p>Also consult this article <span id="id4">Esteban <em>et al.</em> [<a class="reference internal" href="references.html#id39" title="Oscar Esteban, Rastko Ciric, Karolina Finc, Ross W. Blair, Christopher J. Markiewicz, Craig A. Moodie, James D. Kent, Mathias Goncalves, Elizabeth DuPre, Daniel E. P. Gomez, Zhifang Ye, Taylor Salo, Romain Valabregue, Inge K. Amlien, Franziskus Liem, Nir Jacoby, Hrvoje Stojić, Matthew Cieslak, Sebastian Urchs, Yaroslav O. Halchenko, Satrajit S. Ghosh, Alejandro De La Vega, Tal Yarkoni, Jessey Wright, William H. Thompson, Russell A. Poldrack, and Krzysztof J. Gorgolewski. Analysis of task-based functional MRI data preprocessed with fMRIPrep. Nature Protocols, 15(7):2186–2202, July 2020. Number: 7 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/s41596-020-0327-3 (visited on 2023-03-11), doi:10.1038/s41596-020-0327-3.">2020</a>]</span>, in which the sub-work-flows are outlined etc.</p>
+ <br>
 <p><strong>MRI-QC</strong></p>
 <p>The data was attempted to be quality controlled via <a class="reference external" href="https://github.com/nipreps/mriqc">MRI-QC</a>(20.2.3; . In parallel to fMRI-prep, this was first attempted via docker. The data was quality controlled via brainlife.</p>
 <p>Sadly, <code class="docutils literal notranslate"><span class="pre">brainlife</span></code> does not provide the group report files, thus they cannot be linked here. Given the limited availability of data, standard procedure to exclude participants was ignored to progress this project.</p>
+ <br>
 <p><strong>pybids</strong></p>
 <p>The structure of the data-set was explored using <a class="reference external" href="https://github.com/bids-standard/pybids">pybids</a>. This tool is simply amazing to explore a BIDS data-sets…</p>
 <div class="admonition note">
@@ -540,6 +542,7 @@ conda activate yourname</p>
 <p>BIDS refers to the <a class="reference external" href="https://bids.neuroimaging.io/">brain imaging data strucuture</a>. When we do experiments using various neuroimaging methods, the resulting files can be very hard to keep track of. Imagine you had to pick a project up where someone else left it behind and you had no idea what the file <code class="docutils literal notranslate"><span class="pre">13032020_03_1244.dcm</span></code> means. With BIDS, both a structure of the files is suggested. Thus you will know which file you can expect where. Furthermore the file formats etc. is specified. Thus if the data-set you were given was in the BIDS structure, you would have very little troubles understanding what is already available and what you need to do! Also refer a description of this provided by <span id="id5">Gorgolewski <em>et al.</em> [<a class="reference internal" href="references.html#id45" title="Krzysztof J. Gorgolewski, Tibor Auer, Vince D. Calhoun, R. Cameron Craddock, Samir Das, Eugene P. Duff, Guillaume Flandin, Satrajit S. Ghosh, Tristan Glatard, Yaroslav O. Halchenko, Daniel A. Handwerker, Michael Hanke, David Keator, Xiangrui Li, Zachary Michael, Camille Maumet, B. Nolan Nichols, Thomas E. Nichols, John Pellman, Jean-Baptiste Poline, Ariel Rokem, Gunnar Schaefer, Vanessa Sochat, William Triplett, Jessica A. Turner, Gaël Varoquaux, and Russell A. Poldrack. The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Scientific Data, 3(1):160044, June 2016. Number: 1 Publisher: Nature Publishing Group. URL: https://www.nature.com/articles/sdata201644 (visited on 2023-03-13), doi:10.1038/sdata.2016.44.">2016</a>]</span> .</p>
 </div>
 <p>…as within a BIDS data-set one knows which information is expected to be where, this allows convenient functions to explore such data-sets. This is something pybids enables. Also refer to <span id="id6">Yarkoni <em>et al.</em> [<a class="reference internal" href="references.html#id46" title="Tal Yarkoni, Christopher J Markiewicz, Alejandro de la Vega, Krzysztof J Gorgolewski, Taylor Salo, Yaroslav O Halchenko, Quinten McNamara, Krista DeStasio, Jean-Baptiste Poline, Dmitry Petrov, Valérie Hayot-Sasson, Dylan M Nielson, Johan Carlin, Gregory Kiar, Kirstie Whitaker, Elizabeth DuPre, Adina Wagner, Lee S Tirrell, Mainak Jas, Michael Hanke, Russell A Poldrack, Oscar Esteban, Stefan Appelhoff, Chris Holdgraf, Isla Staden, Bertrand Thirion, Dave F Kleinschmidt, John A Lee, Matteo Visconti di Oleggio Castello, Michael P Notter, and Ross Blair. PyBIDS: Python tools for BIDS datasets. Journal of open source software, 4(40):1294, 2019. URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7409983/ (visited on 2023-03-13), doi:10.21105/joss.01294.">2019</a>]</span> .</p>
+ <br>
 <p><strong>nilearn</strong></p>
 <p>The analyses within the <a class="reference internal" href="../code/linear_model.html"><span class="doc std std-doc">linear_model</span></a> notebook were largely performed using <a class="reference external" href="https://nilearn.github.io/stable/index.html">nilearn</a>.</p>
 <p>The primary reason to use nilearn is that it also enables later machine learning techniques to analyze to MRI data. It is also possible to analyze functional connectivity with nilearn or do multi-voxel pattern analyses! And of course this is a open-source python package with stellar documentation!</p>
@@ -616,7 +619,7 @@ conda activate yourname</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osf-page">OSF-page</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-lab-notebook">Open-Lab Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-environment">Computational Environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-pipelines-used">Packages and Pipelines used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-pipelines-used">Packages and Pipelines Used</a></li>
 </ul>
   </nav></div>
 
